@@ -44,27 +44,27 @@ $( document ).ready(function() {
 
 
 	// POPOVER EVENT DETAILS
-	$(".eventTitle").popover({
-		trigger: "manual",
-		placement: "bottom",
-		title: "",
-		html : true,
-		content: function() {
-			return $('#eventPopoverContent').html();
-		}
-		}).on("click", function(e) {
-			e.preventDefault();
-		}).on("mouseenter", function() {
-			$(this).popover("show");
-			$(this).siblings(".popover").on("mouseleave", function() {
-				$(this).hide();
-			});
-		}).on("mouseleave", function() {
-			var _this = this;
-			setTimeout(function() {
-				if (!$(".popover:hover").length) {
-					$(_this).popover("hide")
-				}
-			}, 100);
-		});
+	// $(".eventTitle").popover({
+	// 	trigger: "manual",
+	// 	placement: "bottom",
+	// 	title: "",
+	// 	html : true,
+	// 	content: function() {
+	// 		return $('#eventPopoverContent').html();
+	// 	}
+	// 	}).on("click", function(e) {
+	// 		e.preventDefault();
+	// 	}).on("mouseenter", function() {
+	// 		$(this).popover("show");
+	// 		$(this).siblings(".popover").on("mouseleave", function() {
+	// 			$(this).hide();
+	// 		});
+	// 	}).on("mouseleave", function() {
+	// 		var _this = this;
+	// 		setTimeout(function() {
+	// 			if (!$(".popover:hover").length) {
+	// 				$(_this).popover("hide")
+	// 			}
+	// 		}, 100);
+	// 	});
 });

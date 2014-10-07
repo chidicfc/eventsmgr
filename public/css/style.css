@@ -262,3 +262,11 @@ select.startTime{
 		font-size: 13px;
 	}
 }
+/* chidi's codes    */
+
+.eventPopoverTables {
+
+	margin: 15px;
+	padding: 4px;
+	border: 1px solid black;
+}
