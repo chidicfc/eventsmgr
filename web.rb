@@ -71,12 +71,16 @@ post '/new_template' do
 end
 
 delete '/event_template/:id' do
+
+  raise "Delete: You a here!"
   # params.to_s
   DeleteEventTemplateController.new.delete params[:id]
   redirect '/'
 end
 
 patch '/event_template/:id' do
+  raise "Archive: You a here!"
+  
   ArchiveEventTemplateController.new.archive params[:id]
   redirect '/'
 end

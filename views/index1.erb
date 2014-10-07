@@ -27,10 +27,16 @@
             <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
               <form name="deleteForm" action="/event_template/<%= template.id %>" method="post">
                 <input type="hidden" name="_method" value="Delete" />
-                <span onclick="document.deleteForm.submit()">Delete</span>
+                <span onclick="$(this).parent().submit()">Delete</span>
               </form>
             </a>
-            <a href="archive_boots_coaching.html" class="btn btn-primary btn-xs pull-right">Archive</a>
+
+            <a class="btn btn-primary btn-xs pull-right">
+              <form name="archiveForm" action="/event_template/<%= template.id %>" method="post">
+                <input type="hidden" name="_method" value="Patch" />
+                <span onclick="$(this).parent().submit()">Archive</span>
+              </form>
+            </a>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse">
