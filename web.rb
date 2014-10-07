@@ -80,7 +80,7 @@ end
 
 patch '/event_template/:id' do
   raise "Archive: You a here!"
-  
+
   ArchiveEventTemplateController.new.archive params[:id]
   redirect '/'
 end
