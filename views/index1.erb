@@ -1,119 +1,114 @@
-  <div class="row">
-        <div class="col-md-6">
-          <h3>Event Templates</h3>
-        </div>
-        <div class="col-md-6">
-          <a href="/new_template" class="btn btn-success btn-sm pull-right topLevel">New Event Template</a>
-          <a class="btn btn-success btn-sm pull-right topLevel" href="/show_archive">Show Archive</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <div class="panel-group" id="accordion">
-              <% for template in @view.templates%>
-              <div class="panel panel-default">
+<div class="row">
+  <div class="col-md-6">
+    <h3>Event Templates</h3>
+  </div>  <!-- class="col-md-6" end -->
+  <div class="col-md-6">
+    <a href="/new_template" class="btn btn-success btn-sm pull-right topLevel">New Event Template</a>
+    <a class="btn btn-success btn-sm pull-right topLevel" href="/show_archive">Show Archive</a>
+  </div> <!-- class="col-md-6" end -->
+</div> <!-- class="row" end -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <div class="panel-group" id="accordion">
+        <% for template in @view.templates%>
+          <div class="panel panel-default">
+            <div class="panel-heading" id="<%= template.id %>">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= template.id %>">
+                  <button type="button" class="btn btn-default btn-xs plus">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                  <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
+                </a>
+                <a href="/<%= template.id %>/new_event?action=new" class="btn btn-primary btn-xs pull-right">Create New Event</a>
+                <a href="/event_template/<%= template.id %>/edit" class="btn btn-primary btn-xs pull-right">Edit</a>
+                <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
+                  <form name="deleteForm" action="/event_template/<%= template.id %>" method="post">
+                    <input type="hidden" name="_method" value="Delete" />
+                    <span onclick="$(this).parent().submit()">Delete</span>
+                  </form>
+                </a>
 
-        <div class="panel-heading" id="<%= template.id %>">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= template.id %>">
-            <button type="button" class="btn btn-default btn-xs plus">
-              <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
-            </a>
-            <a href="/<%= template.id %>/new_event?action=new" class="btn btn-primary btn-xs pull-right">Create New Event</a>
-            <a href="/event_template/<%= template.id %>/edit" class="btn btn-primary btn-xs pull-right">Edit</a>
-            <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
-              <form name="deleteForm" action="/event_template/<%= template.id %>" method="post">
-                <input type="hidden" name="_method" value="Delete" />
-                <span onclick="$(this).parent().submit()">Delete</span>
-              </form>
-            </a>
+                <a class="btn btn-primary btn-xs pull-right">
+                  <form name="archiveForm" action="/event_template/<%= template.id %>" method="post">
+                    <input type="hidden" name="_method" value="Patch" />
+                    <span onclick="$(this).parent().submit()">Archive</span>
+                  </form>
+                </a>
+              </h4>
+            </div> <!-- class="panel-heading" -->
+            <div id="collapse<%= template.id %>" class="panel-collapse collapse">
+              <div class="panel-body" id="events">
+                <% for event in template.events %>
 
-            <a class="btn btn-primary btn-xs pull-right">
-              <form name="archiveForm" action="/event_template/<%= template.id %>" method="post">
-                <input type="hidden" name="_method" value="Patch" />
-                <span onclick="$(this).parent().submit()">Archive</span>
-              </form>
-            </a>
-          </h4>
-        </div>
-        <div id="collapse<%= template.id %>" class="panel-collapse collapse">
-          <div class="panel-body" id="events">
+                  <table>
 
-            <table>
-              <% for event in template.events %>
-              <tr>
-                <td>
-                  <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="<%= event.title %>">
-                    <%= event.title %>&nbsp;&nbsp;(<%= event.assigned_coaches.count %>, <%= event.duration %>)
-                  </span>
-                </td>
-                <td>
-                  <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button></a>
-                </td>
-                <td>
-                  <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete">
-                    <span class="glyphicon glyphicon-remove"></span>
-                  </button></a>
-                </td>
+                    <tr>
+                      <td>
+                        <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="<%= event.title %>">
+                          <%= event.title %>&nbsp;&nbsp;(<%= event.assigned_coaches.count %>, <%= event.duration %>)
+                        </span>
+                      </td>
+                      <td>
+                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete">
+                          <span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                        </a>
+                      </td>
 
-              </tr>
+                    </tr>
+                  </table>
+                  <div id="eventPopoverContent" style="display: block">
+                    <% if event.assigned_coaches.count != 0 %>
 
-              <% end %>
+                      <% for assigned_coach in event.assigned_coaches %>
 
-            </table>
-
-
-
-              <% for assigned_coach in event.assigned_coaches %>
-                  <!-- HTML TO FILL EVENT POPOVER begin-->
-                      <div id="eventPopoverContent">
-                          <div class="eventPopoverTables">
-                            <div class="eventPopoverTable">
-                        <table>
-                          <tr>
-                            <td>
-                              <img src="img/avatar.gif">
-                            </td>
-                            <td>
-
-
-                              <p>&nbsp;&nbsp;Name: <%= assigned_coach.name %></p>
-                              <p>&nbsp;&nbsp;Email: </p>
-                              <p>&nbsp;&nbsp;Calendar</p>
-
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="2">
-                              <button type="button" class="btn btn-success btn-xs pull-right">Email All</button>
-                            </td>
-                          </tr>
-                        </table>
+                      <!-- HTML TO FILL EVENT POPOVER begin-->
+                        <div class="eventPopoverTables">
+                          <div class="eventPopoverTable">
+                            <table>
+                              <tr>
+                                <td>
+                                  <img src="img/avatar.gif">
+                                </td>
+                                <td>
+                                  <p>&nbsp;&nbsp;Name: <%= assigned_coach.name %></p>
+                                  <p>&nbsp;&nbsp;Email: </p>
+                                  <p>&nbsp;&nbsp;Calendar</p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <button type="button" class="btn btn-success btn-xs pull-right">Email All</button>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
                       </div>
-                      </div>
-                      </div>
-                  <!-- HTML TO FILL EVENT POPOVER end -->
-              <% end %>
 
-
-
-          </div>
-        </div>
-
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-</div><!-- /container -->
+                      <!-- HTML TO FILL EVENT POPOVER end -->
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %> <!-- for event end -->
+              </div> <!-- class=panel-body -->
+            </div>  <!-- id="collapse -->
+          </div>  <!-- class="panel panel-default" -->
+        <% end %>   <!-- template in @view.templates -->
+      </div>  <!-- class="panel-group" id="accordion" -->
+    </div>  <!-- class="table-responsive" -->
+  </div>  <!-- class="col-md-12" -->
+</div><!-- class="row" -->
 
 <!-- HTML TO FILL EVENT POPOVER -->
-    <div id="eventPopoverContent" style="display: none">
+    <!-- <div id="eventPopoverContent" style="display: none">
       <table class="eventPopoverTable">
         <tr>
           <td>
@@ -131,7 +126,7 @@
           </td>
         </tr>
       </table>
-    </div>
+    </div> -->
 
     <!-- MODAL FOR DELETE ALERT -->
     <div class="modal fade" id="confirm">
@@ -151,3 +146,12 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+<script>
+function toggle(obj) {
+
+	var el = document.getElementById(obj);
+
+	el.style.display = (el.style.display != 'none' ? 'none' : 'block' );
+
+}
+</script>
