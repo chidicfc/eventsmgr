@@ -1,0 +1,6460 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>Code coverage for Eventsmgr</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src='./assets/0.8.0/application.js' type='text/javascript'></script>    
+    <link href='./assets/0.8.0/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/png" href="./assets/0.8.0/favicon_red.png" />
+    <link rel="icon" type="image/png" href="./assets/0.8.0/favicon.png" />
+  </head>
+  
+  <body>
+    <div id="loading">
+      <img src="./assets/0.8.0/loading.gif" alt="loading"/>
+    </div>
+    <div id="wrapper" style="display:none;">
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-08-14T11:59:22+01:00">2014-08-14T11:59:22+01:00</abbr></div>
+      <ul class="group_tabs"></ul>
+
+      <div id="content">
+        <div class="file_list_container" id="AllFiles">
+  <h2>
+    <span class="group_name">All Files</span>
+    (<span class="covered_percent"><span class="red">33.68%</span></span>
+     covered at
+     <span class="covered_strength">
+       <span class="red">
+         0.32
+       </span>
+    </span> hits/line)
+  </h2>
+  <a name="AllFiles"></a>
+  <div>
+    <b>25</b> files in total.
+    <b>582</b> relevant lines. 
+    <span class="green"><b>196</b> lines covered</span> and
+    <span class="red"><b>386</b> lines missed </span>
+  </div>
+  <table class="file_list">
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>% covered</th>
+        <th>Lines</th>
+        <th>Relevant Lines</th>
+        <th>Lines covered</th>
+        <th>Lines missed</th>
+        <th>Avg. Hits / Line</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td class="strong"><a href="#b4098a2cf1db7c03b677008f0598f5cca1b7da17" class="src_link" title="app/controllers/event/delete.rb">app/controllers/event/delete.rb</a></td>
+        <td class="red strong">55.56 %</td>
+        <td>17</td>
+        <td>9</td>
+        <td>5</td>
+        <td>4</td>
+        <td>0.6</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#678f429d048a91807bb20e8f02f8ee8376b74261" class="src_link" title="app/controllers/event/edit.rb">app/controllers/event/edit.rb</a></td>
+        <td class="red strong">30.0 %</td>
+        <td>71</td>
+        <td>40</td>
+        <td>12</td>
+        <td>28</td>
+        <td>0.3</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#3fddabf09988b926f9e3e1e4606e4a61fdae594f" class="src_link" title="app/controllers/event/new.rb">app/controllers/event/new.rb</a></td>
+        <td class="red strong">53.33 %</td>
+        <td>29</td>
+        <td>15</td>
+        <td>8</td>
+        <td>7</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#6b45ad8c73b80ef10d0a30da1f180571c1a0c48a" class="src_link" title="app/controllers/event_template/archive.rb">app/controllers/event_template/archive.rb</a></td>
+        <td class="red strong">66.67 %</td>
+        <td>11</td>
+        <td>6</td>
+        <td>4</td>
+        <td>2</td>
+        <td>0.7</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#1a2e63b3e3366bee0c26a084903ae12547cc6995" class="src_link" title="app/controllers/event_template/delete.rb">app/controllers/event_template/delete.rb</a></td>
+        <td class="red strong">66.67 %</td>
+        <td>12</td>
+        <td>6</td>
+        <td>4</td>
+        <td>2</td>
+        <td>0.7</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#615eac29475b152ab65cb32c7bdea6ddcca5762f" class="src_link" title="app/controllers/event_template/edit.rb">app/controllers/event_template/edit.rb</a></td>
+        <td class="red strong">55.56 %</td>
+        <td>16</td>
+        <td>9</td>
+        <td>5</td>
+        <td>4</td>
+        <td>0.6</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#907c4cde1a0b29d93813c57728ebe548c17fbc1a" class="src_link" title="app/controllers/event_template/index.rb">app/controllers/event_template/index.rb</a></td>
+        <td class="red strong">50.0 %</td>
+        <td>16</td>
+        <td>10</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#4250c325a9cdfb3b2ac20ba8e0f9706bf18b22cb" class="src_link" title="app/controllers/event_template/new.rb">app/controllers/event_template/new.rb</a></td>
+        <td class="red strong">55.56 %</td>
+        <td>17</td>
+        <td>9</td>
+        <td>5</td>
+        <td>4</td>
+        <td>0.6</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#4b30643b508e9b4f678a59b489c1b93b5611ead3" class="src_link" title="app/controllers/event_template/show_archive.rb">app/controllers/event_template/show_archive.rb</a></td>
+        <td class="red strong">53.85 %</td>
+        <td>25</td>
+        <td>13</td>
+        <td>7</td>
+        <td>6</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#a2556d4e63c54ccb5a6bacea959e3a033ac6990a" class="src_link" title="app/db.rb">app/db.rb</a></td>
+        <td class="red strong">22.78 %</td>
+        <td>424</td>
+        <td>281</td>
+        <td>64</td>
+        <td>217</td>
+        <td>0.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#537d0e26cf767f3319ee04add2ae7962b965e960" class="src_link" title="app/models/assigned_coach.rb">app/models/assigned_coach.rb</a></td>
+        <td class="red strong">44.44 %</td>
+        <td>15</td>
+        <td>9</td>
+        <td>4</td>
+        <td>5</td>
+        <td>0.4</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#d702016ee9fa8cb1a6f83bd278487864c7752985" class="src_link" title="app/models/coach.rb">app/models/coach.rb</a></td>
+        <td class="red strong">44.44 %</td>
+        <td>15</td>
+        <td>9</td>
+        <td>4</td>
+        <td>5</td>
+        <td>0.4</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#cc5b8f001b22a3a359567bfce7ad44b132706aed" class="src_link" title="app/models/coach_fee.rb">app/models/coach_fee.rb</a></td>
+        <td class="red strong">36.36 %</td>
+        <td>17</td>
+        <td>11</td>
+        <td>4</td>
+        <td>7</td>
+        <td>0.4</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#cdc3bcc985110457578bda7006fa195f9a6c838d" class="src_link" title="app/models/cohort.rb">app/models/cohort.rb</a></td>
+        <td class="red strong">50.0 %</td>
+        <td>15</td>
+        <td>8</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#8ee048884d1ddc3524467ba574d4671b08f7b5bd" class="src_link" title="app/models/event.rb">app/models/event.rb</a></td>
+        <td class="red strong">31.58 %</td>
+        <td>26</td>
+        <td>19</td>
+        <td>6</td>
+        <td>13</td>
+        <td>0.3</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#eb6689ee03b20ba4a986c3ef93c0c657731991e6" class="src_link" title="app/models/event_template.rb">app/models/event_template.rb</a></td>
+        <td class="red strong">35.71 %</td>
+        <td>21</td>
+        <td>14</td>
+        <td>5</td>
+        <td>9</td>
+        <td>0.4</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#d19981ee543b01f36843e4d491b78aa2d1045afb" class="src_link" title="app/models/repository.rb">app/models/repository.rb</a></td>
+        <td class="red strong">51.28 %</td>
+        <td>77</td>
+        <td>39</td>
+        <td>20</td>
+        <td>19</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#829e2801d551bd016ec7af3c06379b3170ae7d5e" class="src_link" title="app/models/timezone.rb">app/models/timezone.rb</a></td>
+        <td class="red strong">50.0 %</td>
+        <td>15</td>
+        <td>8</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#219cf821d1d5b2f0f03647caabf88d0a62fcd4d7" class="src_link" title="app/views/event/delete.rb">app/views/event/delete.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>9</td>
+        <td>4</td>
+        <td>3</td>
+        <td>1</td>
+        <td>0.8</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#22ecfca8cbd7d39a0aaf811125c8d16b33afd38e" class="src_link" title="app/views/event/edit.rb">app/views/event/edit.rb</a></td>
+        <td class="red strong">30.77 %</td>
+        <td>19</td>
+        <td>13</td>
+        <td>4</td>
+        <td>9</td>
+        <td>0.3</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#db4991d5cd85efbf271cf3f037450a776f123710" class="src_link" title="app/views/event/new.rb">app/views/event/new.rb</a></td>
+        <td class="red strong">22.22 %</td>
+        <td>58</td>
+        <td>36</td>
+        <td>8</td>
+        <td>28</td>
+        <td>0.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#02c2e59145b872666ff6e19908f08147c011b210" class="src_link" title="app/views/event_template/edit.rb">app/views/event_template/edit.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>3</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#204a08ac909a493a8f36bb9719ce13c01012fbae" class="src_link" title="app/views/event_template/index.rb">app/views/event_template/index.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>7</td>
+        <td>4</td>
+        <td>3</td>
+        <td>1</td>
+        <td>0.8</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#f5f5e006ca842398c9c229e8b299f4bbf061554f" class="src_link" title="app/views/event_template/new.rb">app/views/event_template/new.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>6</td>
+        <td>4</td>
+        <td>3</td>
+        <td>1</td>
+        <td>0.8</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#f1968b0e9f03b35ef747b3b5e78d021399120153" class="src_link" title="app/views/event_template/show_archive.rb">app/views/event_template/show_archive.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>7</td>
+        <td>4</td>
+        <td>3</td>
+        <td>1</td>
+        <td>0.8</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+
+        
+      </div>
+    
+      <div id="footer">
+        Generated by <a href="http://github.com/colszowka/simplecov">simplecov</a> v0.9.0 
+        and simplecov-html v0.8.0<br/>
+        using Unknown Test Framework
+      </div>
+    
+      <div class="source_files">
+      
+        <div class="source_table" id="b4098a2cf1db7c03b677008f0598f5cca1b7da17">
+  <div class="header">
+    <h3>app/controllers/event/delete.rb</h3>
+    <h4><span class="red">55.56 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class DeleteEventController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_event template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.event = @repo.get_event template_id, event_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete event_id, template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @repo.delete_event event_id, template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="678f429d048a91807bb20e8f02f8ee8376b74261">
+  <div class="header">
+    <h3>app/controllers/event/edit.rb</h3>
+    <h4><span class="red">30.0 %</span> covered</h4>
+    <div>
+      <b>40</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>28</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class EditEventViewController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo, :view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.coaches = @repo.get_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_timezones</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @view.timezones = @repo.get_timezones</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    @view.cohorts = @repo.get_cohorts</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    @view.template = @repo.get template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def split_time time</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    time.split(&quot;:&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_event template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
+          
+          <code class="ruby">    @view.event = @repo.get_event template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
+          
+          <code class="ruby">    @view.event.start_time = split_time @view.event.start_time</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
+          
+          <code class="ruby">    @view.event.duration = split_time @view.event.duration</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_params params, template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="37">
+          
+          
+          <code class="ruby">    view = EditEventView.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="39">
+          
+          
+          <code class="ruby">    view.event.title = params[&quot;sub_title&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="40">
+          
+          
+          <code class="ruby">    view.event.date = params[&quot;date&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="41">
+          
+          
+          <code class="ruby">    view.event.description = params[&quot;description&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
+          
+          <code class="ruby">    view.event.timezone = params[&quot;timezone&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
+          
+          
+          <code class="ruby">    view.event.cohort = params[&quot;cohort&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="44">
+          
+          
+          <code class="ruby">    view.event.start_time = [&quot;#{params[:start_hours]}&quot;,&quot;#{params[:start_mins]}&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="45">
+          
+          
+          <code class="ruby">    view.event.duration = [&quot;#{params[:duration_hours]}&quot;,&quot;#{params[:duration_mins]}&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="46">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="49">
+          
+          
+          <code class="ruby">    repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">    view.template =  repo.get template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="52">
+          
+          
+          <code class="ruby">    for coach_fee in view.template.coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="53">
+          
+          
+          <code class="ruby">      view.event.coach_fees &lt;&lt; {&quot;#{coach_fee.currency}&quot; =&gt; params[&quot;#{coach_fee.currency}&quot;]}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="56">
+          
+          
+          <code class="ruby">    view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.set_assigned_coaches view, initial_assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="60">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches.each do |assigned_coach|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="61">
+          
+          
+          <code class="ruby">      initial_assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="63">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches = initial_assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="64">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches.uniq!</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="65">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="66">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="67">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="68">
+          
+          
+          <code class="ruby">    @repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="70">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="3fddabf09988b926f9e3e1e4606e4a61fdae594f">
+  <div class="header">
+    <h3>app/controllers/event/new.rb</h3>
+    <h4><span class="red">53.33 %</span> covered</h4>
+    <div>
+      <b>15</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
+      <span class="red"><b>7</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class NewEventViewController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo, :view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.template = @repo.get template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @view.coaches = @repo.get_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_timezones</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    @view.timezones = @repo.get_timezones</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    @view.cohorts = @repo.get_cohorts</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    @repo.add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="6b45ad8c73b80ef10d0a30da1f180571c1a0c48a">
+  <div class="header">
+    <h3>app/controllers/event_template/archive.rb</h3>
+    <h4><span class="red">66.67 %</span> covered</h4>
+    <div>
+      <b>6</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class ArchiveEventTemplateController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def archive id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    @repo.archive_template id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="1a2e63b3e3366bee0c26a084903ae12547cc6995">
+  <div class="header">
+    <h3>app/controllers/event_template/delete.rb</h3>
+    <h4><span class="red">66.67 %</span> covered</h4>
+    <div>
+      <b>6</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class DeleteEventTemplateController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    @repo.delete_template id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="615eac29475b152ab65cb32c7bdea6ddcca5762f">
+  <div class="header">
+    <h3>app/controllers/event_template/edit.rb</h3>
+    <h4><span class="red">55.56 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class EditEventTemplateViewController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :view, :repo</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.template = @repo.get template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @repo.update_template *args</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="907c4cde1a0b29d93813c57728ebe548c17fbc1a">
+  <div class="header">
+    <h3>app/controllers/event_template/index.rb</h3>
+    <h4><span class="red">50.0 %</span> covered</h4>
+    <div>
+      <b>10</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
+      <span class="red"><b>5</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class IndexViewController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="3">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def display_templates</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @view.templates = @repo.all</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def display_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.templates = @repo.search_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @view.templates = @repo.search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="4250c325a9cdfb3b2ac20ba8e0f9706bf18b22cb">
+  <div class="header">
+    <h3>app/controllers/event_template/new.rb</h3>
+    <h4><span class="red">55.56 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class NewEventTemplateViewController</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :view, :repo</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_default_coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    @view.coach_fees = @repo.default_coach_fees</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def save *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">    @repo.add *args</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="4b30643b508e9b4f678a59b489c1b93b5611ead3">
+  <div class="header">
+    <h3>app/controllers/event_template/show_archive.rb</h3>
+    <h4><span class="red">53.85 %</span> covered</h4>
+    <div>
+      <b>13</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class ShowArchiveEventTemplateController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :repo, :view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(view=nil)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @view = view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def show</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @view.archive_templates = @repo.show_archive</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def unarchive id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @repo.unarchive_template id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def display_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    @view.archive_templates = @repo.search_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    @view.archive_templates = @repo.search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="a2556d4e63c54ccb5a6bacea959e3a033ac6990a">
+  <div class="header">
+    <h3>app/db.rb</h3>
+    <h4><span class="red">22.78 %</span> covered</h4>
+    <div>
+      <b>281</b> relevant lines. 
+      <span class="green"><b>64</b> lines covered</span> and
+      <span class="red"><b>217</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &quot;sequel&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB = Sequel.sqlite(&#39;app/eventsmanager.db&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :event_templates do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :title</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :duration</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :description</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :events do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  foreign_key :event_template_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :title</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :duration</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :description</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="19">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :date</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="20">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :start_time</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :timezone</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :cohort</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :coaches do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :name</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :email</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="32">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :assigned_coaches do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  foreign_key :event_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :coach_fees do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="40">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  foreign_key :event_template_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  foreign_key :event_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :currency</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="43">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :amount</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="45">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="46">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :timezones do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="47">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="48">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="51">
+          <span class="hits">1</span>
+          
+          <code class="ruby">DB.create_table? :cohorts do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  primary_key :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="53">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  String :name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class DataBaseDataStore</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_database</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="60">
+          
+          
+          <code class="ruby">    10.times do |index|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="61">
+          
+          
+          <code class="ruby">      index += 1</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="62">
+          
+          
+          <code class="ruby">      dataset = DB[:event_templates]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="63">
+          
+          
+          <code class="ruby">      event_template_id = dataset.insert(:title =&gt; &quot;Boots Coaching Capability #{index}&quot;,:duration =&gt; &quot;08:30&quot;,:description =&gt; &quot;description #{index}&quot;, :status =&gt; &quot;active&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="64">
+          
+          
+          <code class="ruby">      load_default_coach_fees event_template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="65">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
+          
+          <code class="ruby">      dataset = DB[:events]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="67">
+          
+          
+          <code class="ruby">      event_id = dataset.insert(:title =&gt; &quot;Winchester #{index} - October 11, 2011&quot;,:duration =&gt; &quot;09:00&quot;, :event_template_id =&gt; event_template_id, :date =&gt; &quot;19/07/2014&quot;, :start_time =&gt; &quot;09:00&quot;, :timezone =&gt; &quot;GMT&quot;, :cohort =&gt; &quot;Apple MAC Division Cohort 1&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="68">
+          
+          
+          <code class="ruby">      set_default_event_coach_fees event_template_id, event_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="70">
+          
+          
+          <code class="ruby">      dataset=DB[:coaches]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="71">
+          
+          
+          <code class="ruby">      dataset.insert(:name =&gt; &quot;Delaney Burke #{index}&quot;,:email =&gt; &quot;delaney.burke@coachinabox.biz&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="72">
+          
+          
+          <code class="ruby">      dataset.insert(:name =&gt; &quot;Sarah Burke #{index}&quot;,:email =&gt; &quot;delaney@yahoo.biz&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="73">
+          
+          
+          <code class="ruby">      dataset.insert(:name =&gt; &quot;Michael Jackson #{index}&quot;,:email =&gt; &quot;m.jackson@coachinabox.biz&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="74">
+          
+          
+          <code class="ruby">      dataset.insert(:name =&gt; &quot;Tom Green #{index}&quot;,:email =&gt; &quot;tom.green@coachinabox.biz&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="75">
+          
+          
+          <code class="ruby">      dataset.insert(:name =&gt; &quot;Dick Cheney #{index}&quot;,:email =&gt; &quot;dick.c@coachinabox.biz&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="77">
+          
+          
+          <code class="ruby">    load_default_coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="78">
+          
+          
+          <code class="ruby">    load_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
+          
+          <code class="ruby">    load_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="80">
+          
+          
+          <code class="ruby">    load_timezones</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_default_coach_fees template_id=0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="84">
+          
+          
+          <code class="ruby">    dataset = DB[:coach_fees]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="85">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;GBP&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="86">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;USD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="87">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;EUR&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="88">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;AUD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="89">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;SGD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="91">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def set_default_event_coach_fees template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="93">
+          
+          
+          <code class="ruby">    dataset = DB[:coach_fees]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="94">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;GBP&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id, :event_id =&gt; event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="95">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;USD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id, :event_id =&gt; event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="96">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;EUR&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id, :event_id =&gt; event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="97">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;AUD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id, :event_id =&gt; event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="98">
+          
+          
+          <code class="ruby">    coach_fee = dataset.insert(:currency =&gt; &quot;SGD&quot;, :amount =&gt; &quot;0.00&quot;, :event_template_id =&gt; template_id, :event_id =&gt; event_id)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="99">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="100">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="101">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="102">
+          
+          
+          <code class="ruby">    dataset = DB[:coaches]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="103">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Cheryl Jackson&quot;, :email =&gt; &quot;xx@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="104">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Tom Green&quot;, :email =&gt; &quot;aa@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="105">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Matt Taylor&quot;, :email =&gt; &quot;bb@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="106">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;David Platt&quot;, :email =&gt; &quot;cc@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="107">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Michael Jackson&quot;, :email =&gt; &quot;dd@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="108">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Drew Black&quot;, :email =&gt; &quot;ee@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="109">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Neptunes&quot;, :email =&gt; &quot;neptune@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="110">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Mike Tello&quot;, :email =&gt; &quot;tello@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="111">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Janet Jackson&quot;, :email =&gt; &quot;janet@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="112">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Phil Jackson&quot;, :email =&gt; &quot;phil@yahoo.com&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="114">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="115">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="116">
+          
+          
+          <code class="ruby">    dataset = DB[:cohorts]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="117">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;2020 Project A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="118">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;2019 Project A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="119">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Honda Project A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="120">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Apple North America Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="121">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;1999 Project B Cohort A&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="122">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Microsoft A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="123">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Mars Cohort A&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="124">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;2000 Project A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="125">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Cadbury Project C Cohort B&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="126">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;Unilever Project A Cohort B&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="129">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def load_timezones</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="130">
+          
+          
+          <code class="ruby">    dataset = DB[:timezones]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="131">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+00.00) + London&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="132">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+00.00) + Europe/London&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="133">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+10.00) + Sydney&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="134">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+8.00) + Singapore&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="135">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+8.00) + Beijing&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="136">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT+6.00) + Central America&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="137">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT-11.00) + Hawaii&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="138">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT-9.00) + Alaska&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="139">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT-7.00) + Arizona&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="140">
+          
+          
+          <code class="ruby">    dataset.insert(:name =&gt; &quot;(GMT-5.00) + Lima&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="143">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="144">
+          
+          
+          <code class="ruby">    coaches = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="145">
+          
+          
+          <code class="ruby">    DB[:coaches].each do |coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="146">
+          
+          
+          <code class="ruby">      coach = Coach.from_hash(coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="147">
+          
+          
+          <code class="ruby">      coaches &lt;&lt; coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="149">
+          
+          
+          <code class="ruby">    coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="150">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="151">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="152">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_timezones</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="153">
+          
+          
+          <code class="ruby">    timezones = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="154">
+          
+          
+          <code class="ruby">    DB[:timezones].each do |timezone_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="155">
+          
+          
+          <code class="ruby">      timezone = TimeZone.from_hash(timezone_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="156">
+          
+          
+          <code class="ruby">      timezones &lt;&lt; timezone</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="157">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="158">
+          
+          
+          <code class="ruby">    timezones</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="159">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="160">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="161">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="162">
+          
+          
+          <code class="ruby">    cohorts = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="163">
+          
+          
+          <code class="ruby">    DB[:cohorts].each do |cohort_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="164">
+          
+          
+          <code class="ruby">      cohort = Cohort.from_hash(cohort_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="165">
+          
+          
+          <code class="ruby">      cohorts &lt;&lt; cohort</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="167">
+          
+          
+          <code class="ruby">    cohorts</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="168">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="169">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="170">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def all_templates</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="171">
+          
+          
+          <code class="ruby">    templates = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="172">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="173">
+          
+          
+          <code class="ruby">    if DB[:event_templates].all == []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="174">
+          
+          
+          <code class="ruby">      load_database</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="175">
+          
+          
+          <code class="ruby">      all_templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="176">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="177">
+          
+          
+          <code class="ruby">      DB[:event_templates].where(:status =&gt; &quot;active&quot;).each do |event_template_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="178">
+          
+          
+          <code class="ruby">        event_template = EventTemplate.from_hash(event_template_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="179">
+          
+          
+          <code class="ruby">        DB[:events].where(:event_template_id =&gt; event_template_row[:id]).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="180">
+          
+          
+          <code class="ruby">          event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="181">
+          
+          
+          <code class="ruby">          if DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]) != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="182">
+          
+          
+          <code class="ruby">            DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="183">
+          
+          
+          <code class="ruby">              assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="184">
+          
+          
+          <code class="ruby">              event.assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="185">
+          
+          
+          <code class="ruby">            end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="186">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="187">
+          
+          
+          <code class="ruby">          event_template.events &lt;&lt; event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="188">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="189">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="190">
+          
+          
+          <code class="ruby">        DB[:coach_fees].where(Sequel.&amp;(:event_template_id =&gt; event_template_row[:id], :event_id =&gt; nil)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="191">
+          
+          
+          <code class="ruby">          coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="192">
+          
+          
+          <code class="ruby">          event_template.coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="193">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="194">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="195">
+          
+          
+          <code class="ruby">        templates &lt;&lt; event_template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="196">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="197">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="198">
+          
+          
+          <code class="ruby">    templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="199">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="200">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="201">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def default_coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="202">
+          
+          
+          <code class="ruby">    coach_fees = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="203">
+          
+          
+          <code class="ruby">    DB[:coach_fees].where(Sequel.&amp;(:event_template_id =&gt; 0, :event_id =&gt; nil)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="204">
+          
+          
+          <code class="ruby">      coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="205">
+          
+          
+          <code class="ruby">      coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="206">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="207">
+          
+          
+          <code class="ruby">    coach_fees</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="208">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="209">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="210">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="211">
+          
+          
+          <code class="ruby">    values = [*args]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="212">
+          
+          
+          <code class="ruby">    DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="213">
+          
+          
+          <code class="ruby">      template_id = DB[:event_templates].insert(:title =&gt; values[0], :duration =&gt; values[1], :description =&gt; values[3], :status =&gt; &quot;active&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="214">
+          
+          
+          <code class="ruby">      count = 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="215">
+          
+          
+          <code class="ruby">      values[2].each do |value|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="216">
+          
+          
+          <code class="ruby">        DB[:coach_fees].insert(:currency =&gt; value[&quot;currency#{count}&quot;.to_sym], :amount =&gt; value[&quot;amount#{count}&quot;.to_sym], :event_template_id =&gt; template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="217">
+          
+          
+          <code class="ruby">        count += 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="218">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="219">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="220">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="221">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="222">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="223">
+          
+          
+          <code class="ruby">    DB[:event_templates].where(:id =&gt; template_id).each do |event_template_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="224">
+          
+          
+          <code class="ruby">      @event_template = EventTemplate.from_hash(event_template_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="225">
+          
+          
+          <code class="ruby">      DB[:events].where(:event_template_id =&gt; event_template_row[:id]).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="226">
+          
+          
+          <code class="ruby">        event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="227">
+          
+          
+          <code class="ruby">        if DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]) != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="228">
+          
+          
+          <code class="ruby">          DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="229">
+          
+          
+          <code class="ruby">            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="230">
+          
+          
+          <code class="ruby">            event.assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="231">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="232">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="233">
+          
+          
+          <code class="ruby">        @event_template.events &lt;&lt; event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="234">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="235">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="236">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(:event_template_id =&gt; template_id, :event_id =&gt; nil).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="237">
+          
+          
+          <code class="ruby">        coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="238">
+          
+          
+          <code class="ruby">        @event_template.coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="239">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="240">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="241">
+          
+          
+          <code class="ruby">    @event_template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="242">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="243">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="244">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update_template *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="245">
+          
+          
+          <code class="ruby">    values = [*args]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="246">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="247">
+          
+          
+          <code class="ruby">    DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="248">
+          
+          
+          <code class="ruby">      DB[:event_templates].where(:id =&gt; values[0]).update(:title =&gt; values[1], :duration =&gt; values[2], :description =&gt; values[4])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="249">
+          
+          
+          <code class="ruby">      count = 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="250">
+          
+          
+          <code class="ruby">      values[3].each do |value|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="251">
+          
+          
+          <code class="ruby">        @currency = value[&quot;currency#{count}&quot;.to_sym]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="252">
+          
+          
+          <code class="ruby">        @amount = value[&quot;amount#{count}&quot;.to_sym]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="253">
+          
+          
+          <code class="ruby">        DB[:coach_fees].where(:event_template_id =&gt; values[0], :event_id =&gt; nil, :currency =&gt; @currency).update(:amount =&gt; @amount)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="254">
+          
+          
+          <code class="ruby">        count += 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="255">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="256">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="257">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="258">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="259">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="260">
+          
+          
+          <code class="ruby">    if (get id).events.count == 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="261">
+          
+          
+          <code class="ruby">      DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="262">
+          
+          
+          <code class="ruby">        DB[:event_templates].where(:id =&gt; id).delete</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="263">
+          
+          
+          <code class="ruby">        DB[:coach_fees].where(:event_template_id =&gt; id, :event_id =&gt; nil).delete</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="264">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="265">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="266">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="267">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="268">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def archive_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="269">
+          
+          
+          <code class="ruby">    event_template = get id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="270">
+          
+          
+          <code class="ruby">    if isArchive? event_template.events</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="271">
+          
+          
+          <code class="ruby">      DB[:event_templates].where(:id =&gt; id).update(:status =&gt; &quot;archive&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="272">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="273">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="274">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="275">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def show_archive</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="276">
+          
+          
+          <code class="ruby">    archive_templates = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="277">
+          
+          
+          <code class="ruby">    DB[:event_templates].where(:status =&gt; &quot;archive&quot;).each do |event_template_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="278">
+          
+          
+          <code class="ruby">      event_template = EventTemplate.from_hash(event_template_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="279">
+          
+          
+          <code class="ruby">      DB[:events].where(:event_template_id =&gt; event_template_row[:id]).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="280">
+          
+          
+          <code class="ruby">        event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="281">
+          
+          
+          <code class="ruby">        if DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]) != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="282">
+          
+          
+          <code class="ruby">          DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="283">
+          
+          
+          <code class="ruby">            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="284">
+          
+          
+          <code class="ruby">            event.assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="285">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="286">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="287">
+          
+          
+          <code class="ruby">        event_template.events &lt;&lt; event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="288">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="289">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="290">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(Sequel.&amp;(:event_template_id =&gt; event_template_row[:id], :event_id =&gt; nil)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="291">
+          
+          
+          <code class="ruby">        coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="292">
+          
+          
+          <code class="ruby">        event_template.coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="293">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="294">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="295">
+          
+          
+          <code class="ruby">      archive_templates &lt;&lt; event_template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="296">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="297">
+          
+          
+          <code class="ruby">    archive_templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="298">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="299">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="300">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def unarchive_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="301">
+          
+          
+          <code class="ruby">    DB[:event_templates].where(:id =&gt; id).update(:status =&gt; &quot;active&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="302">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="303">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="304">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def isArchive? events</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="305">
+          
+          
+          <code class="ruby">    value = true</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="306">
+          
+          
+          <code class="ruby">    events.each do |event|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="307">
+          
+          
+          <code class="ruby">      value = false if Date.today &lt;= (Date.parse(event.date) + 2)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="308">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="309">
+          
+          
+          <code class="ruby">    value</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="310">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="311">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="312">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="313">
+          
+          
+          <code class="ruby">    DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="314">
+          
+          
+          <code class="ruby">      event_id = DB[:events].insert(:event_template_id =&gt; template_id, :title =&gt; title, :duration =&gt; duration, :description =&gt; description, :date =&gt; start_date, :start_time =&gt; start_time, :timezone =&gt; timezone, :cohort =&gt; cohort)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="315">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="316">
+          
+          
+          <code class="ruby">      coaches_fee.each do |currency, amount|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="317">
+          
+          
+          <code class="ruby">        DB[:coach_fees].insert(:event_template_id =&gt; template_id, :event_id =&gt; event_id, :currency =&gt; currency, :amount =&gt; amount)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="318">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="319">
+          
+          
+          <code class="ruby">      if assigned_coaches != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="320">
+          
+          
+          <code class="ruby">        assigned_coaches.each do |assigned_coach|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="321">
+          
+          
+          <code class="ruby">          DB[:assigned_coaches].insert(:event_id =&gt; event_id, :name =&gt; assigned_coach)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="322">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="323">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="324">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="325">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="326">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="327">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="328">
+          
+          
+          <code class="ruby">    DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="329">
+          
+          
+          <code class="ruby">      DB[:events].where(:event_template_id =&gt; template_id, :id =&gt; event_id).update(:title =&gt; sub_title, :duration =&gt; duration, :description =&gt; description, :date =&gt; date, :start_time =&gt; start_time, :timezone =&gt; timezone, :cohort =&gt; cohort)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="330">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="331">
+          
+          
+          <code class="ruby">      coach_fees.each do |coach_fee|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="332">
+          
+          
+          <code class="ruby">        coach_fee.each do |currency, amount|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="333">
+          
+          
+          <code class="ruby">          DB[:coach_fees].where(:event_template_id =&gt; template_id, :event_id =&gt; event_id, :currency =&gt; currency).update(:amount =&gt; amount)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="334">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="335">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="336">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="337">
+          
+          
+          <code class="ruby">      DB[:assigned_coaches].where(:event_id =&gt; event_id).delete</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="338">
+          
+          
+          <code class="ruby">      assigned_coaches.each do |assigned_coach|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="339">
+          
+          
+          <code class="ruby">        DB[:assigned_coaches].insert(:event_id =&gt; event_id, :name =&gt; assigned_coach)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="340">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="341">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="342">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="343">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="344">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="345">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="346">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_event template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="347">
+          
+          
+          <code class="ruby">    DB[:events].where(:id =&gt; event_id).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="348">
+          
+          
+          <code class="ruby">      @event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="349">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="350">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(Sequel.&amp;(:event_id =&gt; event_id, :event_template_id =&gt; template_id)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="351">
+          
+          
+          <code class="ruby">        coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="352">
+          
+          
+          <code class="ruby">        @event.coach_fees &lt;&lt; {&quot;#{coach_fee.currency}&quot; =&gt; &quot;#{coach_fee.amount}&quot;}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="353">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="354">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="355">
+          
+          
+          <code class="ruby">      DB[:assigned_coaches].where(:event_id =&gt; event_id).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="356">
+          
+          
+          <code class="ruby">        assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="357">
+          
+          
+          <code class="ruby">        @event.assigned_coaches &lt;&lt; assigned_coach.name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="358">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="359">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="360">
+          
+          
+          <code class="ruby">    @event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="361">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="362">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="363">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete_event event_id, template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="364">
+          
+          
+          <code class="ruby">    DB.transaction do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="365">
+          
+          
+          <code class="ruby">      DB[:events].where(:id =&gt; event_id).delete</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="366">
+          
+          
+          <code class="ruby">      DB[:assigned_coaches].where(:event_id =&gt; event_id).delete</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="367">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(:event_template_id =&gt; template_id, :event_id =&gt; event_id).delete</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="368">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="369">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="370">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="371">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="372">
+          
+          
+          <code class="ruby">    templates = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="373">
+          
+          
+          <code class="ruby">    DB[:event_templates].where(Sequel.like(:title, &quot;#{letter}%&quot;)).where(:status =&gt; status).each do |event_template_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="374">
+          
+          
+          <code class="ruby">      event_template = EventTemplate.from_hash(event_template_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="375">
+          
+          
+          <code class="ruby">      DB[:events].where(:event_template_id =&gt; event_template_row[:id]).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="376">
+          
+          
+          <code class="ruby">        event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="377">
+          
+          
+          <code class="ruby">        if DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]) != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="378">
+          
+          
+          <code class="ruby">          DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="379">
+          
+          
+          <code class="ruby">            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="380">
+          
+          
+          <code class="ruby">            event.assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="381">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="382">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="383">
+          
+          
+          <code class="ruby">        event_template.events &lt;&lt; event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="384">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="385">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="386">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(Sequel.&amp;(:event_template_id =&gt; event_template_row[:id], :event_id =&gt; nil)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="387">
+          
+          
+          <code class="ruby">        coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="388">
+          
+          
+          <code class="ruby">        event_template.coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="389">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="390">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="391">
+          
+          
+          <code class="ruby">      templates &lt;&lt; event_template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="392">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="393">
+          
+          
+          <code class="ruby">    templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="394">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="395">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="396">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="397">
+          
+          
+          <code class="ruby">    templates = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="398">
+          
+          
+          <code class="ruby">    capitalize_name = name.capitalize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="399">
+          
+          
+          <code class="ruby">    lowercase_name = name.downcase</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="400">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="401">
+          
+          
+          <code class="ruby">    DB[:event_templates].where(Sequel.|(Sequel.like(:title, &quot;%#{capitalize_name}%&quot;), Sequel.like(:title, &quot;%#{lowercase_name}%&quot;) ) ).where(:status =&gt; status).each do |event_template_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="402">
+          
+          
+          <code class="ruby">      event_template = EventTemplate.from_hash(event_template_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="403">
+          
+          
+          <code class="ruby">      DB[:events].where(:event_template_id =&gt; event_template_row[:id]).each do |event_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="404">
+          
+          
+          <code class="ruby">        event = Event.from_hash(event_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="405">
+          
+          
+          <code class="ruby">        if DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]) != []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="406">
+          
+          
+          <code class="ruby">          DB[:assigned_coaches].where(:event_id=&gt; event_row[:id]).each do |assigned_coach_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="407">
+          
+          
+          <code class="ruby">            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="408">
+          
+          
+          <code class="ruby">            event.assigned_coaches &lt;&lt; assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="409">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="410">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="411">
+          
+          
+          <code class="ruby">        event_template.events &lt;&lt; event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="412">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="413">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="414">
+          
+          
+          <code class="ruby">      DB[:coach_fees].where(Sequel.&amp;(:event_template_id =&gt; event_template_row[:id], :event_id =&gt; nil)).each do |coach_fee_row|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="415">
+          
+          
+          <code class="ruby">        coach_fee = CoachFee.from_hash(coach_fee_row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="416">
+          
+          
+          <code class="ruby">        event_template.coach_fees &lt;&lt; coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="417">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="418">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="419">
+          
+          
+          <code class="ruby">      templates &lt;&lt; event_template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="420">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="421">
+          
+          
+          <code class="ruby">    templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="422">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="423">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="424">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="537d0e26cf767f3319ee04add2ae7962b965e960">
+  <div class="header">
+    <h3>app/models/assigned_coach.rb</h3>
+    <h4><span class="red">44.44 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>5</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class AssignedCoach</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    attr_accessor :name, :id, :event_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def initialize (id, name, event_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">      @name = name</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">      @id = id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">      @event_id = event_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">      assigned_coach = AssignedCoach.new row[:id], row[:name], row[:event_id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">      assigned_coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="d702016ee9fa8cb1a6f83bd278487864c7752985">
+  <div class="header">
+    <h3>app/models/coach.rb</h3>
+    <h4><span class="red">44.44 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>5</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Coach</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :name, :email, :coach_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize (coach_id, name, email)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @name = name</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @email = email</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @coach_id = coach_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    coach = Coach.new(row[:id], row[:name], row[:email])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    coach</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="cc5b8f001b22a3a359567bfce7ad44b132706aed">
+  <div class="header">
+    <h3>app/models/coach_fee.rb</h3>
+    <h4><span class="red">36.36 %</span> covered</h4>
+    <div>
+      <b>11</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>7</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class CoachFee</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :currency, :amount, :template_id, :event_id, :id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(currency, amount, template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @currency = currency</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @amount = amount</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @template_id = template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    coach_fee = CoachFee.new row[:currency],row[:amount],row[:event_template_id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    coach_fee.event_id = row[:event_id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    coach_fee.id = row[:id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    coach_fee</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="cdc3bcc985110457578bda7006fa195f9a6c838d">
+  <div class="header">
+    <h3>app/models/cohort.rb</h3>
+    <h4><span class="red">50.0 %</span> covered</h4>
+    <div>
+      <b>8</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Cohort</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :name, :id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(name)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @name = name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    cohort = Cohort.new(row[:name])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    cohort.id = row[:id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    cohort</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="8ee048884d1ddc3524467ba574d4671b08f7b5bd">
+  <div class="header">
+    <h3>app/models/event.rb</h3>
+    <h4><span class="red">31.58 %</span> covered</h4>
+    <div>
+      <b>19</b> relevant lines. 
+      <span class="green"><b>6</b> lines covered</span> and
+      <span class="red"><b>13</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :title, :date, :description, :coach_fees, :id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :start_time, :duration, :event_template_id</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :assigned_coaches, :timezone, :cohort, :coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize (title, event_template_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    @title = title</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    @event_template_id = event_template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @assigned_coaches = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    @coach_fees = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash (row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">    event = Event.new row[:title], row[:event_template_id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="16">
+          
+          
+          <code class="ruby">    event.id = row[:id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
+          
+          <code class="ruby">    event.duration = row[:duration]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    event.description = row[:description]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
+          <code class="ruby">    event.date = row[:date]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="20">
+          
+          
+          <code class="ruby">    event.start_time = row[:start_time]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="21">
+          
+          
+          <code class="ruby">    event.timezone = row[:timezone]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    event.cohort = row[:cohort]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
+          
+          <code class="ruby">    event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="eb6689ee03b20ba4a986c3ef93c0c657731991e6">
+  <div class="header">
+    <h3>app/models/event_template.rb</h3>
+    <h4><span class="red">35.71 %</span> covered</h4>
+    <div>
+      <b>14</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
+      <span class="red"><b>9</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class EventTemplate</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :title, :duration, :description</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :events, :coach_fees, :id, :status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize()</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @events = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    @coach_fees = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    template = EventTemplate.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    template.id = row[:id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    template.title = row[:title]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">    template.duration =row[:duration]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="16">
+          
+          
+          <code class="ruby">    template.description =row[:description]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="17">
+          
+          
+          <code class="ruby">    template.status = row[:status]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="d19981ee543b01f36843e4d491b78aa2d1045afb">
+  <div class="header">
+    <h3>app/models/repository.rb</h3>
+    <h4><span class="red">51.28 %</span> covered</h4>
+    <div>
+      <b>39</b> relevant lines. 
+      <span class="green"><b>20</b> lines covered</span> and
+      <span class="red"><b>19</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Repository</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize datastore=DataBaseDataStore.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="3">
+          
+          
+          <code class="ruby">    @datastore = datastore</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def all</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @datastore.all_templates</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @datastore.add *args</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="13">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def default_coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @datastore.default_coach_fees</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    @datastore.get template_id.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def update_template *args</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    @datastore.update_template *args</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    @datastore.delete_template id.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def archive_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
+          
+          <code class="ruby">    @datastore.archive_template id.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def show_archive</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
+          
+          <code class="ruby">    @datastore.show_archive</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def unarchive_template id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">    @datastore.unarchive_template id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
+          
+          <code class="ruby">    @datastore.get_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="45">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_timezones</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">    @datastore.get_timezones</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_cohorts</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">    @datastore.get_cohorts</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="53">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="54">
+          
+          
+          <code class="ruby">    @datastore.add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_event template_id, event_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="58">
+          
+          
+          <code class="ruby">    @datastore.get_event template_id, event_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="61">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="62">
+          
+          
+          <code class="ruby">    @datastore.update_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="64">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="65">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete_event event_id, template_id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="66">
+          
+          
+          <code class="ruby">    @datastore.delete_event event_id, template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="67">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="69">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="70">
+          
+          
+          <code class="ruby">    @datastore.search_templates_by_letter letter, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="73">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="74">
+          
+          
+          <code class="ruby">    @datastore.search_templates_by_name name, status</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="77">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="829e2801d551bd016ec7af3c06379b3170ae7d5e">
+  <div class="header">
+    <h3>app/models/timezone.rb</h3>
+    <h4><span class="red">50.0 %</span> covered</h4>
+    <div>
+      <b>8</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class TimeZone</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :name, :id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize(name)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
+          
+          <code class="ruby">    @name = name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_hash(row)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    timezone = TimeZone.new(row[:name])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    timezone.id = row[:id]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    timezone</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="219cf821d1d5b2f0f03647caabf88d0a62fcd4d7">
+  <div class="header">
+    <h3>app/views/event/delete.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class DeleteEventView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="5">
+          
+          
+          <code class="ruby">    @event = OpenStruct.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="22ecfca8cbd7d39a0aaf811125c8d16b33afd38e">
+  <div class="header">
+    <h3>app/views/event/edit.rb</h3>
+    <h4><span class="red">30.77 %</span> covered</h4>
+    <div>
+      <b>13</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>9</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class EditEventView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :coaches, :timezones, :cohorts, :start_time, :duration</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :template, :coach_fees,:event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @coaches = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    @timezones = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    @cohorts = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @coach_fees = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    @start_time = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    @duration = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    @event = OpenStruct.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">    @event.coach_fees = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">    @event.assigned_coaches = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="db4991d5cd85efbf271cf3f037450a776f123710">
+  <div class="header">
+    <h3>app/views/event/new.rb</h3>
+    <h4><span class="red">22.22 %</span> covered</h4>
+    <div>
+      <b>36</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
+      <span class="red"><b>28</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class NewEventView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :coaches, :timezones, :cohorts</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :template, :coach_fees,:event</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
+          
+          <code class="ruby">    @coaches = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="8">
+          
+          
+          <code class="ruby">    @timezones = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="9">
+          
+          
+          <code class="ruby">    @cohorts = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="10">
+          
+          
+          <code class="ruby">    @coach_fees = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="11">
+          
+          
+          <code class="ruby">    @event = OpenStruct.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="12">
+          
+          
+          <code class="ruby">    @event.selected_coach_fees = {}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    @event.assigned_coaches = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.from_params params, template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">    view = NewEventView.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="20">
+          
+          
+          <code class="ruby">    view.event.sub_title = params[&quot;sub_title&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="21">
+          
+          
+          <code class="ruby">    view.event.date = params[&quot;date&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
+          
+          
+          <code class="ruby">    view.event.description = params[&quot;description&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="23">
+          
+          
+          <code class="ruby">    view.event.start_hours = params[&quot;start_hours&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="24">
+          
+          
+          <code class="ruby">    view.event.start_mins = params[&quot;start_mins&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="25">
+          
+          
+          <code class="ruby">    view.event.duration_hours = params[&quot;duration_hours&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="26">
+          
+          
+          <code class="ruby">    view.event.duration_mins = params[&quot;duration_mins&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="27">
+          
+          
+          <code class="ruby">    view.event.selected_time_zone = params[&quot;timezone&quot;]</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="28">
+          
+          
+          <code class="ruby">    view.event.selected_cohort = params[&quot;cohort&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="31">
+          
+          
+          <code class="ruby">    @repo = Repository.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="32">
+          
+          
+          <code class="ruby">    view.template =  @repo.get template_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="34">
+          
+          
+          <code class="ruby">    for coach_fee in view.template.coach_fees</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
+          
+          <code class="ruby">      view.event.selected_coach_fees[&quot;#{coach_fee.currency}&quot;] = params[&quot;#{coach_fee.currency}&quot;]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">    view</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def self.set_assigned_coaches view, initial_assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches.each do |assigned_coaches|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
+          
+          
+          <code class="ruby">      initial_assigned_coaches &lt;&lt; assigned_coaches</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="45">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches = initial_assigned_coaches</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">    view.event.assigned_coaches.uniq!</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def has_coach_fee? name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="51">
+          
+          
+          <code class="ruby">    @event.selected_coach_fees.has_key? name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="54">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def get_coach_fee_for name</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
+          
+          <code class="ruby">    @event.selected_coach_fees[name]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="02c2e59145b872666ff6e19908f08147c011b210">
+  <div class="header">
+    <h3>app/views/event_template/edit.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>2</b> relevant lines. 
+      <span class="green"><b>2</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class EditEventTemplateView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :template</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="204a08ac909a493a8f36bb9719ce13c01012fbae">
+  <div class="header">
+    <h3>app/views/event_template/index.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class IndexView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :templates</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
+          
+          <code class="ruby">    @templates = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="f5f5e006ca842398c9c229e8b299f4bbf061554f">
+  <div class="header">
+    <h3>app/views/event_template/new.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class NewEventTemplateView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :coach_fees</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
+          
+          <code class="ruby">    @coach_fees = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="f1968b0e9f03b35ef747b3b5e78d021399120153">
+  <div class="header">
+    <h3>app/views/event_template/show_archive.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class ShowArchiveEventTemplateView</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  attr_accessor :archive_templates</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def initialize</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="4">
+          
+          
+          <code class="ruby">    @archive_templates = []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+#edit
+visit "eventsmgr.dev"
+click "Edit"
+
+fill in Title "Premium Coaching Changed"
+fill in Duration
+
+fill in Default Coach Fee
+  fill in GBP
+  fill in USD
+  fill in EUR
+  fill in AUD
+  fill in SGD
+
+fill in Description
+
+Click_button 'Create Template'
+
+
+
+make sure "Premium Coaching Changed" is displayed

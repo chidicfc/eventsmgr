@@ -1,0 +1,116 @@
+<div class="panel panel-default">
+  <% for template in @view.templates%>
+  <div class="panel-heading" id="<%= template.id %>">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+      <button type="button" class="btn btn-default btn-xs plus">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
+      </a>
+      <a href="/<%= template.id %>/new_event?action=new" class="btn btn-primary btn-xs pull-right"><input type="button" name="event_action" value="Create New Event"></a>
+      <a href="/event_template/<%= template.id %>/edit" class="btn btn-primary btn-xs pull-right"><input type="button" name="template_action" value="Edit"></a>
+      <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
+        <%= erb :_button, :locals => {:path =>"event_template",:id => template.id, :method => "Delete", :value => "Delete"}%>
+      </a>
+      <a href="archive_boots_coaching.html" class="btn btn-primary btn-xs pull-right">
+        <%= erb :_button, :locals => {:path =>"event_template",:id => template.id, :method => "Patch", :value => "Archive"}%>
+      </a>
+    </h4>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse">
+    <div class="panel-body" id="events">
+      <% for event in template.events %>
+      <table>
+        <tr>
+          <td>
+            <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="<%= event.title %>">
+              Portsmouth, BV001 - October 10, 2011 (0, 08:30)
+              <%= event.title %>&nbsp;&nbsp;(<%= event.assigned_coaches.count %>, <%= event.duration %>)
+            </span>
+          </td>
+          <td>
+            <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button></a>
+          </td>
+          <td>
+            <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="Winchester">
+              Winchester - October 11, 2011 (1, 05:30)
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventEdit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventDelete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="Chichester">
+              Chichester, BV002 - October 12, 2011 (3, 07:00)
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventEdit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventDelete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="Basingstoke">
+              Basingstoke - October 24, 2011 (2, 08:30)
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventEdit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventDelete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="Warwick">
+              Warwick - July 3, 2012 (2, 08:30)
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventEdit">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default btn-xs eventDelete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>

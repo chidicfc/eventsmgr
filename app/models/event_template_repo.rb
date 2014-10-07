@@ -1,0 +1,50 @@
+class EventTemplateRepo
+  def initialize
+    @datastore = DataBaseDataStore.new
+  end
+
+  def all
+    @datastore.all_templates
+  end
+
+  def add *args
+    @datastore.add *args
+  end
+
+  def get template_id
+    @datastore.get template_id.to_i
+  end
+
+  def update_template *args
+    @datastore.update_template *args
+  end
+
+  def delete_template id
+    @datastore.delete_template id.to_i
+  end
+
+  def archive_template id
+    @datastore.archive_template id.to_i
+  end
+
+  def show_archive
+    @datastore.show_archive
+  end
+
+  def unarchive_template id
+    @datastore.unarchive_template id
+  end
+
+  def search_templates_by_letter letter, status
+    @datastore.search_templates_by_letter letter, status
+  end
+
+  def search_templates_by_name name, status
+    @datastore.search_templates_by_name name, status
+  end
+
+  def reset_db
+    @datastore.reset_db
+  end
+
+end

@@ -1,0 +1,54 @@
+<p id="search">
+  <% for letter in [*'A'..'Z'] %>
+    <a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>&nbsp;
+    <label>|</label>
+  <% end %>
+  &nbsp;
+  <form id="form_id" action="/search_templates_by_name" method="post">
+    <input type="text" name="search" placeholder="search">&nbsp;
+    <input type="submit" name="action" value="GO">
+  </form>
+  <p>
+    <a href="/"><label>HOME</label></a>
+  </p>
+</p>
+
+
+
+  <p><a href="/show_archive"><input type="button" name="template_action" value="Show Archive"></a></p>
+  <p><a href="/new_template"><input type="button" name="template_action" value="New Event Template"></a></p>
+
+  <% for template in @view.templates%>
+  <div id="<%= template.id %>">
+    <h1><%= template.title %></h1>
+    <span>(<%= template.events.count %>, <%= template.duration%>)</span>
+    <div class="event_templates">
+
+      <%= erb :_button, :locals => {:path =>"event_template",:id => template.id, :method => "Patch", :value => "Archive"}%>
+
+      <%= erb :_button, :locals => {:path =>"event_template",:id => template.id, :method => "Delete", :value => "Delete"}%>
+
+      <p><a href="/event_template/<%= template.id %>/edit"><input type="button" name="template_action" value="Edit"></a></p>
+      <p><a href="/<%= template.id %>/new_event?action=new"><input type="button" name="event_action" value="Create New Event"></a></p>
+    </div>
+    <section id="events">
+    <% for event in template.events %>
+        <div>
+          <dl>
+            <dt><%= event.title %> <span>(<%= event.assigned_coaches.count %>, <%= event.duration %>) </span>
+            <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><input type="button" name="event_action" value="Edit"></a>
+            <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><input type="button" name="event_action" value="Delete"></a></dt>
+            <dd class="coaches">
+              <% if event.assigned_coaches.count == 0 %>
+                <% for assigned_coach in event.assigned_coaches %>
+                    <img src="/images/smiley.gif" alt="Smiley face" height="42" width="42">
+                    <label><%= assigned_coach.name %></label>
+                <% end %>
+              <% end %>
+            </dd>
+          </dl>
+        </div>
+    <% end %>
+  </section>
+  </div>
+  <% end %>

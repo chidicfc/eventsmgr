@@ -1,0 +1,68 @@
+  <div class="row">
+        <div class="col-md-6">
+          <h3>Event Templates</h3>
+        </div>
+        <div class="col-md-6">
+          <a href="/new_template" class="btn btn-success btn-sm pull-right topLevel">New Event Template</a>
+          <a class="btn btn-success btn-sm pull-right topLevel" href="/show_archive">Show Archive</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+        <% for template in @view.templates%>
+        <%= debug template %>
+        <div class="panel-heading" id="<%= template.id %>">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <button type="button" class="btn btn-default btn-xs plus">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
+            </a>
+            <a href="/<%= template.id %>/new_event?action=new" class="btn btn-primary btn-xs pull-right">Create New Event</a>
+            <a href="/event_template/<%= template.id %>/edit" class="btn btn-primary btn-xs pull-right">Edit</a>
+            <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
+              <form name="deleteForm" action="/event_template/<%= template.id %>" method="post">
+                <input type="hidden" name="_method" value="Delete" />
+                <span onclick="document.deleteForm.submit()">Delete</span>
+              </form>
+            </a>
+            <a href="archive_boots_coaching.html" class="btn btn-primary btn-xs pull-right">Archive</a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-body" id="events">
+
+            <table>
+              <% for event in template.events %>
+              <tr>
+                <td>
+                  <span class="eventTitle" data-toggle="tooltip" data-placement="bottom" title="<%= event.title %>">
+                    <%= event.title %>&nbsp;&nbsp;(<%= event.assigned_coaches.count %>, <%= event.duration %>)
+                  </span>
+                </td>
+                <td>
+                  <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button></a>
+                </td>
+                <td>
+                  <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button></a>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

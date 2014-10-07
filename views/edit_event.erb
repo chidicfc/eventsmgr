@@ -1,0 +1,162 @@
+
+<!doctype html>
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <!-- <%= session["edit_event_view"].inspect  %>
+    <%= session.inspect %> -->
+
+
+    <form id="form_id" method="post">
+      <section>
+        <article id="event_details">
+          <h1>Edit <%= @view.template.title %> Event</h1>
+          <fieldset>
+          <legend>Event Details</legend>
+          <p><label>Subtitle (Location or Reference)<br><input type="text" name="sub_title" value="<%= @view.event.title %>"></label></p>
+          <p><label>Date<br><input type="text" name="date" value="<%= @view.event.date %>"></label></p>
+          <% if @view.event.description%>
+            <p><label>Event Details<br><textarea name="description"><%= @view.event.description %></textarea></label></p>
+          <% else %>
+            <p><label>Event Details<br><textarea name="description"><%= @view.template.description %></textarea></label></p>
+          <% end %>
+          <p><label>Local Start time<br><select name="start_hours" id="start_hours">
+            <% 24.times do |hours|%>
+              <% if @view.event.start_time[0].to_s == hours.to_s %>
+                <option selected  value="<%= hours %>"><%= hours %></option>
+              <% else %>
+                <option value="<%= hours %>"><%= hours %></option>
+              <% end %>
+            <% end %>
+          </select>
+          :
+          <select name="start_mins" id="start_mins">
+            <% 60.times do |mins| %>
+              <% if @view.event.start_time[1].to_s == mins.to_s %>
+                <option selected  value="<%= mins %>"><%= mins %></option>
+              <%else %>
+                <option  value="<%= mins %>"><%= mins %></option>
+              <%end %>
+            <% end %>
+          </select>
+          </label></p>
+          <p><label>Duration<br><select name="duration_hours" id="duration_hours">
+            <% 24.times do |hours|%>
+              <% if @view.event.duration[0].to_s == hours.to_s %>
+                <option selected  value="<%= hours %>"><%= hours %></option>
+              <% else %>
+                <option value="<%= hours %>"><%= hours %></option>
+              <% end %>
+            <% end %>
+          </select>
+          :
+          <select name="duration_mins" id="duration_mins">
+            <% 60.times do |mins| %>
+              <% if @view.event.duration[1].to_s == mins.to_s %>
+                <option selected  value="<%= mins %>"><%= mins %></option>
+              <%else %>
+                <option  value="<%= mins %>"><%= mins %></option>
+              <%end %>
+            <% end %>
+          </select>
+          </label></p>
+          <p><label>Timezone<br>
+            <select name="timezone" id="timezone">
+              <% for timezone in @view.timezones %>
+                <% if @view.event.timezone == timezone.name %>
+                  <option selected="<%= timezone.name %>"><%= timezone.name %></option>
+                <% else %>
+                  <option value="<%= timezone.name %>"><%= timezone.name %></option>
+                <% end %>
+              <% end %>
+            </select></label></p>
+          <p><label>Cohort<br>
+            <select name="cohort" id="cohort">
+              <% for cohort in @view.cohorts %>
+                <% if @view.event.cohort == cohort.name %>
+                  <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
+                <% else %>
+                  <option value="<%= cohort.name %>"><%= cohort.name %></option>
+                <% end %>
+              <% end %>
+            </select></label></p>
+          </fieldset>
+        </article>
+        <article id="coaches_fee">
+          <fieldset>
+            <legend>Coaches Fee</legend>
+            <% @view.event.coach_fees.each do |coach_fee| %>
+              <% coach_fee.each do |currency, amount| %>
+                <p><label><%= currency %><br>
+                  <input type="text" name="<%= currency%>" value="<%= amount %>" required="true">
+                </label>
+              </p>
+              <% end %>
+            <% end %>
+
+            <fieldset>
+            <legend>Income Details</legend>
+            <p><label>Income Amount <br> <input type="text" name="income_amount" value="<%= @view.event.income_amount %>"></label></p>
+            <p><label>Income Currency</label><br>
+            <select name="income_currency" id="income_currency">
+              <% for coach_fee in @view.template.coach_fees %>
+                <% if @view.event.income_currency == coach_fee.currency %>
+                  <option selected value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                <% else %>
+                  <option value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                <% end %>
+              <% end %>
+            </select>
+            </p>
+            </fieldset>
+
+          </fieldset>
+        </article>
+        <article id="assign_coaches">
+          <fieldset>
+            <legend>Assign Coaches</legend>
+            <ul>
+
+            </ul>
+
+            <p><label>Coaches<br>
+              <select name="coaches[]" size="6" multiple="multiple" id="coaches_list">
+                <% for coach in @view.coaches %>
+                  <option value="<%= coach.name %>"><%= coach.name %></option>
+                <% end %>
+              </select></label></p>
+
+
+
+              <p><input type="submit" name="action" value="Add" id="add_coaches"></p>
+              <p><input type="submit" name="action" value="Remove" id="dissociate_coaches"></p>
+
+
+              <p><label>Assigned Coaches<br>
+                <select name="assigned_coaches[]" multiple="multiple">
+                  <% for coach in @view.event.assigned_coaches %>
+                    <option value="<%= coach %>"><%= coach %></option>
+                  <%end%>
+                </select></label></p>
+
+                <p><input type="submit" name="action" value="Reset" id="reset"></p>
+
+
+          </fieldset>
+
+        </article>
+        <div id="name">
+          <p>
+            <a href="/">Cancel</a>&nbsp;<input type="submit" name="action" value="Edit Event" id="edit_event">
+          </p>
+        </div>
+
+      </section>
+    </form>
+
+  </body>
+
+</html>

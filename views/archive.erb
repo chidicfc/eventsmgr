@@ -1,0 +1,46 @@
+  <p id="search">
+    <% for letter in [*'A'..'Z'] %>
+      <a href="/search_archive_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>&nbsp;
+      <label>|</label>
+    <% end %>
+    &nbsp;
+    <form id="form_id" action="/search_archive_templates_by_name" method="post">
+      <input type="text" name="search" placeholder="search">&nbsp;
+      <input type="submit" name="action" value="GO">
+    </form>
+    <p>
+      <a href="/show_archive"><label>ARCHIVE HOME</label></a>
+    </p>
+  </p>
+
+  <p><a href="/show_event_templates"><input type="button" name="template_action" value="Show Event Templates"></a></p>
+  <p><a href="/new_template"><input type="button" name="template_action" value="New Event Template"></a></p>
+
+  <% for archive_template in @show_archive_view.archive_templates %>
+  <div id="<%= archive_template.id %>">
+    <h1><%= archive_template.title %></h1>
+    <span>(<%= archive_template.events.count %>, <%= archive_template.duration%>)</span>
+    <div class="event_templates">
+
+      <%= erb :_button, :locals => {:path =>"archive_event_template",:id => archive_template.id, :method => "Patch", :value => "Unarchive"}%>
+
+    </div>
+    <section id="events">
+      <% for archive_event in archive_template.events %>
+       <div id="archive_events">
+         <dl>
+           <dt><%= archive_event.title %> <span>(<%= archive_event.assigned_coaches.count %>, <%= archive_event.duration %>) </span></dt>
+           <dd>
+             <% if archive_event.assigned_coaches.count != 0 %>
+               <% for assigned_coach in archive_event.assigned_coaches %>
+                 <img src="/images/smiley.gif" alt="Smiley face" height="42" width="42">
+                   <label><%= assigned_coach.name %></label>
+               <% end %>
+             <% end %>
+           </dd>
+         </dl>
+       </div>
+      <% end %>
+    </section>
+  </div>
+  <% end %>
