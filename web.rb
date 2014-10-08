@@ -30,7 +30,7 @@ get '/event_template/:id/edit' do |n|
   @edit_template_view = EditEventTemplateView.new
   @edit_template_controller = EditEventTemplateViewController.new(@edit_template_view)
   @edit_template_controller.get n
-  erb :edit_template
+  erb :edit_template1
 end
 
 patch '/edit_template/:id' do
