@@ -92,7 +92,7 @@ get '/show_archive' do
   @show_archive_view = ShowArchiveEventTemplateView.new
   @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
   @show_archive_controller.show
-  erb :archive
+  erb :archive1
 end
 
 patch '/archive_event_template/:id' do

@@ -24,7 +24,7 @@
 
   <body>
     <div id="version">
-      version: 0.0.7
+      version: 0.0.7.1
     </div>
 
     <!-- Static navbar -->
@@ -88,16 +88,7 @@
         </div>
       </form>
 
-      <div class="btn-group btn-group-xs pull-right">
-        <% for letter in [*'A'..'Z'] %>
-          <button type="button" class="btn btn-default">
-            <a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>
-          </button>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="container mainContent createNewEvent marginTop55">
       <%= yield %>
     </div>
 
