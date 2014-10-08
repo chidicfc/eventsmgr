@@ -1,3 +1,14 @@
+<div class="container search">
+  <form class="navbar-form pull-right" role="search" action="/search_templates_by_name" method="post">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search" id="srch-term">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="action" value="GO"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+  </form>
+
+
 <div class="btn-group btn-group-xs pull-right">
   <% for letter in [*'A'..'Z'] %>
     <button type="button" class="btn btn-default">
