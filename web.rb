@@ -34,6 +34,9 @@ get '/event_template/:id/edit' do |n|
 end
 
 patch '/edit_template/:id' do
+
+
+
   count = params[:count].to_i
   id = params[:id].to_i
   array_fees = []
@@ -41,7 +44,8 @@ patch '/edit_template/:id' do
      array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
   end
   edit_event_controller = EditEventTemplateViewController.new
-  edit_event_controller.update params[:id], params[:title], params[:duration], array_fees, params[:description]
+  duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+  edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
 
 
   redirect '/'
@@ -53,7 +57,7 @@ get '/new_template' do
   @new_event_controller = NewEventTemplateViewController.new
   @new_event_controller.view = @new_template_view
   @new_event_controller.get_default_coach_fees
-  erb :new_template
+  erb :new_template1
 
 end
 
@@ -64,7 +68,8 @@ post '/new_template' do
      array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
   end
   new_event_controller = NewEventTemplateViewController.new
-  new_event_controller.save params[:title], params[:duration], array_fees, params[:description]
+  duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+  new_event_controller.save params[:title], duration, array_fees, params[:description]
 
   redirect '/'
 
@@ -72,14 +77,12 @@ end
 
 delete '/event_template/:id' do
 
-  raise "Delete: You a here!"
   # params.to_s
   DeleteEventTemplateController.new.delete params[:id]
   redirect '/'
 end
 
 patch '/event_template/:id' do
-  raise "Archive: You a here!"
 
   ArchiveEventTemplateController.new.archive params[:id]
   redirect '/'
@@ -89,7 +92,7 @@ get '/show_archive' do
   @show_archive_view = ShowArchiveEventTemplateView.new
   @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
   @show_archive_controller.show
-  erb :archive
+  erb :archive1
 end
 
 patch '/archive_event_template/:id' do
@@ -269,7 +272,7 @@ get '/search_templates_by_letter/:letter' do
   @view = IndexView.new
   @controller = IndexViewController.new(@view)
   @controller.display_templates_by_letter params[:letter], "active"
-  erb :index
+  erb :index1
 end
 
 post '/search_templates_by_name' do
@@ -278,7 +281,7 @@ post '/search_templates_by_name' do
     @controller = IndexViewController.new(@view)
     @controller.search_templates_by_name params[:search], "active"
 
-    erb :index
+    erb :index1
   end
 end
 
@@ -286,7 +289,7 @@ get '/search_archive_templates_by_letter/:letter' do
   @show_archive_view = ShowArchiveEventTemplateView.new
   @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
   @controller.display_templates_by_letter params[:letter], "archive"
-  erb :archive
+  erb :archive1
 end
 
 post '/search_archive_templates_by_name' do
@@ -294,6 +297,6 @@ post '/search_archive_templates_by_name' do
     @show_archive_view = ShowArchiveEventTemplateView.new
     @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
     @controller.search_templates_by_name params[:search], "archive"
-    erb :archive
+    erb :archive1
   end
 end

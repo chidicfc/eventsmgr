@@ -1,7 +1,20 @@
 <form id="new_template" action="/new_template" method="post">
   <h1>Create New Event Template</h1>
   <p><label>Title<br><input type="text" name="title" value="" size="50" required="true"></label></p>
-  <p><label>Duration (hh:mm)<br><input type="text" name="duration" value="" required="true"></label></p>
+
+  <p><label>Duration<br><select name="duration_hours" id="duration_hours">
+    <% 24.times do |hours|%>
+      <option value="<%= hours %>"><%= hours %></option>
+    <% end %>
+  </select>
+  :
+  <select name="duration_mins" id="duration_mins">
+    <% 60.times do |mins| %>
+      <option  value="<%= mins %>"><%= mins %></option>
+    <%end %>
+  </select>
+  </label></p>
+
   <fieldset>
   <legend>Default Coach Fee</legend>
     <% count = -1 %>
