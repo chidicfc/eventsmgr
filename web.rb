@@ -126,7 +126,7 @@ get '/:template_id/new_event' do
   @new_event_controller.get_cohorts
   @new_event_controller.get_timezones
   @new_event_controller.get params[:template_id]
-  erb :new_event
+  erb :new_event1
 end
 
 post '/:template_id/new_event' do

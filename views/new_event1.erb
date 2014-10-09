@@ -22,20 +22,19 @@
         <input type="hidden" name="addEvent" value="addEvent">
         <div class="row">
           <div class="col-md-12">
-            <h3>Create New Boots Coaching Capability Event</h3>
+            <h3>Create New <%= @view.template.title %> Event</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-9">
             <h4>Event Details</h4>
             <label>Subtitle (Location or Reference)</label>
-            <input type="text" class="form-control" placeholder="Boots Havant" name="title">
+            <input type="text" name="sub_title" value="<%= @view.event.sub_title %>" class="form-control">
             <label>Date</label>
             <div class="form-group">
               <div class="input-group date datePicker">
-                <input type='text' class="form-control" />
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                <input type="text" id="datepicker">
+            
               </div>
             </div>
             <label>Event Details</label>
@@ -253,3 +252,13 @@
           </div>
         </div>
       </form>
+<script>
+$(function(){
+  $.datepicker.setDefaults(
+    $.extend($.datepicker.regional[''])
+  );
+
+  $('#datepicker').datepicker();
+
+});
+</script>
