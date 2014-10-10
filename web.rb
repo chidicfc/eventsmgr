@@ -115,7 +115,7 @@ get '/:template_id/new_event' do
 
   @view.event.start_hours = "9"
   @view.event.start_mins = "0"
-  @view.event.date = Date.today.to_s
+  @view.event.date = Time.now.strftime("%m/%d/%Y")
 
   if session.has_key? "event"
     @view.event = session["event"]
@@ -282,7 +282,7 @@ get '/:template_id/search_coaches_by_letter/:letter' do
 
   @view.event.start_hours = "9"
   @view.event.start_mins = "0"
-  @view.event.date = Date.today.to_s
+  @view.event.date = Time.now.strftime("%m/%d/%Y")
 
   if session.has_key? "event"
     @view.event = session["event"]
