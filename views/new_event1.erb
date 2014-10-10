@@ -187,9 +187,11 @@
             <div class="btn-group btn-group-sm">
 
               <% for letter in [*'A'..'Z'] %>
-                <button type="button" class="btn btn-default">
-                  <a href="/<%= params[:template_id] %>/search_coaches_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>
-                </button>
+
+
+
+                  <input class="btn btn-default" type="submit" name="action" value="<%= letter %>" id="<%= letter %>">
+              
               <% end %>
 
             </div>
