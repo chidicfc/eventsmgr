@@ -54,6 +54,16 @@ class CoachInABoxOs
     coaches
   end
 
+
+  def search_coaches_by_letter letter
+    coaches = []
+    DB[:coaches].where(Sequel.like(:name, "#{letter}%")).each do |coach_row|
+      coach = Coach.from_hash(coach_row)
+      coaches << coach
+    end
+    coaches
+  end
+
   def get_timezones
     timezones = []
     DB[:timezones].each do |timezone_row|

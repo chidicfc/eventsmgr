@@ -20,8 +20,24 @@
     <link href="/css/ui-lightness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
     <script src="/js/jquery-1.8.3.js"></script>
     <script src="/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <!-- /datepicker -->
 
+
+    <!-- /datepicker -->
+     <!-- <script src="js/jQuery.js"></script>-->
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/tooltip.js"></script>
+    <script type="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/popover.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+      $(function(){
+        $.datepicker.setDefaults(
+          $.extend($.datepicker.regional[''])
+        );
+
+        $('#datepicker').datepicker({ changeMonth: true, changeYear: true });
+
+      });
+    </script>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,7 +49,7 @@
 
   <body>
     <div id="version">
-      version: 0.1.0
+      version: 0.1.1
     </div>
 
     <!-- Static navbar -->
@@ -100,10 +116,5 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jQuery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/tooltip.js"></script>
-    <script type="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/popover.js"></script>
-    <script src="js/script.js"></script>
   </body>
 </html>

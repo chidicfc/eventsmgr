@@ -343,6 +343,8 @@ class DataBaseDataStore
     templates
   end
 
+
+
   def search_templates_by_name name, status
     templates = []
     capitalize_name = name.capitalize
