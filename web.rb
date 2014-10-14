@@ -115,7 +115,7 @@ get '/:template_id/new_event' do
 
   @view.event.start_hours = "9"
   @view.event.start_mins = "0"
-  @view.event.date = Time.now.strftime("%m/%d/%Y")
+  @view.event.date = Time.now.strftime("%d/%m/%Y")
 
   if session.has_key? "event"
     @view.event = session["event"]
@@ -172,44 +172,23 @@ post '/:template_id/new_event' do
     end
     session.clear
     redirect '/'
+
+  else
+    for letter in [*'A'..'Z']
+      if params[:action] == letter
+        @new_event_controller.display_coaches_by_letter letter
+      end
+    end
+
+    # raise
+    # binding.pry_remote
   end
 
-  session["event"] = @new_event_view.event
-
-  redirect "#{params[:template_id]}/new_event"
-end
-
-
-
-post '/:template_id/search_coaches_by_letter/:letter' do
-
-  binding.pry_remote
-
-  @new_event_view = NewEventView.from_params params, params[:template_id]
-
-  @new_event_controller = NewEventViewController.new(@new_event_view)
-  @new_event_controller.display_coaches_by_letter params[:letter]
-  @new_event_controller.get_cohorts
-  @new_event_controller.get_timezones
-  @new_event_controller.get params[:template_id]
-
-
-    params["coaches"].each do |coach|
-      @new_event_view.event.assigned_coaches << coach
-    end
-
-    if session["event"]
-      NewEventView.set_assigned_coaches(@new_event_view, session["event"].assigned_coaches)
-    end
-
 
   session["event"] = @new_event_view.event
 
   redirect "#{params[:template_id]}/new_event"
-
-
 end
-
 
 
 get '/event/:template_id/:event_id/edit' do

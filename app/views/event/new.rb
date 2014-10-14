@@ -34,6 +34,9 @@ class NewEventView
     @template_repo = EventTemplateRepo.new
     view.template =  @template_repo.get template_id
 
+    # @coach_repo = CohortRepo.new
+    # view.searched_coaches = @coach_repo.
+
     for coach_fee in view.template.coach_fees
       view.event.selected_coach_fees["#{coach_fee.currency}"] = params["#{coach_fee.currency}"]
     end

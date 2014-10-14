@@ -191,7 +191,7 @@
 
 
                   <input class="btn btn-default" type="submit" name="action" value="<%= letter %>" id="<%= letter %>">
-              
+
               <% end %>
 
             </div>
@@ -202,9 +202,16 @@
           <div class="col-md-4 multiVals">
             <label><strong>Coaches</strong></label>&nbsp;&nbsp;<label><a href="">(Show All)</a></label>
             <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
-              <% for coach in @view.coaches %>
-                <option value="<%= coach.name %>"><%= coach.name %></option>
+              <% if @view.event.searched_coaches %>
+                <% for searched_coach in @view.event.searched_coaches %>
+                  <option value="<%= searched_coach.name %>"><%= searched_coach.name %></option>
+                <% end %>
+              <% else  %>
+                <% for coach in @view.coaches %>
+                  <option value="<%= coach.name %>"><%= coach.name %></option>
+                <% end %>
               <% end %>
+
             </select>
 
           </div>

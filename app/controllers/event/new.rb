@@ -27,7 +27,7 @@ class NewEventViewController
   end
 
   def display_coaches_by_letter letter
-    @view.coaches = @coach_repo.search_coaches_by_letter letter
+    @view.event.searched_coaches = @coach_repo.search_coaches_by_letter letter
   end
 
   def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches, income_amount, income_currency
