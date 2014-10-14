@@ -186,6 +186,8 @@
             <h4>Assign Coaches</h4>
             <div class="btn-group btn-group-sm">
 
+              <input class="btn btn-default" type="submit" name="action" value="Show All" id="Show All">
+
               <% for letter in [*'A'..'Z'] %>
 
 
@@ -200,7 +202,7 @@
         </div>
         <div class="row">
           <div class="col-md-4 multiVals">
-            <label><strong>Coaches</strong></label>&nbsp;&nbsp;<label><a href="">(Show All)</a></label>
+            <label><strong>Coaches</strong></label>&nbsp;&nbsp;
             <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
               <% if @view.event.searched_coaches %>
                 <% for searched_coach in @view.event.searched_coaches %>
