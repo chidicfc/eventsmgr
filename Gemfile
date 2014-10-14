@@ -15,3 +15,4 @@ gem "sequel"
 gem "sqlite3"
 gem "poltergeist"
 gem 'simplecov', '~> 0.9.0'
+gem "yeasu"
