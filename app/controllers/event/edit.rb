@@ -74,4 +74,8 @@ class EditEventViewController
     @event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
   end
 
+  def display_coaches_by_letter letter
+    @view.event.searched_coaches = @coach_repo.search_coaches_by_letter letter
+  end
+
 end

@@ -208,7 +208,7 @@ get '/event/:template_id/:event_id/edit' do
   @edit_event_controller.get params[:template_id]
 
   session["event"] = @view.event
-  erb :edit_event
+  erb :edit_event1
 end
 
 post '/event/:template_id/:event_id/edit' do

@@ -18,169 +18,168 @@
 </div> <!--class="container search" -->
 
 <div class="container mainContent createNewEvent marginTop55">
-  <form id="myForm">
+  <form id="form_id" method="post">
         <input type="hidden" name="addEvent" value="addEvent">
         <div class="row">
           <div class="col-md-12">
-            <h3>Edit New Boots Coaching Capability Event</h3>
+            <h3>Edit <%= @view.template.title %> Event</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-9">
             <h4>Event Details</h4>
             <label>Subtitle (Location or Reference)</label>
-            <input type="text" class="form-control" placeholder="Boots Havant" name="title">
+            <input type="text" name="sub_title" value="<%= @view.event.title %>" class="form-control">
             <label>Date</label>
             <div class="form-group">
               <div class="input-group date datePicker">
-                <input type='text' class="form-control" />
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                <input type="text" id="datepicker" name="date" value="<%= @view.event.date %>">
+
               </div>
             </div>
             <label>Event Details</label>
-            <textarea class="form-control descript"></textarea>
+            <% if @view.event.description%>
+               <textarea name="description" class="form-control descript"><%= @view.event.description %></textarea>
+            <% else %>
+              <textarea name="description" class="form-control descript"><%= @view.template.description %></textarea>
+            <% end %>
           </div>
+
+          <!--stopped here
+
+            var date1 = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+
+            date1
+            "10/09/2014"
+            §§§
+            var setDate = $( "#datepicker" ).datepicker( "setDate", "10/12/2012" )
+
+          -->
+
           <div class="col-md-3">
-            <h4>Coaches Fee</h4>
+            <fieldset>
+            <legend>Coaches Fee</legend>
             <div class="currencies coachesFee">
-              <label>GBP</label>
-              <input type="text" class="form-control" placeholder="600" name="gbp">
-              <br>
-              <label>SGD</label>
-              <input type="text" class="form-control" placeholder="800" name="sgd">
-              <br>
-              <label>AUD</label>
-              <input type="text" class="form-control" placeholder="0.00" name="aud">
+
+
+              <% @view.event.coach_fees.each do |coach_fee| %>
+                <% coach_fee.each do |currency, amount| %>
+                  <label><%= currency %>:</label>
+                  <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>" required="true">
+                <% end %>
+              <% end %>
+
             </div>
-            <h4>Income Details</h4>
+          </fieldset>
+
+
+            <fieldset>
+            <legend>Income Details</legend>
             <div class="currencies incomeDetails">
-              <label>Income Amount</label>
-              <input type="text" class="form-control" placeholder="600" name="gbp">
-              <br>
-              <label>Income Currency</label>
-              <input type="text" class="form-control" placeholder="800" name="sgd">
-              <br>
-              <label>Expenses Code</label>
-              <input type="text" class="form-control" placeholder="0.00" name="aud">
+              <label>Income Amount:</label>
+              <input type="text" class="form-control" name="income_amount" value="<%= @view.event.income_amount %>">
+
+
+              <p>
+              <label>Income Currency:</label>
+
+              <select name="income_currency" id="income_currency">
+                <% for coach_fee in @view.template.coach_fees %>
+                  <% if @view.event.income_currency == coach_fee.currency %>
+                    <option selected value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                  <% else %>
+                    <option value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                  <% end %>
+                <% end %>
+              </select>
+              </p>
+
+
             </div>
+          </fieldset>
           </div>
         </div>
         <div class="row">
           <div class="col-md-3">
-            <label>Local start time</label>
+            <label>Local Start time</label>
             <br>
-            <select class="form-control startTime">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
+            <select name="start_hours" id="start_hours">
+              <% 24.times do |hours|%>
+                <% if @view.event.start_time[0].to_s == hours.to_s %>
+                  <option selected  value="<%= hours %>"><%= hours %></option>
+                <% else %>
+                  <option value="<%= hours %>"><%= hours %></option>
+                <% end %>
+              <% end %>
             </select>
             :
-            <select class="form-control startTime">
-              <option>00</option>
-              <option>01</option>
-              <option>02</option>
-              <option>03</option>
-              <option>04</option>
-              <option>05</option>
-              <option>06</option>
-              <option>07</option>
-              <option>08</option>
-              <option>09</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-              <option>25</option>
-              <option>26</option>
-              <option>27</option>
-              <option>28</option>
-              <option>29</option>
-              <option>30</option>
-              <option>31</option>
-              <option>32</option>
-              <option>33</option>
-              <option>34</option>
-              <option>35</option>
-              <option>36</option>
-              <option>37</option>
-              <option>38</option>
-              <option>39</option>
-              <option>40</option>
-              <option>41</option>
-              <option>42</option>
-              <option>43</option>
-              <option>44</option>
-              <option>45</option>
-              <option>46</option>
-              <option>47</option>
-              <option>48</option>
-              <option>49</option>
-              <option>50</option>
-              <option>51</option>
-              <option>52</option>
-              <option>53</option>
-              <option>54</option>
-              <option>55</option>
-              <option>56</option>
-              <option>57</option>
-              <option>58</option>
-              <option>59</option>
+            <select name="start_mins" id="start_mins">
+              <% 60.times do |mins| %>
+                <% if @view.event.start_time[1].to_s == mins.to_s %>
+                  <option selected  value="<%= mins %>"><%= mins %></option>
+                <%else %>
+                  <option  value="<%= mins %>"><%= mins %></option>
+                <%end %>
+              <% end %>
             </select>
           </div>
+
           <div class="col-md-3">
             <label>Duration</label>
-            <input type="text" class="form-control" value="08:30" name="gbp">
+            <br>
+            <select name="duration_hours" id="duration_hours">
+              <% 24.times do |hours|%>
+                <% if @view.event.duration[0].to_s == hours.to_s %>
+                  <option selected  value="<%= hours %>"><%= hours %></option>
+                <% else %>
+                  <option value="<%= hours %>"><%= hours %></option>
+                <% end %>
+              <% end %>
+            </select>
+            :
+            <select name="duration_mins" id="duration_mins">
+              <% 60.times do |mins| %>
+                <% if @view.event.duration[1].to_s == mins.to_s %>
+                  <option selected  value="<%= mins %>"><%= mins %></option>
+                <%else %>
+                  <option  value="<%= mins %>"><%= mins %></option>
+                <%end %>
+              <% end %>
+            </select>
+
+
+
           </div>
         </div>
-
+        <br>
         <div class="row">
           <div class="col-md-3">
             <label>Timezone</label>
             <br>
-            <select class="form-control">
-              <option>(GMT+00:00) London</option>
+            <select name="timezone" id="timezone" class="form-control">
+              <% for timezone in @view.timezones %>
+                <% if @view.event.timezone == timezone.name %>
+                  <option selected="<%= timezone.name %>"><%= timezone.name %></option>
+                <% else %>
+                  <option value="<%= timezone.name %>"><%= timezone.name %></option>
+                <% end %>
+              <% end %>
             </select>
+
           </div>
           <div class="col-md-3">
             <label>Cohort</label>
             <br>
-            <select class="form-control">
-              <option></option>
+            <select name="cohort" id="cohort" class="form-control">
+              <% for cohort in @view.cohorts %>
+                <% if @view.event.cohort == cohort.name %>
+                  <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
+                <% else %>
+                  <option value="<%= cohort.name %>"><%= cohort.name %></option>
+                <% end %>
+              <% end %>
             </select>
+
           </div>
         </div>
 
@@ -188,68 +187,54 @@
           <div class="col-md-9 assignCoaches">
             <h4>Assign Coaches</h4>
             <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-default">A</button>
-              <button type="button" class="btn btn-default">B</button>
-              <button type="button" class="btn btn-default">C</button>
-              <button type="button" class="btn btn-default">D</button>
-              <button type="button" class="btn btn-default">E</button>
-              <button type="button" class="btn btn-default">F</button>
-              <button type="button" class="btn btn-default">G</button>
-              <button type="button" class="btn btn-default">H</button>
-              <button type="button" class="btn btn-default">I</button>
-              <button type="button" class="btn btn-default">J</button>
-              <button type="button" class="btn btn-default">K</button>
-              <button type="button" class="btn btn-default">L</button>
-              <button type="button" class="btn btn-default">M</button>
-              <button type="button" class="btn btn-default">N</button>
-              <button type="button" class="btn btn-default">O</button>
-              <button type="button" class="btn btn-default">P</button>
-              <button type="button" class="btn btn-default">Q</button>
-              <button type="button" class="btn btn-default">R</button>
-              <button type="button" class="btn btn-default">S</button>
-              <button type="button" class="btn btn-default">T</button>
-              <button type="button" class="btn btn-default">U</button>
-              <button type="button" class="btn btn-default">V</button>
-              <button type="button" class="btn btn-default">W</button>
-              <button type="button" class="btn btn-default">X</button>
-              <button type="button" class="btn btn-default">Y</button>
-              <button type="button" class="btn btn-default">Z</button>
+
+              <input class="btn btn-default" type="submit" name="action" value="Show All" id="Show All">
+
+              <% for letter in [*'A'..'Z'] %>
+                  <input class="btn btn-default" type="submit" name="action" value="<%= letter %>" id="<%= letter %>">
+              <% end %>
+
             </div>
 
           </div>
         </div>
         <div class="row">
           <div class="col-md-4 multiVals">
-            <select id="leftValues" name="leftValues" class="mutiSelect" size="10" multiple>
-              <option>Lorem ipsum</option>
-              <option>Dolor sit amet</option>
-              <option>consectetur adipisicing</option>
-              <option>do eiusmod</option>
-              <option>tempor incididunt</option>
-              <option>dolore magna aliqua</option>
-              <option>Minim veniam</option>
-              <option>nostrud exercitation</option>
-              <option>ullamco laboris</option>
-              <option>nisi ut aliquip</option>
-              <option>commodo consequat</option>
-              <option>Duis aute</option>
+            <label><strong>Coaches</strong></label>&nbsp;&nbsp;
+            <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
+              <% if defined? (@view.event.searched_coaches) %>
+                <% for searched_coach in @view.event.searched_coaches %>
+                  <option value="<%= searched_coach.name %>"><%= searched_coach.name %></option>
+                <% end %>
+              <% else  %>
+                <% for coach in @view.coaches %>
+                  <option value="<%= coach.name %>"><%= coach.name %></option>
+                <% end %>
+              <% end %>
+
             </select>
+
           </div>
           <div class="col-md-1 multiControls">
             <center>
-              <input type="button" id="btnRight" value="&gt;&gt;" />
-              <input type="button" id="btnLeft" value="&lt;&lt;" />
+              <input type="submit" name="action" value="&gt;&gt;" id="add_coaches">
+              <input type="submit" name="action" value="&lt;&lt;" id="dissociate_coaches">
+              <input type="submit" name="action" value="Reset" id="reset">
             </center>
           </div>
           <div class="col-md-4 multiVals">
-            <select id="rightValues" class="mutiSelect" size="10" multiple>
+            <label><strong>Assigned Coaches</strong></label>
+            <select name="assigned_coaches[]" multiple="multiple" id="assigned_coaches_list" class="mutiSelect" size="10">
+              <% for coach in @view.event.assigned_coaches %>
+                <option value="<%= coach %>"><%= coach %></option>
+              <%end%>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <input class="btn btn-success pull-right" type="submit" value="Create Template">
-            <input class="btn btn-default btn-xs pull-right" type="submit" value="Cancel">
+            <input class="btn btn-success pull-right" type="submit" name="action" value="Edit Event" id="edit_event">
+            <a href="/"><input class="btn btn-default btn-xs pull-right" type="submit" value="Cancel"></a>
           </div>
         </div>
       </form>
