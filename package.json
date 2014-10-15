@@ -1,0 +1,25 @@
+{
+  "author": "Julien Biezemans <jb@jbpros.com> (http://jbpros.net)",
+  "name": "events-rewrite-test",
+  "description": "Testing the events app",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "private": true,
+  "engines": {
+    "node": "~v0.4.8"
+  },
+  "devDependencies": {
+    "assert": "0.4.9",
+    "cucumber": "0.2.1",
+    "html5": "0.3.2",
+    "zombie": "1.4.1",
+    "mocha": "1.4.x"
+  },
+
+  "scripts": {
+    "test": "mocha features/support/world.js",
+    "start": "node app.js"
+  }
+}
