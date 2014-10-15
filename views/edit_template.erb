@@ -1,40 +1,80 @@
-<form id="edit_template" action="/edit_template/<%= @edit_template_view.template.id %>" method="post">
-  <h1>Edit <%= @edit_template_view.template.title %></h1>
+<div class="container search">
+  <form class="navbar-form pull-right" role="search" action="/search_templates_by_name" method="post">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Event Templates" name="search" id="srch-term">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="action" value="GO"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+  </form>
+
+<div class="btn-group btn-group-xs pull-right">
+  <% for letter in [*'A'..'Z'] %>
+    <button type="button" class="btn btn-default">
+      <a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>
+    </button>
+  <% end %>
+</div> <!--class="btn-group btn-group-xs pull-right" -->
+</div> <!--class="container search" -->
+
+<div class="container mainContent createNewEvent marginTop55">
+  <form id="edit_template" action="/edit_template/<%= @edit_template_view.template.id %>" method="post">
+  <input type="hidden" name="addEvent" value="addEvent">
   <input type="hidden" name="_method" value="patch">
-  <p><label>Title<br><input type="text" name="title" size="50" value="<%= @edit_template_view.template.title %>" required="true"></label></p>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Edit <%= @edit_template_view.template.title %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Title</label>
+      <input type="text" class="form-control" value="<%= @edit_template_view.template.title %>" name="title">
 
-  <p><label>Duration<br><select name="duration_hours" id="duration_hours">
-    <% 24.times do |hours|%>
-      <% if @edit_template_view.template.duration[0].to_s == hours.to_s %>
-        <option selected  value="<%= hours %>"><%= hours %></option>
-      <% else %>
-        <option value="<%= hours %>"><%= hours %></option>
-      <% end %>
-    <% end %>
-  </select>
-  :
-  <select name="duration_mins" id="duration_mins">
-    <% 60.times do |mins| %>
-      <% if @edit_template_view.template.duration[1].to_s == mins.to_s %>
-        <option selected  value="<%= mins %>"><%= mins %></option>
-      <%else %>
-        <option  value="<%= mins %>"><%= mins %></option>
-      <%end %>
-    <% end %>
-  </select>
-  </label></p>
+      <p><label>Duration<br><select name="duration_hours" id="duration_hours">
+        <% 24.times do |hours|%>
+          <% if @edit_template_view.template.duration[0].to_s == hours.to_s %>
+            <option selected  value="<%= hours %>"><%= hours %></option>
+          <% else %>
+            <option value="<%= hours %>"><%= hours %></option>
+          <% end %>
+        <% end %>
+      </select>
+      :
+      <select name="duration_mins" id="duration_mins">
+        <% 60.times do |mins| %>
+          <% if @edit_template_view.template.duration[1].to_s == mins.to_s %>
+            <option selected  value="<%= mins %>"><%= mins %></option>
+          <%else %>
+            <option  value="<%= mins %>"><%= mins %></option>
+          <%end %>
+        <% end %>
+      </select>
+      </label></p>
 
+    <fieldset>
+      <legend>Default Coach Fee</legend>
+      <div class="currencies">
+        <% count = -1 %>
+        <% for coach_fee in @edit_template_view.template.coach_fees %>
+          <% count += 1 %>
+          <label><%= coach_fee.currency %></label><input type="text" name="amount<%=count%>" value="<%= coach_fee.amount %>" class="form-control" required="true"><input type="hidden" name="currency<%=count%>" value="<%= coach_fee.currency %>">
 
-  <fieldset>
-  <legend>Default Coach Fee</legend>
-    <% count = -1 %>
-    <% for coach_fee in @edit_template_view.template.coach_fees %>
-      <% count += 1 %>
-      <p><label><%= coach_fee.currency %><br><input type="text" name="amount<%=count%>" value="<%= coach_fee.amount %>" required="true"><input type="hidden" name="currency<%=count%>" value="<%= coach_fee.currency %>" required="true"></label></p>
-    <% end %>
-    <input type="hidden" name="count" value="<%= count %>">
-  </fieldset>
+        <% end %>
+        <input type="hidden" name="count" value="<%= count %>">
+      </div>
+    </fieldset>
 
-  <p><label>Description<br><textarea name="description" rows="5" cols="30" required="true"><%= @edit_template_view.template.description %></textarea></label></p>
-  <p><a href="/">Cancel</a>&nbsp;<input type="submit" name="action" value="Edit Template"></p>
-</form>
+    </div>
+    <div class="col-md-6">
+      <label>Description</label>
+      <textarea name="description" class="form-control descript"><%= @edit_template_view.template.description %></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <input name="action" class="btn btn-success pull-right apply" type="submit" value="Edit Template">
+      <a href="/"><input class="btn btn-default btn-xs pull-right cancel" type="submit" value="Cancel"></a>
+    </div>
+  </div>
+  </form>
