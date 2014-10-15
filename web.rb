@@ -175,10 +175,11 @@ post '/:template_id/new_event' do
     redirect '/'
 
   elsif params[:action] == "Show All"
-
+    @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
+        @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
         @new_event_controller.display_coaches_by_letter letter
       end
     end
@@ -224,7 +225,7 @@ post '/event/:template_id/:event_id/edit' do
   @edit_event_controller.get params[:template_id]
 
 
-  if params[:action] == "Add"
+  if params[:action] == ">>"
     params["coaches"].each do |coach|
       @view.event.assigned_coaches << coach
     end
@@ -235,7 +236,7 @@ post '/event/:template_id/:event_id/edit' do
     end
 
 
-  elsif params[:action] == "Remove"
+  elsif params[:action] == "<<"
     @view.event.assigned_coaches = session["event"].assigned_coaches
     params["assigned_coaches"].each do |assigned_coach|
       @view.event.assigned_coaches.delete("#{assigned_coach}")
@@ -257,6 +258,16 @@ post '/event/:template_id/:event_id/edit' do
 
     session.clear
     redirect '/'
+
+  elsif params[:action] == "Show All"
+    @view.event.assigned_coaches = session["event"].assigned_coaches
+  else
+    for letter in [*'A'..'Z']
+      if params[:action] == letter
+        @view.event.assigned_coaches = session["event"].assigned_coaches
+        @edit_event_controller.display_coaches_by_letter letter
+      end
+    end
   end
 
 
