@@ -10,9 +10,8 @@
 
 <div class="btn-group btn-group-xs pull-right">
   <% for letter in [*'A'..'Z'] %>
-    <button type="button" class="btn btn-default">
-      <a href="/search_archive_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a>
-    </button>
+      <a href="/search_archive_templates_by_letter/<%= letter %>"><button type="button" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></button></a>
+
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
 </div> <!--class="container search" -->
