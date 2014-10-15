@@ -1,7 +1,7 @@
 {
   "author": "Julien Biezemans <jb@jbpros.com> (http://jbpros.net)",
-  "name": "events-rewrite-test",
-  "description": "Testing the events app",
+  "name": "event-cucumber-js-tests",
+  "description": "Events Rewrite cucumber tests",
   "version": "0.0.0",
   "repository": {
     "url": ""
@@ -16,10 +16,5 @@
     "html5": "0.3.2",
     "zombie": "1.4.1",
     "mocha": "1.4.x"
-  },
-
-  "scripts": {
-    "test": "mocha features/support/world.js",
-    "start": "node app.js"
   }
 }
