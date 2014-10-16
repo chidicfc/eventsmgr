@@ -5,5 +5,5 @@ Feature: Events Rewrite
 
   Scenario: Home page
     Given I am on the events system home page
-    Then I should see "Event templates"
+    Then I should see "Event Templates"
     And I should see a list of event templates
