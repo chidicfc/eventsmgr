@@ -26,6 +26,19 @@ module.exports = function() {
       callback();
     };
 
+    this.clickLink = function(name, callback) {
+
+      var button = browser.query(name);
+      var url = button.href
+
+      browser.visit(url, function() {
+        assert.ok(browser.success);
+        assert.equal(browser.statusCode, "200");
+        assert.equal(browser.location.pathname, "/new_template");
+        callback();
+      });
+    };
+
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
   };
 }

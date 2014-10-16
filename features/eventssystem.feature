@@ -5,5 +5,10 @@ Feature: Events Rewrite
 
   Scenario: Home page
     Given I am on the events system home page
-    Then I should see "Event Templates"
+    Then I should see "Event Templates" header
     And I should see a list of event templates
+
+  Scenario: Create Event Templates
+    Given I am on the events system home page
+    When I click on NEW EVENT TEMPLATE
+    Then I should see "Create New Event Template" header

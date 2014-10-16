@@ -10,12 +10,12 @@ var myStepDefinitionsWrapper = function () {
     this.visitHome ('http://eventsmgr.dev', callback);
   });
 
-  Then(/^I should see "([^"]*)"$/, function (str, callback) {
+  Then(/^I should see "([^"]*)" header$/, function (str, callback) {
     // Write code here that turns the phrase above into concrete actions
     this.checkHeader(str, callback);
   });
 
-  this.Then(/^I should see a list of event templates$/, function (callback) {
+  Then(/^I should see a list of event templates$/, function (callback) {
     // Write code here that turns the phrase above into concrete actions
     this.isListOfTemplates(callback);
   });
