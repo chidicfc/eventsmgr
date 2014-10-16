@@ -26,9 +26,9 @@ module.exports = function() {
       callback();
     };
 
-    this.clickButton = function(name, callback) {
+    this.clickMenu = function(selector, callback) {
 
-      var button = browser.query(name);
+      var button = browser.query(selector);
       var url = button.href;
 
       browser.visit(url, function() {
