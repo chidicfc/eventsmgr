@@ -3,6 +3,26 @@ module.exports = function() {
   var zombie = require('zombie');
   var assert = require('assert');
 
+
+  this.Before(function(callback) {
+    var browser = new zombie();
+    browser.visit('http://eventsmgr.dev', function() {
+      assert.ok(browser.success);
+      assert.equal(browser.statusCode, "200");
+      assert.equal(browser.location.pathname, "/");
+      callback();
+    });
+  });
+
+  this.After(function(callback) {
+    var browser = new zombie();
+    browser.visit('http://eventsmgr.dev/reset', function() {
+      assert.ok(browser.success);
+      assert.equal(browser.statusCode, "200");
+      callback();
+    });
+  });
+
   this.World = function World(callback) {
     var browser = new zombie(); // this.browser will be available in step definitions
 

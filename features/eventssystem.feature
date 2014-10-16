@@ -13,10 +13,10 @@ Feature: Events Rewrite
     When I click on "NEW EVENT TEMPLATE" menu
     Then I should see "Create New Event Template" header
 
-  Scenario: New Event Templates Form
+  Scenario: Create New Event Template
     Given I am on the events system home page
-    When I click on NEW EVENT TEMPLATE
+    When I click on "NEW EVENT TEMPLATE" menu
       And I fill in "Title" with "Boots"
-      And I click on CREATE TEMPLATE submit button
+      And I click on "CREATE TEMPLATE" submit button
     Then I should see "Event Templates" header
       And I should see "Title" event template

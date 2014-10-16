@@ -1,4 +1,4 @@
-var myStepDefinitionsWrapper1 = function () {
+var myStepDefinitionsWrapper = function () {
   //this.World = require("../support/world.js").World; // overwrite default World constructor
   var Given = When = Then = this.defineStep;
   var zombie = require('zombie');
@@ -19,10 +19,10 @@ var myStepDefinitionsWrapper1 = function () {
         href = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/\"]";
         break;
     }
-    
+
     this.clickMenu(href ,callback);
   });
 
 };
 
-module.exports = myStepDefinitionsWrapper1;
+module.exports = myStepDefinitionsWrapper;
