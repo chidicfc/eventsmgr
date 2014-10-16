@@ -17,7 +17,7 @@ var myStepDefinitionsWrapper = function () {
 
   this.Then(/^I should see a list of event templates$/, function (callback) {
     // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.isListOfTemplates(callback);
   });
 
 };

@@ -20,6 +20,12 @@ module.exports = function() {
       callback();
     };
 
+    this.isListOfTemplates = function(callback) {
+      assert.ok(browser.query("a[data-toggle = \"collapse\"]"));
+      assert.ok(browser.query("a[data-parent=\"#accordion\"]"));
+      callback();
+    };
+
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
   };
 }
