@@ -7,7 +7,7 @@ var myStepDefinitionsWrapper1 = function () {
 
   When(/^I click on NEW EVENT TEMPLATE$/, function (callback) {
     // Write code here that turns the phrase above into concrete actions
-    this.clickLink("div[class = \"col-md-6\"]:nth-child(2) a[href = \"/new_template\"]", callback);
+    this.clickButton("div[class = \"col-md-6\"]:nth-child(2) a[href = \"/new_template\"]",callback);
   });
 
 };

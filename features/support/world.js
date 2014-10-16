@@ -26,15 +26,16 @@ module.exports = function() {
       callback();
     };
 
-    this.clickLink = function(name, callback) {
+    this.clickButton = function(name, callback) {
 
       var button = browser.query(name);
-      var url = button.href
+      var url = button.href;
 
       browser.visit(url, function() {
         assert.ok(browser.success);
         assert.equal(browser.statusCode, "200");
-        assert.equal(browser.location.pathname, "/new_template");
+        pathname = url.split('http://eventsmgr.dev')[1];
+        assert.equal(browser.location.pathname, pathname);
         callback();
       });
     };
