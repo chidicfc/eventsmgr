@@ -60,6 +60,11 @@ module.exports = function() {
       });
     };
 
+    this.fillIn = function(field, value, callback) {
+      browser.fill(field, value);
+      callback();
+    };
+
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
   };
 }

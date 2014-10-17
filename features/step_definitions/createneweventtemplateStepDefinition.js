@@ -7,6 +7,11 @@ var myStepDefinitionsWrapper = function () {
 
   When(/^I fill in "([^"]*)" with "([^"]*)"$/, function (field, value, callback) {
     // Write code here that turns the phrase above into concrete actions
+    this.fillIn(field, value, callback);
+  });
+
+  When(/^I click on "([^"]*)" submit button$/, function (buttonName, callback) {
+    // Write code here that turns the phrase above into concrete actions
     callback.pending();
   });
 
