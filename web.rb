@@ -1,6 +1,7 @@
 require "ostruct"
 require "pry-remote"
 require "date"
+require "require_all"
 
 require_all "app"
 
