@@ -1,6 +1,15 @@
 require "sequel"
 
-DB = Sequel.sqlite('app/eventsmanager.db')
+# DB = Sequel.sqlite('app/eventsmanager.db')
+
+configure :production do
+  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_CRIMSON_URL']
+end
+
+configure :development do
+  DB = Sequel.sqlite('app/eventsmanager.db')
+end
+
 
 DB.create_table? :event_templates do
   primary_key :id
