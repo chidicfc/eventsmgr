@@ -19,4 +19,4 @@ Feature: Events Rewrite
       And I fill in "title" with "Boots"
       And I click on "Create Template" submit button
     Then I should see "Event Templates" header
-      And I should see "Title" event template
+      And I should see "Boots (0, 0:0)" event template

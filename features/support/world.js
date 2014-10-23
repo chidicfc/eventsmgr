@@ -71,9 +71,17 @@ module.exports = function() {
         assert.equal(browser.statusCode, "200");
         callback();
       });
+    };
 
+    this.checkTemplate = function(name, callback) {
+
+      assert.equal(browser.text("a[data-toggle = \"collapse\"]:last"), name);
+
+      // assert.equal(browser.query("a[data-toggle = \"collapse\"]:last") == "Boots");
+      callback();
 
     };
+
 
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
   };

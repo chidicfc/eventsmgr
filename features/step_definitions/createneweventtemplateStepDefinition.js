@@ -15,6 +15,12 @@ var myStepDefinitionsWrapper = function () {
     this.clickButton(buttonName, callback);
   });
 
+  Then(/^I should see "([^"]*)" event template$/, function (name, callback) {
+    // Write code here that turns the phrase above into concrete actions
+    this.checkTemplate(name, callback);
+
+  });
+
 };
 
 module.exports = myStepDefinitionsWrapper;
