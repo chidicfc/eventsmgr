@@ -12,7 +12,7 @@ var myStepDefinitionsWrapper = function () {
 
   When(/^I click on "([^"]*)" submit button$/, function (buttonName, callback) {
     // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.clickButton(buttonName, callback);
   });
 
 };

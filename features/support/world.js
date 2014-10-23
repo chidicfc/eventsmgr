@@ -65,6 +65,16 @@ module.exports = function() {
       callback();
     };
 
+    this.clickButton = function(name, callback) {
+      browser.pressButton(name, function() {
+        assert.ok(browser.success);
+        assert.equal(browser.statusCode, "200");
+        callback();
+      });
+
+
+    };
+
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
   };
 }

@@ -17,6 +17,6 @@ Feature: Events Rewrite
     Given I am on the events system home page
     When I click on "NEW EVENT TEMPLATE" menu
       And I fill in "title" with "Boots"
-      And I click on "CREATE TEMPLATE" submit button
+      And I click on "Create Template" submit button
     Then I should see "Event Templates" header
       And I should see "Title" event template
