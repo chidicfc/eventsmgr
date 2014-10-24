@@ -10,17 +10,17 @@ var myStepDefinitionsWrapper = function () {
 
     switch (menuName) {
       case "NEW EVENT TEMPLATE":
-        href = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/new_template\"]";
+        menu = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/new_template\"]";
         break;
       case "SHOW ARCHIVE":
-        href = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/show_archive\"]";
+        menu = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/show_archive\"]";
         break;
       case "SHOW EVENT TEMPLATES":
-        href = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/\"]";
+        menu = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/\"]";
         break;
     }
 
-    this.clickMenu(href ,callback);
+    this.clickMenu(menu ,callback);
   });
 
 };

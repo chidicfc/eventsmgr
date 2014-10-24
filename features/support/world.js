@@ -74,11 +74,38 @@ module.exports = function() {
     };
 
     this.checkTemplate = function(name, callback) {
-
       assert.equal(browser.text("a[data-toggle = \"collapse\"]:last"), name);
-
-      // assert.equal(browser.query("a[data-toggle = \"collapse\"]:last") == "Boots");
       callback();
+    };
+
+    this.clickSubMenu = function(subMenuName, callback) {
+
+      switch (subMenuName) {
+        case "CREATE NEW EVENT":
+          selector = "div[class = \"panel panel-default\"]:nth-child(1) a[href = \"/1/new_event?action=new\"]";
+          break;
+        case "EDIT":
+          selector = "div[class = \"panel panel-default\"]:nth-child(1) a[href = \"/event_template/1/edit\"]";
+          break;
+        // case "DELETE":
+        //   selector = "div[class = \"panel panel-default\"]:nth-child(1) a[class = \"btn btn-danger btn-xs pull-right deleteEventTemp\"] span[onclick=\"$(this).parent().submit()\"]";
+        //   break;
+        // case "ARCHIVE":
+        //   selector = "div[class = \"panel panel-default\"]:nth-child(1) a[class = \"btn btn-primary btn-xs pull-right\"] span[onclick=\"$(this).parent().submit()\"]";
+        //   break;
+      }
+
+
+      var button = browser.query(selector);
+      var url = button.href;
+
+      browser.visit(url, function() {
+        assert.ok(browser.success);
+        assert.equal(browser.statusCode, "200");
+        pathname = url.split('http://eventsmgr.dev')[1];
+        assert.equal(browser.location.pathname, pathname);
+        callback();
+      });
 
     };
 

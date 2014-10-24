@@ -20,3 +20,8 @@ Feature: Events Rewrite
       And I click on "Create Template" submit button
     Then I should see "Event Templates" header
       And I should see "Boots (0, 0:0)" event template
+
+  Scenario: Edit Event Template Form
+    Given I am on the events system home page
+    When I click on "EDIT" sub-menu
+    Then I should see "Edit Boots Coaching Capability 1" header
