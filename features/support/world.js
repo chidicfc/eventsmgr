@@ -74,7 +74,14 @@ module.exports = function() {
     };
 
     this.checkTemplate = function(name, callback) {
-      assert.equal(browser.text("a[data-toggle = \"collapse\"]:last"), name);
+      switch(name) {
+
+        case "Boots (0, 0:0)":
+          assert.equal(browser.text("a[data-toggle = \"collapse\"]:last"), name);
+          break;
+        default:
+          assert.equal(browser.text("a[data-toggle = \"collapse\"]:first"), name);
+      }
       callback();
     };
 

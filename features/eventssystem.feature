@@ -8,7 +8,7 @@ Feature: Events Rewrite
     Then I should see "Event Templates" header
      And I should see a list of event templates
 
-  Scenario: New Event Templates Form
+  Scenario: Can Open New Event Templates Form
     Given I am on the events system home page
     When I click on "NEW EVENT TEMPLATE" menu
     Then I should see "Create New Event Template" header
@@ -21,7 +21,14 @@ Feature: Events Rewrite
     Then I should see "Event Templates" header
       And I should see "Boots (0, 0:0)" event template
 
-  Scenario: Edit Event Template Form
+  Scenario: Can Open Edit Event Template Form
     Given I am on the events system home page
     When I click on "EDIT" sub-menu
     Then I should see "Edit Boots Coaching Capability 1" header
+
+  Scenario: Edit Event Template
+    Given I am on the events system home page
+    When I click on "EDIT" sub-menu
+      And I fill in "title" with "Asda"
+      And I click on "Edit Template" submit button
+    Then I should see "Asda (1, 0:0)" event template
