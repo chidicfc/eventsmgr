@@ -1,6 +1,6 @@
 GEM
   remote: https://rubygems.org/
-  remote: http://ciab:c14b@gems.ciabos.com/
+  remote: http://gems.ciabos.com/
   specs:
     atomic (1.1.16)
     awesome_print (1.2.0)
