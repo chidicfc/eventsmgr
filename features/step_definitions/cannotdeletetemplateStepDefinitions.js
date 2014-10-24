@@ -5,9 +5,9 @@ var myStepDefinitionsWrapper = function () {
   var assert = require('assert');
   var browser = new zombie();
 
-  When(/^I click on "([^"]*)" menu$/, function (menuName, callback) {
+  When(/^I click on "([^"]*)" submenu$/, function (subMenuName, callback) {
     // Write code here that turns the phrase above into concrete actions
-    this.clickMenu(menuName ,callback);
+    this.clickSubMenu(subMenuName, callback);
   });
 
 };

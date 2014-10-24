@@ -46,7 +46,19 @@ module.exports = function() {
       callback();
     };
 
-    this.clickMenu = function(selector, callback) {
+    this.clickMenu = function(menuName, callback) {
+
+      switch (menuName) {
+        case "NEW EVENT TEMPLATE":
+          selector = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/new_template\"]";
+          break;
+        case "SHOW ARCHIVE":
+          selector = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/show_archive\"]";
+          break;
+        case "SHOW EVENT TEMPLATES":
+          selector = "div[class = \"col-md-6\"]:nth-child(2) a[href = \"/\"]";
+          break;
+      }
 
       var button = browser.query(selector);
       var url = button.href;
