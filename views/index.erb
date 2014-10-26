@@ -8,22 +8,22 @@
     </div>
   </form>
 
-<div class="btn-group btn-group-xs pull-right">
+<div class="btn-group btn-group-xs pull-right alphabet">
   <% for letter in [*'A'..'Z'] %>
 
-      <a href="/search_templates_by_letter/<%= letter %>"><button type="button" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></button></a>
+      <button type="button" class="btn btn-default"><a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a></button>
 
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
 </div> <!--class="container search" -->
 
 
-<div class="container mainContent createNewEvent marginTop55">
+<div class="container mainContent createNewEvent">
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 headerElement">
     <h3>Event Templates</h3>
   </div>  <!-- class="col-md-6" end -->
-  <div class="col-md-6">
+  <div class="col-md-6 headerElement">
     <a href="/new_template" class="btn btn-success btn-sm pull-right topLevel">New Event Template</a>
     <a class="btn btn-success btn-sm pull-right topLevel" href="/show_archive">Show Archive</a>
     <a class="btn btn-success btn-sm pull-right topLevel" href="/">Show Event Templates</a>
@@ -43,6 +43,7 @@
                   </button>
                   <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
                 </a>
+                <div class="actionButtons">
                 <a href="/<%= template.id %>/new_event?action=new" class="btn btn-primary btn-xs pull-right">Create New Event</a>
                 <a href="/event_template/<%= template.id %>/edit" class="btn btn-primary btn-xs pull-right">Edit</a>
                 <a class="btn btn-danger btn-xs pull-right deleteEventTemp">
@@ -58,6 +59,7 @@
                     <span onclick="$(this).parent().submit()">Archive</span>
                   </form>
                 </a>
+                </div>
               </h4>
             </div> <!-- class="panel-heading" -->
             <div id="collapse<%= template.id %>" class="panel-collapse collapse">

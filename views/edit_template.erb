@@ -8,16 +8,16 @@
     </div>
   </form>
 
-<div class="btn-group btn-group-xs pull-right">
+<div class="btn-group btn-group-xs pull-right alphabet">
   <% for letter in [*'A'..'Z'] %>
 
-      <a href="/search_templates_by_letter/<%= letter %>"><button type="button" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></button></a>
+      <button type="button" class="btn btn-default"><a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a></button>
 
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
 </div> <!--class="container search" -->
 
-<div class="container mainContent createNewEvent marginTop55">
+<div class="container mainContent createNewEvent">
   <form id="edit_template" action="/edit_template/<%= @edit_template_view.template.id %>" method="post">
   <input type="hidden" name="addEvent" value="addEvent">
   <input type="hidden" name="_method" value="patch">
@@ -53,7 +53,7 @@
       </label></p>
 
     <fieldset>
-      <legend>Default Coach Fee</legend>
+      <label>Default Coach Fee</label>
       <div class="currencies">
         <% count = -1 %>
         <% for coach_fee in @edit_template_view.template.coach_fees %>
