@@ -8,16 +8,16 @@
     </div>
   </form>
 
-<div class="btn-group btn-group-xs pull-right">
+<div class="btn-group btn-group-xs pull-right alphabet">
   <% for letter in [*'A'..'Z'] %>
 
-      <a href="/search_templates_by_letter/<%= letter %>"><button type="button" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></button></a>
+      <button type="button" class="btn btn-default"><a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a></button>
 
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
 </div> <!--class="container search" -->
 
-<div class="container mainContent createNewEvent marginTop55">
+<div class="container mainContent createNewEvent">
   <form id="form_id" method="post">
         <input type="hidden" name="addEvent" value="addEvent">
         <div class="row">
@@ -43,6 +43,88 @@
             <% else %>
               <textarea name="description" class="form-control descript"><%= @view.template.description %></textarea>
             <% end %>
+
+
+
+            <div class="row">
+              <div class="col-md-3">
+                <label>Local Start time</label>
+                <br>
+                <select name="start_hours" id="start_hours">
+                  <% 24.times do |hours|%>
+                    <% if @view.event.start_hours.to_s == hours.to_s %>
+                      <option selected  value="<%= hours %>"><%= hours %></option>
+                    <% else %>
+                      <option value="<%= hours %>"><%= hours %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                :
+                <select name="start_mins" id="start_mins">
+                  <% 60.times do |mins| %>
+                    <% if @view.event.start_mins.to_s == mins.to_s %>
+                      <option selected  value="<%= mins %>"><%= mins %></option>
+                    <%else %>
+                      <option  value="<%= mins %>"><%= mins %></option>
+                    <%end %>
+                  <% end %>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label>Duration</label>
+                <br>
+                <select name="duration_hours" id="duration_hours">
+                  <% 24.times do |hours|%>
+                    <% if @view.event.duration_hours.to_s == hours.to_s %>
+                      <option selected  value="<%= hours %>"><%= hours %></option>
+                    <% else %>
+                      <option value="<%= hours %>"><%= hours %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                :
+                <select name="duration_mins" id="duration_mins">
+                  <% 60.times do |mins| %>
+                    <% if @view.event.duration_mins.to_s == mins.to_s %>
+                      <option selected  value="<%= mins %>"><%= mins %></option>
+                    <%else %>
+                      <option  value="<%= mins %>"><%= mins %></option>
+                    <%end %>
+                  <% end %>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label>Timezone</label>
+                <br>
+
+                <select name="timezone" id="timezone" class="form-control">
+                  <% for timezone in @view.timezones %>
+                    <% if @view.event.selected_time_zone == timezone.name %>
+                      <option selected="<%= timezone.name %>"><%= timezone.name %></option>
+                    <% else %>
+                      <option value="<%= timezone.name %>"><%= timezone.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label>Cohort</label>
+                <br>
+                <select name="cohort" id="cohort" class="form-control">
+                  <% for cohort in @view.cohorts %>
+                    <% if @view.event.selected_cohort == cohort.name %>
+                      <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
+                    <% else %>
+                      <option value="<%= cohort.name %>"><%= cohort.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+
+            </div>
+
           </div>
 
           <!--stopped here
@@ -58,8 +140,8 @@
 
           <div class="col-md-3">
             <fieldset>
-            <legend>Coaches Fee</legend>
             <div class="currencies coachesFee">
+              <h4>Coaches Fee</h4>
               <% for coach_fee in @view.template.coach_fees %>
                 <label><%= coach_fee.currency %>:</label>
                   <% if @view.has_coach_fee? coach_fee.currency%>
@@ -74,8 +156,8 @@
 
 
             <fieldset>
-            <legend>Income Details</legend>
             <div class="currencies incomeDetails">
+              <h4>Income Details</h4>
               <label>Income Amount:</label>
               <input type="text" class="form-control" name="income_amount" value="<%= @view.event.income_amount %>">
 
@@ -96,88 +178,6 @@
 
             </div>
           </fieldset>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <label>Local Start time</label>
-            <br>
-            <select name="start_hours" id="start_hours">
-              <% 24.times do |hours|%>
-                <% if @view.event.start_hours.to_s == hours.to_s %>
-                  <option selected  value="<%= hours %>"><%= hours %></option>
-                <% else %>
-                  <option value="<%= hours %>"><%= hours %></option>
-                <% end %>
-              <% end %>
-            </select>
-            :
-            <select name="start_mins" id="start_mins">
-              <% 60.times do |mins| %>
-                <% if @view.event.start_mins.to_s == mins.to_s %>
-                  <option selected  value="<%= mins %>"><%= mins %></option>
-                <%else %>
-                  <option  value="<%= mins %>"><%= mins %></option>
-                <%end %>
-              <% end %>
-            </select>
-          </div>
-
-          <div class="col-md-3">
-            <label>Duration</label>
-            <br>
-            <select name="duration_hours" id="duration_hours">
-              <% 24.times do |hours|%>
-                <% if @view.event.duration_hours.to_s == hours.to_s %>
-                  <option selected  value="<%= hours %>"><%= hours %></option>
-                <% else %>
-                  <option value="<%= hours %>"><%= hours %></option>
-                <% end %>
-              <% end %>
-            </select>
-            :
-            <select name="duration_mins" id="duration_mins">
-              <% 60.times do |mins| %>
-                <% if @view.event.duration_mins.to_s == mins.to_s %>
-                  <option selected  value="<%= mins %>"><%= mins %></option>
-                <%else %>
-                  <option  value="<%= mins %>"><%= mins %></option>
-                <%end %>
-              <% end %>
-            </select>
-
-
-
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-3">
-            <label>Timezone</label>
-            <br>
-
-            <select name="timezone" id="timezone" class="form-control">
-              <% for timezone in @view.timezones %>
-                <% if @view.event.selected_time_zone == timezone.name %>
-                  <option selected="<%= timezone.name %>"><%= timezone.name %></option>
-                <% else %>
-                  <option value="<%= timezone.name %>"><%= timezone.name %></option>
-                <% end %>
-              <% end %>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <label>Cohort</label>
-            <br>
-            <select name="cohort" id="cohort" class="form-control">
-              <% for cohort in @view.cohorts %>
-                <% if @view.event.selected_cohort == cohort.name %>
-                  <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
-                <% else %>
-                  <option value="<%= cohort.name %>"><%= cohort.name %></option>
-                <% end %>
-              <% end %>
-            </select>
           </div>
         </div>
 
