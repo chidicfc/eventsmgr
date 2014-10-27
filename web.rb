@@ -181,7 +181,8 @@ post '/:template_id/new_event' do
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
-        @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+        # binding.pry_remote
+        @new_event_view.event.assigned_coaches = session["event"].assigned_coaches if session["event"]
         @new_event_controller.display_coaches_by_letter letter
       end
     end
