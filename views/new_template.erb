@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-md-6">
         <label>Title</label>
-        <input type="text" class="form-control" name="title" required="true">
+        <input type="text" class="form-control" name="title">
 
         <!-- <label>Duration (hh:mm)</label>
         <input type="text" class="form-control" placeholder="Duration" name="duration"> -->
@@ -55,7 +55,7 @@
           <% for coach_fee in @new_template_view.coach_fees %>
             <% count += 1 %>
             <label><%= coach_fee.currency %></label>
-            <input type="text" name="amount<%=count%>" class="form-control" value="<%= coach_fee.amount %>" required="true">
+            <input type="text" name="amount<%=count%>" class="form-control" value="<%= coach_fee.amount %>">
             <input type="hidden" name="currency<%=count%>" value="<%= coach_fee.currency %>">
           <% end %>
           <input type="hidden" name="count" value="<%= count %>">
@@ -73,7 +73,7 @@
     <div class="row">
       <div class="col-md-12">
         <input class="btn btn-success pull-right apply" type="submit" value="Create Template" name="action">
-        <a href="/" class="btn btn-default btn-xs pull-right cancel">Cancel</a>
+        <input class="btn btn-default btn-xs pull-right cancel" name="action" type="submit" value="Cancel">
       </div>
     </div>
   </form>

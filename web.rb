@@ -37,20 +37,22 @@ end
 
 patch '/edit_template/:id' do
 
+  if params[:action] == "Cancel"
+    redirect '/'
+  elsif params[:action] == "Edit Template"
+    count = params[:count].to_i
+    id = params[:id].to_i
+    array_fees = []
+    for x in (0..count)
+       array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
+    end
+    edit_event_controller = EditEventTemplateViewController.new
+    duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+    edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
 
 
-  count = params[:count].to_i
-  id = params[:id].to_i
-  array_fees = []
-  for x in (0..count)
-     array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
+    redirect '/'
   end
-  edit_event_controller = EditEventTemplateViewController.new
-  duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-  edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
-
-
-  redirect '/'
 end
 
 get '/new_template' do
@@ -64,17 +66,22 @@ get '/new_template' do
 end
 
 post '/new_template' do
-  count = params[:count].to_i
-  array_fees = []
-  for x in (0..count)
-     array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
+
+  if params[:action]=="Cancel"
+    redirect '/'
+  elsif params[:action] = "Create Template"
+    count = params[:count].to_i
+    array_fees = []
+    for x in (0..count)
+       array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
+    end
+    new_event_controller = NewEventTemplateViewController.new
+    duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+    new_event_controller.save params[:title], duration, array_fees, params[:description]
+
+    redirect '/'
+
   end
-  new_event_controller = NewEventTemplateViewController.new
-  duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-  new_event_controller.save params[:title], duration, array_fees, params[:description]
-
-  redirect '/'
-
 end
 
 delete '/event_template/:id' do
@@ -265,6 +272,8 @@ post '/event/:template_id/:event_id/edit' do
 
   elsif params[:action] == "Show All"
     @view.event.assigned_coaches = session["event"].assigned_coaches
+  elsif params[:action] == "Cancel"
+    redirect '/'
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
