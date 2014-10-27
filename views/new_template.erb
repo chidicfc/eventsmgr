@@ -12,7 +12,7 @@
 <div class="btn-group btn-group-xs pull-right alphabet">
   <% for letter in [*'A'..'Z'] %>
 
-      <button type="button" class="btn btn-default"><a href="/search_templates_by_letter/<%= letter %>"><label id="<%= letter %>"><%= letter %></label></a></button>
+      <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></a>
 
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
