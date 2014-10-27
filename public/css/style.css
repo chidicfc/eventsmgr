@@ -252,20 +252,18 @@ select.startTime{
 	color: #FFF;
 	padding: 10px;
 }
-.alphabet button{
-	padding: 0 !important;
-}
-.alphabet button a{
+.alphabet a{
 	font-size: 12px;
-}
-.alphabet button label{
-	margin: 0;
 	cursor: pointer;
+}
+.alphabet a label{
+	margin: 0;
 	display: inline-block;
 	width: 100%;
 	margin: 0;
-	padding: 1px 5px;
+	padding: 1px;
 	position: relative;
+	cursor: pointer;
 }
 
 /* SMALLER DESKTOP */
