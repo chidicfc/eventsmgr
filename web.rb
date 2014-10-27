@@ -178,10 +178,11 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Show All"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+  elsif params[:action] == "Cancel"
+    redirect '/'
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
-        # binding.pry_remote
         @new_event_view.event.assigned_coaches = session["event"].assigned_coaches if session["event"]
         @new_event_controller.display_coaches_by_letter letter
       end
