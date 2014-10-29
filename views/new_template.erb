@@ -34,19 +34,18 @@
         <!-- <label>Duration (hh:mm)</label>
         <input type="text" class="form-control" placeholder="Duration" name="duration"> -->
 
-        <label class="formControl1">Duration<br><select name="duration_hours" id="duration_hours" class="formControl1">
+        <label>Duration</label><br>
+        <select name="duration_hours" id="duration_hours" class="formControl1 form-control selectSmall">
           <% 24.times do |hours|%>
             <option value="<%= hours %>"><%= hours %></option>
           <% end %>
         </select>
         :
-        <select name="duration_mins" id="duration_mins">
+        <select name="duration_mins" id="duration_mins" class="form-control selectSmall">
           <% 60.times do |mins| %>
             <option  value="<%= mins %>"><%= mins %></option>
           <%end %>
         </select>
-      </label>
-      <br><br>
 
       <fieldset>
         <label>Default Coach Fee</label>
@@ -54,9 +53,12 @@
           <% count = -1 %>
           <% for coach_fee in @new_template_view.coach_fees %>
             <% count += 1 %>
+
+            <span class="noBreak">
             <label><%= coach_fee.currency %></label>
             <input type="text" name="amount<%=count%>" class="form-control" value="<%= coach_fee.amount %>">
             <input type="hidden" name="currency<%=count%>" value="<%= coach_fee.currency %>">
+            </span>
           <% end %>
           <input type="hidden" name="count" value="<%= count %>">
 
