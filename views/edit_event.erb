@@ -48,7 +48,7 @@
               <div class="col-md-3">
                 <label>Local Start time</label>
                 <br>
-                <select name="start_hours" id="start_hours">
+                <select name="start_hours" id="start_hours" class="form-control selectSmall">
                   <% 24.times do |hours|%>
                     <% if @view.event.start_time[0].to_s == hours.to_s %>
                       <option selected  value="<%= hours %>"><%= hours %></option>
@@ -58,7 +58,7 @@
                   <% end %>
                 </select>
                 :
-                <select name="start_mins" id="start_mins">
+                <select name="start_mins" id="start_mins" class="form-control selectSmall">
                   <% 60.times do |mins| %>
                     <% if @view.event.start_time[1].to_s == mins.to_s %>
                       <option selected  value="<%= mins %>"><%= mins %></option>
@@ -71,7 +71,7 @@
               <div class="col-md-3">
                 <label>Duration</label>
                 <br>
-                <select name="duration_hours" id="duration_hours">
+                <select name="duration_hours" id="duration_hours" class="form-control selectSmall">
                   <% 24.times do |hours|%>
                     <% if @view.event.duration[0].to_s == hours.to_s %>
                       <option selected  value="<%= hours %>"><%= hours %></option>
@@ -81,7 +81,7 @@
                   <% end %>
                 </select>
                 :
-                <select name="duration_mins" id="duration_mins">
+                <select name="duration_mins" id="duration_mins" class="form-control selectSmall">
                   <% 60.times do |mins| %>
                     <% if @view.event.duration[1].to_s == mins.to_s %>
                       <option selected  value="<%= mins %>"><%= mins %></option>
@@ -159,7 +159,7 @@
               <p>
               <label>Income Currency:</label>
 
-              <select name="income_currency" id="income_currency">
+              <select name="income_currency" id="income_currency" class="form-control selectSmall">
                 <% for coach_fee in @view.template.coach_fees %>
                   <% if @view.event.income_currency == coach_fee.currency %>
                     <option selected value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>

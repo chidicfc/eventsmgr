@@ -12,7 +12,7 @@ h4{
 	font-size: 20px;
 }
 label{
-	font-weight: 400;
+	font-weight: 600;
 }
 .navbar{
 	min-height: 70px;
@@ -70,9 +70,11 @@ img.logo{
 }
 .currencies label, .currencies input{
 	display: inline-block;
+	margin: 0 5px 0 0;
 }
 .currencies input{
-	width: 13%;
+	width: 50%;
+	margin: 0 10px 10px 0;
 }
 .createNewEvent textarea{
 	max-width: 100%;
@@ -178,6 +180,7 @@ h4.panel-title .pull-right{
 .form-control{
 	padding: 6px;
 	margin: 0 0 20px 0;
+	display: inline;
 }
 .coachesFee, .incomeDetails{
 	border: 1px solid #EDEDED;
@@ -195,6 +198,9 @@ h4.panel-title .pull-right{
 }
 .coachesFee input, .incomeDetails input{
 	width: 25%;
+}
+.coachesFee .noBreak{
+	width: auto;
 }
 .incomeDetails label{
 	width: 120px;
@@ -264,6 +270,15 @@ select.startTime{
 	padding: 1px;
 	position: relative;
 	cursor: pointer;
+	font-weight: 400;
+}
+.selectSmall{
+	width: 70px;
+}
+.noBreak{
+	display: inline-block;
+	width: 18%;
+	margin-bottom: 10px;
 }
 
 /* SMALLER DESKTOP */
@@ -274,6 +289,15 @@ select.startTime{
 	}
 	select.startTime{
 		width: 46%;
+	}
+	.noBreak{
+		width: 23%;
+	}
+	.topLevel{
+		padding: 3px 6px;
+	}
+	.selectSmall{
+		width: 65px;
 	}
 }
 
@@ -286,7 +310,7 @@ select.startTime{
 		display: none;
 	}
 	.currencies input{
-		width: 10%;
+		width: 50%;
 		margin-right: 10px;
 	}
 	.multiVals{
@@ -313,9 +337,14 @@ select.startTime{
 		margin-top: 70px;
 	}
 	.headerElement{
-		width: 50%;
 		display: inline-block;
 		float: left;
+	}
+	.col1{
+		width: 30%;
+	}
+	.col2{
+		width: 70%;
 	}
 	.search{
 		padding: 0;
@@ -326,6 +355,9 @@ select.startTime{
 	}
 	.alphabet{
 		float: left !important;
+	}
+	.alphabet a{
+		padding: 1px 4px !important;
 	}
 	.panel-heading{
 		padding: 15px;
@@ -347,6 +379,16 @@ select.startTime{
 	}
 	select.startTime {
 		width: 48.5%;
+	}
+	.noBreak{
+		width: 15%;
+	}
+	.quarter{
+		display: inline-block;
+		width: 24%;
+	}
+	.currencies input{
+		width: 44px;
 	}
 }
 
@@ -416,16 +458,8 @@ select.startTime{
 	.datePicker{
 		width: 200px !important;
 	}
-}
-/* MOBILE */
-@media (max-width: 451px){
-	.panel-heading{
-		height: 74px;
-		position: relative;
-		padding: 8px !important;
-	}
-	table tr td{
-		height: 50px;
+	.noBreak{
+		width: 100px;
 	}
 	.btn-group-xs > .btn{
 		border-radius: 50% !important;
@@ -435,15 +469,30 @@ select.startTime{
 		margin: 0 4px 5px 0;
 		text-align: center;
 	}
+	.selectSmall{
+		width: 50px;
+	}
+}
+/* MOBILE */
+@media (max-width: 451px){
+	.panel-heading{
+		height: 55px;
+		position: relative;
+		padding: 8px !important;
+	}
+	table tr td{
+		height: 50px;
+	}
 	.headerElement{
 		width: 100% !important;
+		margin: 0;
 	}
 	h3{
 		font-size: 20px;
-		margin: 10px 0 0 0;
+		margin: 15px 0;
 	}
 	.topLevel{
-		margin: 0 5px 0 0;
+		margin: 0 5px 5px 0;
 		float: left !important;
 	}
 	.panel-title{
@@ -475,6 +524,9 @@ select.startTime{
 	}
 	.plus{
 		margin: -4px 0 0 -30px !important;
+	}
+	.col2{
+		margin: 0 0 15px 0;
 	}
 }
 /* chidi's codes    */
