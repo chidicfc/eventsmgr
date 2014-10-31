@@ -74,7 +74,7 @@ img.logo{
 }
 .currencies input{
 	width: 50%;
-	margin: 0 10px 10px 0;
+	margin: 0 0 10px 0;
 }
 .createNewEvent textarea{
 	max-width: 100%;
@@ -188,22 +188,22 @@ h4.panel-title .pull-right{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	margin-bottom: 15px;
-	padding: 15px;
+	padding: 15px 0 15px 15px;
 }
 .coachesFee h4, .incomeDetails h4{
 	margin-top: 0;
 }
-.coachesFee label{
-	width: 35px;
-}
 .coachesFee input, .incomeDetails input{
-	width: 25%;
+	width: 50%;
 }
 .coachesFee .noBreak{
-	width: auto;
+	width: 48%;
 }
 .incomeDetails label{
 	width: 120px;
+}
+.incomeDetails input{
+	width: 90px;
 }
 .assignCoaches{
 	margin: 0 0 25px 0;
@@ -219,15 +219,29 @@ select.mutiSelect{
 	margin-top: 68px;
 }
 .multiControls input{
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	border-radius: 50px;
-	width: 100%;
-	border: 1px solid #AAA;
-	background: #CCC;
-	display: block;
-	margin: 0 0 10px 0;
-	color: #FFF;
+	margin: 5px 0;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #979797;
+	color: #979797;
+	font-size: 18px;
+	line-height: 18px;
+	background: #ECECEC;
+	display: inline-block;
+}
+.multiControls input#reset{
+	margin-top: 20px;
+	height: 20px;
+	line-height: 14px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
 }
 .grey{
 	background: #EEE;
@@ -381,21 +395,25 @@ select.startTime{
 		width: 48.5%;
 	}
 	.noBreak{
-		width: 15%;
+		width: 15% !important;
 	}
 	.quarter{
 		display: inline-block;
-		width: 24%;
+		width: 49%;
 	}
 	.currencies input{
 		width: 44px;
+	}
+	.multiControls input{
+		width: 32px;
+		height: 32px;
 	}
 }
 
 /* TABLET / PHABLET / MOBILE */
 @media (max-width: 768px){
 	.container{
-		padding: 0 15px 0 15px !important;
+		padding: 0 15px 15px 15px !important;
 	}
 	.navbar-collapse .pull-right{
 		float: none !important;
@@ -460,6 +478,7 @@ select.startTime{
 	}
 	.noBreak{
 		width: 100px;
+		margin-bottom: 0px;
 	}
 	.btn-group-xs > .btn{
 		border-radius: 50% !important;

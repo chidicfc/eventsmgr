@@ -22,7 +22,7 @@
         <input type="hidden" name="addEvent" value="addEvent">
         <div class="row">
           <div class="col-md-12">
-            <h3>Edit <%= @view.template.title %> Event</h3>
+            <h3>Edit <%= @view.template.title %> event</h3>
           </div>
         </div>
         <div class="row">
@@ -45,7 +45,7 @@
             <% end %>
 
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-3 quarter">
                 <label>Local Start time</label>
                 <br>
                 <select name="start_hours" id="start_hours" class="form-control selectSmall">
@@ -68,7 +68,7 @@
                   <% end %>
                 </select>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 quarter">
                 <label>Duration</label>
                 <br>
                 <select name="duration_hours" id="duration_hours" class="form-control selectSmall">
@@ -91,7 +91,7 @@
                   <% end %>
                 </select>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 quarter">
                 <label>Timezone</label>
                 <br>
                 <select name="timezone" id="timezone" class="form-control">
@@ -105,7 +105,7 @@
                 </select>
 
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 quarter">
                 <label>Cohort</label>
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
@@ -140,8 +140,10 @@
 
               <% @view.event.coach_fees.each do |coach_fee| %>
                 <% coach_fee.each do |currency, amount| %>
+                  <span class="noBreak">
                   <label><%= currency %>:</label>
                   <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>" required="true">
+                  </span>
                 <% end %>
               <% end %>
 
@@ -210,8 +212,8 @@
           </div>
           <div class="col-md-1 multiControls">
             <center>
-              <input type="submit" name="action" value="&gt;&gt;" id="add_coaches">
-              <input type="submit" name="action" value="&lt;&lt;" id="dissociate_coaches">
+              <input type="submit" name="action" value="&gt;" id="add_coaches">
+              <input type="submit" name="action" value="&lt;" id="dissociate_coaches">
               <input type="submit" name="action" value="Reset" id="reset">
             </center>
           </div>
@@ -226,8 +228,8 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <input class="btn btn-success pull-right" type="submit" name="action" value="Edit Event" id="edit_event">
-            <input class="btn btn-default btn-xs pull-right" type="submit" value="Cancel" name="action">
+            <input class="btn btn-success pull-right apply" type="submit" name="action" value="Edit Event" id="edit_event">
+            <input class="btn btn-default btn-xs pull-right cancel" type="submit" value="Cancel" name="action">
           </div>
         </div>
       </form>
