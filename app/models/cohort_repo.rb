@@ -1,11 +1,11 @@
 class CohortRepo
 
   def initialize
-    @store = CoachInABoxOs.new
+    @datastore = DataBaseDataStore.new
   end
 
   def get_cohorts
-    @store.get_cohorts
+    @datastore.get_cohorts
   end
 
 end

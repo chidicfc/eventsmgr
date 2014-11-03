@@ -1,11 +1,11 @@
 class TimezoneRepo
 
   def initialize
-    @store = CoachInABoxOs.new
+    @datastore = DataBaseDataStore.new
   end
 
   def get_timezones
-    @store.get_timezones
+    @datastore.get_timezones
   end
 
 end
