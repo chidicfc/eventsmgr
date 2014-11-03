@@ -1,4 +1,5 @@
 require "sequel"
+require 'pry-remote'
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
 
@@ -149,23 +150,24 @@ class DataBaseDataStore
 
   def load_database
 
-    10.times do |index|
-      index += 1
-      dataset = DB[:event_templates]
-      event_template_id = dataset.insert(:title => "Boots Coaching Capability #{index}",:duration => "08:30",:description => "description #{index}", :status => "active")
-      load_default_coach_fees event_template_id
+    # 10.times do |index|
+    #   index += 1
+    #   dataset = DB[:event_templates]
+    #   event_template_id = dataset.insert(:title => "Boots Coaching Capability #{index}",:duration => "08:30",:description => "description #{index}", :status => "active")
+    #   load_default_coach_fees event_template_id
+    #
+    #   dataset = DB[:events]
+    #   event_id = dataset.insert(:title => "Winchester #{index} - October 11, 2011",:duration => "09:00", :event_template_id => event_template_id, :date => "19/07/2014", :start_time => "09:00", :timezone => "GMT", :cohort => "Apple MAC Division Cohort 1")
+    #   set_default_event_coach_fees event_template_id, event_id
+    #
+    #   dataset=DB[:coaches]
+    #   dataset.insert(:name => "Delaney Burke #{index}",:email => "delaney.burke@coachinabox.biz")
+    #   dataset.insert(:name => "Sarah Burke #{index}",:email => "delaney@yahoo.biz")
+    #   dataset.insert(:name => "Michael Jackson #{index}",:email => "m.jackson@coachinabox.biz")
+    #   dataset.insert(:name => "Tom Green #{index}",:email => "tom.green@coachinabox.biz")
+    #   dataset.insert(:name => "Dick Cheney #{index}",:email => "dick.c@coachinabox.biz")
+    # end
 
-      dataset = DB[:events]
-      event_id = dataset.insert(:title => "Winchester #{index} - October 11, 2011",:duration => "09:00", :event_template_id => event_template_id, :date => "19/07/2014", :start_time => "09:00", :timezone => "GMT", :cohort => "Apple MAC Division Cohort 1")
-      set_default_event_coach_fees event_template_id, event_id
-
-      dataset=DB[:coaches]
-      dataset.insert(:name => "Delaney Burke #{index}",:email => "delaney.burke@coachinabox.biz")
-      dataset.insert(:name => "Sarah Burke #{index}",:email => "delaney@yahoo.biz")
-      dataset.insert(:name => "Michael Jackson #{index}",:email => "m.jackson@coachinabox.biz")
-      dataset.insert(:name => "Tom Green #{index}",:email => "tom.green@coachinabox.biz")
-      dataset.insert(:name => "Dick Cheney #{index}",:email => "dick.c@coachinabox.biz")
-    end
     load_default_coach_fees
     load_coaches
     load_cohorts
@@ -191,12 +193,15 @@ class DataBaseDataStore
   end
 
   def all_templates
+
+    transmission = YAML.load(File.open("ciabos.yml"))
+
     templates = []
 
-    if DB[:event_templates].all == []
-      load_database
-      all_templates
-    else
+    # if DB[:event_templates].all == []
+    #   load_database
+    #   all_templates
+    # else
       DB[:event_templates].where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
         DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
@@ -217,7 +222,7 @@ class DataBaseDataStore
 
         templates << event_template
       end
-    end
+    # end
     templates
   end
 
@@ -374,6 +379,61 @@ class DataBaseDataStore
       DB.run("DROP TABLE coach_fees")
       DB.run("DROP TABLE timezones")
       DB.run("DROP TABLE cohorts")
+
+
+      DB.create_table? :event_templates do
+        primary_key :id
+        String :title
+        String :duration
+        String :description
+        String :status
+      end
+
+      DB.create_table? :events do
+        primary_key :id
+        foreign_key :event_template_id
+        String :title
+        String :duration
+        String :description
+        String :date
+        String :start_time
+        String :timezone
+        String :cohort
+        String :income_amount
+        String :income_currency
+
+      end
+
+      DB.create_table? :coaches do
+        primary_key :id
+        String :name
+        String :email
+      end
+
+      DB.create_table? :assigned_coaches do
+        primary_key :id
+        foreign_key :event_id
+        String :name
+      end
+
+      DB.create_table? :coach_fees do
+        primary_key :id
+        foreign_key :event_template_id
+        foreign_key :event_id
+        String :currency
+        String :amount
+      end
+
+      DB.create_table? :timezones do
+        primary_key :id
+        String :name
+      end
+
+      DB.create_table? :cohorts do
+        primary_key :id
+        String :name
+      end
+
     end
   end
 
