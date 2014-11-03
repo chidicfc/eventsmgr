@@ -7,7 +7,7 @@ require 'require_all'
 require "./web"
 
 
-Radio::Tunner.listen_on "out.ciabos.ui" do |receiver|
+Radio::Tunner.listen_on "in.eventsmanager" do |receiver|
 
   receiver.receive do |transmission|
     p transmission
