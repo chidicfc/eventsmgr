@@ -13,6 +13,7 @@ gem "awesome_print"
 gem 'riot'
 gem 'pry'
 gem "sequel"
+gem "oj"
 gem 'activesupport', '~> 4.1.6'
 gem 'tzinfo', '~> 1.2.2'
 # gem "sqlite3"

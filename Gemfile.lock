@@ -129,6 +129,7 @@ DEPENDENCIES
   activesupport (~> 4.1.6)
   awesome_print
   capybara
+  oj
   pg
   poltergeist
   pry

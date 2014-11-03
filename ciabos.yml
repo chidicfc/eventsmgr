@@ -1,0 +1,263 @@
+--- !ruby/object:Yeasu::Radio::Transmission
+table:
+  :time_zones: America/Chicago|Asia/Shanghai|Asia/Singapore|Australia/Sydney|Europe/London
+  :cohorts:
+  - !ruby/object:OpenStruct
+    table:
+      :name: NewCompany Project Beta June cohort
+      :id: 1
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: BigCompany Project Alpha June Cohort
+      :id: 2
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Another Company New Project This Cohort
+      :id: 3
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: CiaB Testing 12 Shift card sort v1
+      :id: 4
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Testing Co Group Coaching September Cohort
+      :id: 5
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: CiaB Testing Adam's Test Cohort
+      :id: 6
+    modifiable: true
+  :coaches:
+  - !ruby/object:OpenStruct
+    table:
+      :name: Team Leader
+      :id: 3
+      :email: dummy@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Coach Sarah
+      :id: 5
+      :email: dummy@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Coach Simon
+      :id: 6
+      :email: dummy2@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Coach Patrick
+      :id: 7
+      :email: dummy1@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Coach Jean
+      :id: 8
+      :email: dummy3@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Will Stokely
+      :id: 15
+      :email: will@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Admin user
+      :id: 16
+      :email: dummy@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: Adam Wittig Staging
+      :id: 1016
+      :email: adam.wittig@coachinabox.biz
+      :image: 
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :name: test
+      :id: 1017
+      :email: test
+      :image: https://staging.ciabos.com/media/W1siZiIsIjIwMTQvMTAvMzAvMTQvMjYvMzcvMjI3L2NocmlzX3BhbG1lcl9wcm9maWxlXzExLmpwZyJdLFsicCIsInRodW1iIiwiNDh4NDgjIl1d
+    modifiable: true
+  :event_types:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 1
+      :title: test
+      :description: test
+      :duration: 12 seconds
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 2
+      :title: Test
+      :description: ''
+      :duration: 4 hours
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 3
+      :title: Test event
+      :description: asdADdDad
+      :duration: 2 hours
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 4
+      :title: New Event 3
+      :description: aafasfasdfasfafafa a asd fs
+      :duration: 2 hours
+    modifiable: true
+  :events:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 1
+      :subtitle: Test 2 event
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 
+      :timezone: London
+      :start_time: '2014-08-25 10:00:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 2
+      :subtitle: Adam's Test
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 
+      :timezone: London
+      :start_time: '2014-10-03 23:51:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 3
+      :subtitle: Adam's Other Test
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 
+      :timezone: London
+      :start_time: '2014-10-03 23:54:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 4
+      :subtitle: Adam's Hopefully final test
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 
+      :timezone: London
+      :start_time: '2014-09-22 23:55:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 5
+      :subtitle: TEST EVENT 1
+      :details: asdfasdfasdfsadf
+      :event_type_id: 3
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-01 09:05:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 6
+      :subtitle: New Event Test
+      :details: ''
+      :event_type_id: 3
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-08 09:30:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 7
+      :subtitle: New Event
+      :details: ''
+      :event_type_id: 4
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-09 11:00:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 8
+      :subtitle: Another test
+      :details: ''
+      :event_type_id: 4
+      :cohort_id: 1
+      :timezone: London
+      :start_time: '2014-10-08 07:29:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 9
+      :subtitle: Another test
+      :details: ''
+      :event_type_id: 4
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-09 13:30:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 10
+      :subtitle: Another test event
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-09 15:33:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 11
+      :subtitle: Test 10
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-09 09:24:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 12
+      :subtitle: Test 11
+      :details: ''
+      :event_type_id: 2
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-10-10 09:25:00 +0100'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 13
+      :subtitle: Adam's Hopefully final test
+      :details: ''
+      :event_type_id: 3
+      :cohort_id: 
+      :timezone: London
+      :start_time: '2014-10-17 11:31:00 +0100'
+    modifiable: true
+  :origin: ciabos.com
+  :tags: ciabos,ui,outbound,field_data
+  :id: 7cdbc5b0-459f-0132-5dad-040113afc801
+  :destination: in.eventsmanager.ciabos.com
+  :radio: Portsmouth-basestation-producer
