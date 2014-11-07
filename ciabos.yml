@@ -1,5 +1,6 @@
 --- !ruby/object:Yeasu::Radio::Transmission
 table:
+  :version: 0.0.1
   :time_zones: America/Chicago|Asia/Shanghai|Asia/Singapore|Australia/Sydney|Europe/London
   :cohorts:
   - !ruby/object:OpenStruct
@@ -256,8 +257,18 @@ table:
       :timezone: London
       :start_time: '2014-10-17 11:31:00 +0100'
     modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 14
+      :subtitle: test
+      :details: test
+      :event_type_id: 4
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-11-04 16:39:00 +0000'
+    modifiable: true
   :origin: ciabos.com
   :tags: ciabos,ui,outbound,field_data
-  :id: 7cdbc5b0-459f-0132-5dad-040113afc801
+  :id: 693c68c0-4899-0132-430f-528db81e67fe
   :destination: in.eventsmanager.ciabos.com
-  :radio: Portsmouth-basestation-producer
+  :radio: portsmouth-harbour-producer

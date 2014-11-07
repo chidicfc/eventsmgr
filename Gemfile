@@ -14,6 +14,7 @@ gem 'riot'
 gem 'pry'
 gem "sequel"
 gem "oj"
+gem "chronic_duration"
 gem 'activesupport', '~> 4.1.6'
 gem 'tzinfo', '~> 1.2.2'
 # gem "sqlite3"

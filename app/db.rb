@@ -1,15 +1,18 @@
 require "sequel"
 require 'pry-remote'
+require 'yaml'
+require 'chronic_duration'
+require 'date'
 
-# DB = Sequel.sqlite('app/eventsmanager.db')
+DB = Sequel.sqlite('app/eventsmanager.db')
 
-configure :production do
-  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_CRIMSON_URL']
-end
-
-configure :development do
-  DB = Sequel.sqlite('app/eventsmanager.db')
-end
+# configure :production do
+#   DB = Sequel.connect ENV['HEROKU_POSTGRESQL_CRIMSON_URL']
+# end
+#
+# configure :development do
+#   DB = Sequel.sqlite('app/eventsmanager.db')
+# end
 
 
 DB.create_table? :event_templates do
@@ -39,12 +42,15 @@ DB.create_table? :coaches do
   primary_key :id
   String :name
   String :email
+  String :image
 end
 
 DB.create_table? :assigned_coaches do
   primary_key :id
   foreign_key :event_id
   String :name
+  String :email
+  String :image
 end
 
 DB.create_table? :coach_fees do
@@ -67,48 +73,35 @@ end
 
 
 class DataBaseDataStore
+  attr_accessor :legacy_transmission, :field_data_transmission
+
+  def initialize
+    @legacy_transmission = YAML.load(File.open("legacy_data.yml"))
+
+    @field_data_transmission = YAML.load(File.open("ciabos.yml"))
+  end
 
 
   def load_coaches
-    dataset = DB[:coaches]
-    dataset.insert(:name => "Cheryl Jackson", :email => "xx@yahoo.com")
-    dataset.insert(:name => "Tom Green", :email => "aa@yahoo.com")
-    dataset.insert(:name => "Matt Taylor", :email => "bb@yahoo.com")
-    dataset.insert(:name => "David Platt", :email => "cc@yahoo.com")
-    dataset.insert(:name => "Michael Jackson", :email => "dd@yahoo.com")
-    dataset.insert(:name => "Drew Black", :email => "ee@yahoo.com")
-    dataset.insert(:name => "Neptunes", :email => "neptune@yahoo.com")
-    dataset.insert(:name => "Mike Tello", :email => "tello@yahoo.com")
-    dataset.insert(:name => "Janet Jackson", :email => "janet@yahoo.com")
-    dataset.insert(:name => "Phil Jackson", :email => "phil@yahoo.com")
+    @field_data_transmission.coaches.each do |coach|
+      dataset = DB[:coaches]
+      dataset.insert(:name => coach.name, :email => coach.email, :image => coach.image)
+    end
   end
 
   def load_cohorts
-    dataset = DB[:cohorts]
-    dataset.insert(:name => "2020 Project A Cohort B")
-    dataset.insert(:name => "2019 Project A Cohort B")
-    dataset.insert(:name => "Honda Project A Cohort B")
-    dataset.insert(:name => "Apple North America Cohort B")
-    dataset.insert(:name => "1999 Project B Cohort A")
-    dataset.insert(:name => "Microsoft A Cohort B")
-    dataset.insert(:name => "Mars Cohort A")
-    dataset.insert(:name => "2000 Project A Cohort B")
-    dataset.insert(:name => "Cadbury Project C Cohort B")
-    dataset.insert(:name => "Unilever Project A Cohort B")
+    @field_data_transmission.cohorts.each do |cohort|
+      dataset = DB[:cohorts]
+      dataset.insert(:name => cohort.name)
+    end
   end
 
   def load_timezones
-    dataset = DB[:timezones]
-    dataset.insert(:name => "(GMT+00.00) + London")
-    dataset.insert(:name => "(GMT+00.00) + Europe/London")
-    dataset.insert(:name => "(GMT+10.00) + Sydney")
-    dataset.insert(:name => "(GMT+8.00) + Singapore")
-    dataset.insert(:name => "(GMT+8.00) + Beijing")
-    dataset.insert(:name => "(GMT+6.00) + Central America")
-    dataset.insert(:name => "(GMT-11.00) + Hawaii")
-    dataset.insert(:name => "(GMT-9.00) + Alaska")
-    dataset.insert(:name => "(GMT-7.00) + Arizona")
-    dataset.insert(:name => "(GMT-5.00) + Lima")
+    timezones = @field_data_transmission.time_zones.split("|")
+    timezones.each do |timezone|
+      dataset = DB[:timezones]
+      dataset.insert(:name => timezone)
+    end
   end
 
   def get_coaches
@@ -149,9 +142,53 @@ class DataBaseDataStore
   end
 
   def load_database
+    load_default_coach_fees
+    load_coaches
+    load_cohorts
+    load_timezones
 
-    # 10.times do |index|
-    #   index += 1
+    @legacy_transmission.event_types.each do |template|
+
+      d = template.duration.split(' ')
+      case d[1]
+      when "hours"
+        template.duration = "#{d[0]}:0"
+      when "seconds"
+        template.duration = "0:0"
+      else
+        template.duration = "0:#{d[0]}"
+      end
+
+
+      dataset = DB[:event_templates]
+      dataset.insert(:id => template.id, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
+
+
+
+      unless template.events == []
+        template.events.each do |event|
+          dataset = DB[:events]
+          dataset.insert(:id => event.id, :title => event.subtitle, :duration => template.duration, :event_template_id => template.id, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => event.timezone, :cohort => event.cohort_name)
+
+          unless event.coaches == []
+            event.coaches.each do |coach|
+              dataset=DB[:assigned_coaches]
+              dataset.insert(:event_id => event.id, :name => coach.name, :email => coach.email, :image => coach.image)
+            end
+          end
+
+          unless template.coaches_fees == []
+            template.coaches_fees.each do |coaches_fee|
+              dataset = DB[:coach_fees]
+              coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.id, :event_id => event.id)
+            end
+          end
+
+        end # end template.events.each
+      end # unless template.events
+
+    end # end @legacy_transmission.event_types.each
+
     #   dataset = DB[:event_templates]
     #   event_template_id = dataset.insert(:title => "Boots Coaching Capability #{index}",:duration => "08:30",:description => "description #{index}", :status => "active")
     #   load_default_coach_fees event_template_id
@@ -166,13 +203,9 @@ class DataBaseDataStore
     #   dataset.insert(:name => "Michael Jackson #{index}",:email => "m.jackson@coachinabox.biz")
     #   dataset.insert(:name => "Tom Green #{index}",:email => "tom.green@coachinabox.biz")
     #   dataset.insert(:name => "Dick Cheney #{index}",:email => "dick.c@coachinabox.biz")
-    # end
-
-    load_default_coach_fees
-    load_coaches
-    load_cohorts
-    load_timezones
-  end
+    #
+    #
+  end #end load_database
 
   def load_default_coach_fees template_id=0
     dataset = DB[:coach_fees]
@@ -194,14 +227,14 @@ class DataBaseDataStore
 
   def all_templates
 
-    transmission = YAML.load(File.open("ciabos.yml"))
+
 
     templates = []
 
-    # if DB[:event_templates].all == []
-    #   load_database
-    #   all_templates
-    # else
+    if DB[:event_templates].all == []
+      load_database
+      all_templates
+    else
       DB[:event_templates].where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
         DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
@@ -222,7 +255,7 @@ class DataBaseDataStore
 
         templates << event_template
       end
-    # end
+    end
     templates
   end
 
@@ -408,12 +441,15 @@ class DataBaseDataStore
         primary_key :id
         String :name
         String :email
+        String :image
       end
 
       DB.create_table? :assigned_coaches do
         primary_key :id
         foreign_key :event_id
         String :name
+        String :email
+        String :image
       end
 
       DB.create_table? :coach_fees do

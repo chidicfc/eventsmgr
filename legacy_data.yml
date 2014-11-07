@@ -54,8 +54,17 @@ table:
           :subtitle: Test 2 event
           :details: ''
           :cohort_id: 
+          :cohort_name: 
           :timezone: London
           :start_time: '2014-08-25 10:00:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -63,8 +72,17 @@ table:
           :subtitle: Adam's Test
           :details: ''
           :cohort_id: 
+          :cohort_name: 
           :timezone: London
           :start_time: '2014-10-03 23:51:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Adam Wittig Staging
+              :id: 1016
+              :email: adam.wittig@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -72,8 +90,17 @@ table:
           :subtitle: Adam's Other Test
           :details: ''
           :cohort_id: 
+          :cohort_name: 
           :timezone: London
           :start_time: '2014-10-03 23:54:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Adam Wittig Staging
+              :id: 1016
+              :email: adam.wittig@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -81,8 +108,17 @@ table:
           :subtitle: Adam's Hopefully final test
           :details: ''
           :cohort_id: 
+          :cohort_name: 
           :timezone: London
           :start_time: '2014-09-22 23:55:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Adam Wittig Staging
+              :id: 1016
+              :email: adam.wittig@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -90,8 +126,17 @@ table:
           :subtitle: Another test event
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-09 15:33:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Coach Jean
+              :id: 8
+              :email: dummy3@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -99,8 +144,17 @@ table:
           :subtitle: Test 10
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-09 09:24:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -108,8 +162,17 @@ table:
           :subtitle: Test 11
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-10 09:25:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       :coaches_fees:
       - !ruby/object:OpenStruct
@@ -156,8 +219,17 @@ table:
           :subtitle: TEST EVENT 1
           :details: asdfasdfasdfsadf
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-01 09:05:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -165,8 +237,17 @@ table:
           :subtitle: New Event Test
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-08 09:30:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -174,8 +255,17 @@ table:
           :subtitle: Adam's Hopefully final test
           :details: ''
           :cohort_id: 
+          :cohort_name: 
           :timezone: London
           :start_time: '2014-10-17 11:31:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Adam Wittig Staging
+              :id: 1016
+              :email: adam.wittig@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       :coaches_fees:
       - !ruby/object:OpenStruct
@@ -222,8 +312,17 @@ table:
           :subtitle: New Event
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-09 11:00:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Coach Simon
+              :id: 6
+              :email: dummy2@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -231,8 +330,17 @@ table:
           :subtitle: Another test
           :details: ''
           :cohort_id: 1
+          :cohort_name: June cohort
           :timezone: London
           :start_time: '2014-10-08 07:29:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -240,8 +348,17 @@ table:
           :subtitle: Another test
           :details: ''
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-10-09 13:30:00 +0100'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Will Stokely
+              :id: 15
+              :email: will@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       - !ruby/object:OpenStruct
         table:
@@ -249,8 +366,17 @@ table:
           :subtitle: test
           :details: test
           :cohort_id: 3
+          :cohort_name: This Cohort
           :timezone: London
           :start_time: '2014-11-04 16:39:00 +0000'
+          :coaches:
+          - !ruby/object:OpenStruct
+            table:
+              :name: Adam Wittig Staging
+              :id: 1016
+              :email: adam.wittig@coachinabox.biz
+              :image: 
+            modifiable: true
         modifiable: true
       :coaches_fees:
       - !ruby/object:OpenStruct
@@ -286,6 +412,6 @@ table:
     modifiable: true
   :origin: ciabos.com
   :tags: ciabos,ui,outbound,legacy_data
-  :id: 9cc59e30-47da-0132-4c18-040113afc801
+  :id: 9dcc9030-489b-0132-4320-528db81e67fe
   :destination: in.eventsmanager.ciabos.com
-  :radio: Portsmouth-basestation-producer
+  :radio: portsmouth-harbour-producer

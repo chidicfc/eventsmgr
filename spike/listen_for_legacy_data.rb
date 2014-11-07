@@ -28,15 +28,16 @@ Radio::Tunner.listen_on "in.eventsmanager" do |receiver|
     puts transmission.tags
 
     if transmission.tags.include?("legacy_data")
-      # if File.exists?("legacy_data.yml")
-      #   YAML.load(File.open("legacy_data.yml"))
-      #
-      #   puts "loaded from legacy_data file!"
-      # else
+      if File.exists?("legacy_data.yml")
+        data = YAML.load(File.open("legacy_data.yml"))
+    
+
+        puts "loaded from legacy_data file!"
+      else
         File.open("legacy_data.yml", 'w') { |file| file.write(YAML.dump(transmission)) }
         #File.open("ciabos.data", 'w') { |file| file.write(Oj.dump(transmission)) }
         puts "saved legacy data to file!"
-      # end
+      end
     end
 
 
