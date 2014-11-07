@@ -163,6 +163,13 @@ class DataBaseDataStore
       dataset = DB[:event_templates]
       dataset.insert(:id => template.id, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
 
+      unless template.coaches_fees == []
+        template.coaches_fees.each do |coaches_fee|
+          dataset = DB[:coach_fees]
+          coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.id)
+        end
+      end
+
 
 
       unless template.events == []
