@@ -126,6 +126,9 @@ a.btn-primary:hover{
 	background: rgba(245, 112, 011, 1);
 	border: none;
 }
+.eventDelete:hover{
+	background: rgba(245, 112, 011, 0.7);
+}
 .eventDelete span{
 	color: #FFF;
 }
@@ -133,6 +136,9 @@ a.btn-primary:hover{
 	margin: 0 5px 0 15px;
 	background: rgba(0,173,208,1);
 	border: none;
+}
+.eventEdit:hover{
+	background: rgba(0,173,208,0.7);
 }
 .eventEdit span{
 	color: #FFF;
