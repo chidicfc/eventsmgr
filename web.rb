@@ -151,8 +151,7 @@ post '/:template_id/new_event' do
   @new_event_controller.get params[:template_id]
 
 
-  if params[:action] == ">>"
-
+  if params[:action] == ">"
     params["coaches"].each do |coach|
       @new_event_view.event.assigned_coaches << coach
     end
@@ -162,7 +161,7 @@ post '/:template_id/new_event' do
     end
 
 
-  elsif params[:action] == "<<"
+  elsif params[:action] == "<"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
     params["assigned_coaches"].each do |assigned_coach|
       @new_event_view.event.assigned_coaches.delete("#{assigned_coach}")

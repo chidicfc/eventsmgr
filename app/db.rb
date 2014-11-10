@@ -385,8 +385,12 @@ class DataBaseDataStore
         DB[:coach_fees].insert(:event_template_id => template_id, :event_id => event_id, :currency => currency, :amount => amount)
       end
       if assigned_coaches != []
-        assigned_coaches.each do |assigned_coach|
-          DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach)
+        assigned_coaches.each do |assigned_coach_name|
+          #find coach by name
+          assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
+          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+
+          DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
         end
       end
     end
@@ -403,8 +407,12 @@ class DataBaseDataStore
       end
 
       DB[:assigned_coaches].where(:event_id => event_id).delete
-      assigned_coaches.each do |assigned_coach|
-        DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach)
+      assigned_coaches.each do |assigned_coach_name|
+        #find coach by name
+        assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
+        assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+
+        DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
       end
 
     end
@@ -480,7 +488,7 @@ class DataBaseDataStore
     end
   end
 
-
+  #check this
   def get_event template_id, event_id
     DB[:events].where(:id => event_id).each do |event_row|
       @event = Event.from_hash(event_row)
