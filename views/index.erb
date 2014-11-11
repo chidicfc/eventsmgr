@@ -91,10 +91,9 @@
                     </tr>
                   </table>
                   <div id="eventPopoverContent<%= event.id %>" style="display: none">
-                    <% if event.assigned_coaches.count != 0 %>
+                    <% unless event.assigned_coaches.count == 0 %>
 
                       <% for assigned_coach in event.assigned_coaches %>
-
                       <!-- HTML TO FILL EVENT POPOVER begin-->
                         <div class="eventPopoverTables">
                           <div class="eventPopoverTable">
