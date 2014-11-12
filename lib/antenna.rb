@@ -7,22 +7,16 @@ Bundler.require
 require 'require_all'
 require "./web"
 
+Antenna.configure do |config|
 
-Radio::Tunner.listen_on "in.eventsmanager" do |receiver|
+  config.bands_folder = "lib/bands"
 
-  receiver.receive do |transmission|
+  config.name = "eventsmanager.ui"
+  config.frequency = "in.eventsmanager"
 
-
-    if File.exists?("ciabos.data")
-      
-      puts "load from file!"
-    else
-      File.open("ciabos.data", 'w') { |file| file.write(Oj.dump(transmission)) }
-      puts "save to file!"
-    end
-
-
-  end
-
-
+  #used for testing
+  config.replay = false
+  config.record = false
 end
+
+Antenna::connect

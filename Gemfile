@@ -21,6 +21,7 @@ gem 'tzinfo', '~> 1.2.2'
 gem "poltergeist"
 gem 'simplecov', '~> 0.9.0'
 gem "yeasu"
+gem "antenna"
 
 group :development do
   gem 'sqlite3'
