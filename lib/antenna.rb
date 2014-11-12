@@ -16,7 +16,7 @@ Antenna.configure do |config|
 
   #used for testing
   config.replay = false
-  config.record = false
+  config.record = true
 end
 
 Antenna::connect
