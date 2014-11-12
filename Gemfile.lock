@@ -8,7 +8,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    antenna (0.0.3)
+    antenna (0.0.6)
       nakamichi (~> 4.0)
       yeasu (~> 7.0)
     atomic (1.1.16)
