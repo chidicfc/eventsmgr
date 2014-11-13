@@ -3,7 +3,7 @@ class NewEventTemplateViewController
   attr_accessor :view
 
   def initialize(view=nil)
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
     @coach_fees_repo = CoachFeesRepo.new
     @view = view
   end

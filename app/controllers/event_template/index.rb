@@ -3,7 +3,7 @@ class IndexViewController
 
   def initialize(view)
     @view = view
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
   end
 
   def display_templates

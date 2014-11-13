@@ -8,7 +8,7 @@ puts "EVENT TEMPLATES"
 p DB[:event_templates].all
 puts
 puts "EVENTS"
-p DB[:events].all
+ap DB[:events].all
 puts
 puts "ASSIGNED_COACHES"
 p DB[:assigned_coaches].all

@@ -2,10 +2,10 @@ class NewEventViewController
   attr_accessor :view
 
   def initialize(view=nil)
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
     @event_repo = EventRepo.new
     @coach_repo = CoachRepo.new
-    @timezone_repo = TimezoneRepo.new
+    @timezone_repo = Timezone::Repository.new
     @cohort_repo = CohortRepo.new
     @view = view
   end

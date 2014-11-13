@@ -1,7 +1,7 @@
 class ArchiveEventTemplateController
 
   def initialize
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
   end
 
   def archive id

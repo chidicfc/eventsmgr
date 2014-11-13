@@ -11,7 +11,7 @@ class NewEventView
     @event = OpenStruct.new
     @event.selected_coach_fees = {}
     @event.assigned_coaches = []
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
   end
 
   def self.from_params params, template_id
@@ -31,7 +31,7 @@ class NewEventView
     view.event.selected_income_currency = params["income_currency"]
 
 
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
     view.template =  @template_repo.get template_id
 
     # @coach_repo = CohortRepo.new

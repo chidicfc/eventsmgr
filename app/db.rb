@@ -73,36 +73,6 @@ end
 
 
 class DataBaseDataStore
-  attr_accessor :legacy_transmission, :field_data_transmission
-
-  def initialize
-    @legacy_transmission = YAML.load(File.open("legacy_data.yml"))
-
-    @field_data_transmission = YAML.load(File.open("ciabos.yml"))
-  end
-
-
-  def load_coaches
-    @field_data_transmission.coaches.each do |coach|
-      dataset = DB[:coaches]
-      dataset.insert(:name => coach.name, :email => coach.email, :image => coach.image)
-    end
-  end
-
-  def load_cohorts
-    @field_data_transmission.cohorts.each do |cohort|
-      dataset = DB[:cohorts]
-      dataset.insert(:name => cohort.name)
-    end
-  end
-
-  def load_timezones
-    timezones = @field_data_transmission.time_zones.split("|")
-    timezones.each do |timezone|
-      dataset = DB[:timezones]
-      dataset.insert(:name => timezone)
-    end
-  end
 
   def get_coaches
     coaches = []
@@ -124,12 +94,9 @@ class DataBaseDataStore
   end
 
   def get_timezones
-    timezones = []
     DB[:timezones].each do |timezone_row|
-      timezone = TimeZone.from_hash(timezone_row)
-      timezones << timezone
+      yield timezone_row
     end
-    timezones
   end
 
   def get_cohorts
@@ -140,79 +107,6 @@ class DataBaseDataStore
     end
     cohorts
   end
-
-  def load_database
-    load_default_coach_fees
-    load_coaches
-    load_cohorts
-    load_timezones
-
-    @legacy_transmission.event_types.each do |template|
-
-      d = template.duration.split(' ')
-      case d[1]
-      when "hours"
-        template.duration = "#{d[0]}:0"
-      when "seconds"
-        template.duration = "0:0"
-      else
-        template.duration = "0:#{d[0]}"
-      end
-
-
-      dataset = DB[:event_templates]
-      dataset.insert(:id => template.id, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
-
-      unless template.coaches_fees == []
-        template.coaches_fees.each do |coaches_fee|
-          dataset = DB[:coach_fees]
-          coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.id)
-        end
-      end
-
-
-
-      unless template.events == []
-        template.events.each do |event|
-          dataset = DB[:events]
-          dataset.insert(:id => event.id, :title => event.subtitle, :duration => template.duration, :event_template_id => template.id, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => event.timezone, :cohort => event.cohort_name)
-
-          unless event.coaches == []
-            event.coaches.each do |coach|
-              dataset=DB[:assigned_coaches]
-              dataset.insert(:event_id => event.id, :name => coach.name, :email => coach.email, :image => coach.image)
-            end
-          end
-
-          unless template.coaches_fees == []
-            template.coaches_fees.each do |coaches_fee|
-              dataset = DB[:coach_fees]
-              coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.id, :event_id => event.id)
-            end
-          end
-
-        end # end template.events.each
-      end # unless template.events
-
-    end # end @legacy_transmission.event_types.each
-
-    #   dataset = DB[:event_templates]
-    #   event_template_id = dataset.insert(:title => "Boots Coaching Capability #{index}",:duration => "08:30",:description => "description #{index}", :status => "active")
-    #   load_default_coach_fees event_template_id
-    #
-    #   dataset = DB[:events]
-    #   event_id = dataset.insert(:title => "Winchester #{index} - October 11, 2011",:duration => "09:00", :event_template_id => event_template_id, :date => "19/07/2014", :start_time => "09:00", :timezone => "GMT", :cohort => "Apple MAC Division Cohort 1")
-    #   set_default_event_coach_fees event_template_id, event_id
-    #
-    #   dataset=DB[:coaches]
-    #   dataset.insert(:name => "Delaney Burke #{index}",:email => "delaney.burke@coachinabox.biz")
-    #   dataset.insert(:name => "Sarah Burke #{index}",:email => "delaney@yahoo.biz")
-    #   dataset.insert(:name => "Michael Jackson #{index}",:email => "m.jackson@coachinabox.biz")
-    #   dataset.insert(:name => "Tom Green #{index}",:email => "tom.green@coachinabox.biz")
-    #   dataset.insert(:name => "Dick Cheney #{index}",:email => "dick.c@coachinabox.biz")
-    #
-    #
-  end #end load_database
 
   def load_default_coach_fees template_id=0
     dataset = DB[:coach_fees]
@@ -234,14 +128,10 @@ class DataBaseDataStore
 
   def all_templates
 
-
-
     templates = []
+    load_default_coach_fees
 
-    if DB[:event_templates].all == []
-      load_database
-      all_templates
-    else
+    unless DB[:event_templates].all == []
       DB[:event_templates].where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
         DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|

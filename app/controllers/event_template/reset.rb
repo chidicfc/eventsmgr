@@ -2,7 +2,7 @@ class ResetTemplateController
   attr_accessor :repo
 
   def initialize
-    @repo = EventTemplateRepo.new
+    @repo = EventTemplate::Repository.new
   end
 
   def reset
