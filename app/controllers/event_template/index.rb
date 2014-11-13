@@ -17,4 +17,8 @@ class IndexViewController
   def search_templates_by_name name, status
     @view.templates = @template_repo.search_templates_by_name name, status
   end
+
+  def load_default_coaches_fee
+    @template_repo.load_default_coaches_fee
+  end
 end

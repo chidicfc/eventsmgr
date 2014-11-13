@@ -127,9 +127,7 @@ class DataBaseDataStore
   end
 
   def all_templates
-
     templates = []
-    load_default_coach_fees
 
     unless DB[:event_templates].all == []
       DB[:event_templates].where(:status => "active").each do |event_template_row|
@@ -267,13 +265,16 @@ class DataBaseDataStore
     value
   end
 
-  def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches, income_amount, income_currency
+  def add_event *args
+    values = [*args]
     DB.transaction do
-      event_id = DB[:events].insert(:event_template_id => template_id, :title => title, :duration => duration, :description => description, :date => start_date, :start_time => start_time, :timezone => timezone, :cohort => cohort, :income_amount => income_amount, :income_currency => income_currency)
+      event_id = DB[:events].insert(:event_template_id => values[0], :title => values[1], :duration => values[2], :description => values[3], :date => values[4], :start_time => values[5], :timezone => values[6], :cohort => values[7], :income_amount => values[10], :income_currency => values[11])
 
+      coaches_fee = values[8]
       coaches_fee.each do |currency, amount|
-        DB[:coach_fees].insert(:event_template_id => template_id, :event_id => event_id, :currency => currency, :amount => amount)
+        DB[:coach_fees].insert(:event_template_id => values[0], :event_id => event_id, :currency => currency, :amount => amount)
       end
+      assigned_coaches = values[9]
       if assigned_coaches != []
         assigned_coaches.each do |assigned_coach_name|
           #find coach by name

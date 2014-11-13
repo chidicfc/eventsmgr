@@ -67,6 +67,10 @@ class EventTemplate
       @datastore.reset_db
     end
 
+    def load_default_coaches_fee
+      @datastore.load_default_coach_fees
+    end
+
   end
 
 end

@@ -15,6 +15,7 @@ enable :sessions
 before'/' do
   @view = IndexView.new
   @controller = IndexViewController.new(@view)
+  @controller.load_default_coaches_fee
   @controller.display_templates
 end
 
