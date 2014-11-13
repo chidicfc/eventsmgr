@@ -5,7 +5,7 @@ class NewEventViewController
     @template_repo = EventTemplate::Repository.new
     @event_repo = Event::Repository.new
     @coach_repo = Coach::Repository.new
-    @timezone_repo = Timezone::Repository.new
+    @timezone_repo = TimeZone::Repository.new
     @cohort_repo = Cohort::Repository.new
     @view = view
   end
