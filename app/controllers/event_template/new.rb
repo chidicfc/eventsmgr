@@ -4,7 +4,7 @@ class NewEventTemplateViewController
 
   def initialize(view=nil)
     @template_repo = EventTemplate::Repository.new
-    @coach_fees_repo = CoachFeesRepo.new
+    @coach_fees_repo = CoachesFees::Repository.new
     @view = view
   end
 

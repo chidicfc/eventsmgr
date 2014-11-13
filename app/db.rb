@@ -146,7 +146,7 @@ class DataBaseDataStore
         end
 
         DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-          coach_fee = CoachFee.from_hash(coach_fee_row)
+          coach_fee = CoachesFee.from_hash(coach_fee_row)
           event_template.coach_fees << coach_fee
         end
 
@@ -159,7 +159,7 @@ class DataBaseDataStore
   def default_coach_fees
     coach_fees = []
     DB[:coach_fees].where(Sequel.&(:event_template_id => 0, :event_id => nil)).each do |coach_fee_row|
-      coach_fee = CoachFee.from_hash(coach_fee_row)
+      coach_fee = CoachesFee.from_hash(coach_fee_row)
       coach_fees << coach_fee
     end
     coach_fees
@@ -192,7 +192,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(:event_template_id => template_id, :event_id => nil).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         @event_template.coach_fees << coach_fee
       end
     end
@@ -246,7 +246,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 
@@ -384,7 +384,7 @@ class DataBaseDataStore
       @event = Event.from_hash(event_row)
 
       DB[:coach_fees].where(Sequel.&(:event_id => event_id, :event_template_id => template_id)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         @event.coach_fees << {"#{coach_fee.currency}" => "#{coach_fee.amount}"}
       end
 
@@ -420,7 +420,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 
@@ -450,7 +450,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 

@@ -34,7 +34,7 @@ class NewEventView
     @template_repo = EventTemplate::Repository.new
     view.template =  @template_repo.get template_id
 
-    # @coach_repo = CohortRepo.new
+    # @coach_repo = Cohort::Repository.new
     # view.searched_coaches = @coach_repo.
 
     for coach_fee in view.template.coach_fees

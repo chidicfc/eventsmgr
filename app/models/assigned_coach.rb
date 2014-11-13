@@ -14,4 +14,8 @@ class AssignedCoach
       assigned_coach
     end
 
+    class Repository
+
+    end
+
 end

@@ -4,9 +4,9 @@ class NewEventViewController
   def initialize(view=nil)
     @template_repo = EventTemplate::Repository.new
     @event_repo = Event::Repository.new
-    @coach_repo = CoachRepo.new
+    @coach_repo = Coach::Repository.new
     @timezone_repo = Timezone::Repository.new
-    @cohort_repo = CohortRepo.new
+    @cohort_repo = Cohort::Repository.new
     @view = view
   end
 
