@@ -2,7 +2,7 @@ class Event
 
   attr_accessor :title, :date, :description, :coach_fees, :id
   attr_accessor :start_time, :duration, :event_template_id
-  attr_accessor :assigned_coaches, :timezone, :cohort, :coaches
+  attr_accessor :assigned_coaches, :selected_time_zone, :selected_cohort, :coaches
   attr_accessor :income_amount, :income_currency
 
   def initialize (title, event_template_id)
@@ -19,8 +19,8 @@ class Event
     event.description = row[:description]
     event.date = row[:date]
     event.start_time = row[:start_time]
-    event.timezone = row[:timezone]
-    event.cohort = row[:cohort]
+    event.selected_time_zone = row[:timezone]
+    event.selected_cohort = row[:cohort]
     event.income_amount = row[:income_amount]
     event.income_currency = row[:income_currency]
     event
@@ -32,8 +32,8 @@ class Event
       @datastore = DataBaseDataStore.new
     end
 
-    def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches, income_amount, income_currency
-      @datastore.add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches, income_amount, income_currency
+    def add_event event
+      @datastore.add_event event
     end
 
     def get_event template_id, event_id

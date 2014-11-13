@@ -40,6 +40,7 @@ end
 
 DB.create_table? :coaches do
   primary_key :id
+  foreign_key :event_id
   String :name
   String :email
   String :image
@@ -110,11 +111,11 @@ class DataBaseDataStore
 
   def load_default_coach_fees template_id=0
     dataset = DB[:coach_fees]
-    coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "EUR", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "AUD", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "SGD", :amount => "0.00", :event_template_id => template_id)
+    coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "GBP", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "USD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "EUR", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "EUR", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "AUD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "AUD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "SGD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "SGD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
   end
 
   def set_default_event_coach_fees template_id, event_id
@@ -265,21 +266,22 @@ class DataBaseDataStore
     value
   end
 
-  def add_event *args
-    values = [*args]
+  def add_event event
     DB.transaction do
-      event_id = DB[:events].insert(:event_template_id => values[0], :title => values[1], :duration => values[2], :description => values[3], :date => values[4], :start_time => values[5], :timezone => values[6], :cohort => values[7], :income_amount => values[10], :income_currency => values[11])
+      event_id = DB[:events].insert(:event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
-      coaches_fee = values[8]
-      coaches_fee.each do |currency, amount|
-        DB[:coach_fees].insert(:event_template_id => values[0], :event_id => event_id, :currency => currency, :amount => amount)
+
+      event.coach_fees.each do |currency, amount|
+        DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event_id, :currency => currency, :amount => amount)
       end
-      assigned_coaches = values[9]
-      if assigned_coaches != []
-        assigned_coaches.each do |assigned_coach_name|
+
+      if event.assigned_coaches != []
+        event.assigned_coaches.each do |assigned_coach_name|
           #find coach by name
           assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
-          assigned_coach = Coach.from_hash(assigned_coach_row)
+          binding.remote_pry
+          assigned_coach_row[:event_id] = event_id
+          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
           # binding.remote_pry
           DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
         end
@@ -345,6 +347,7 @@ class DataBaseDataStore
 
       DB.create_table? :coaches do
         primary_key :id
+        foreign_key :event_id
         String :name
         String :email
         String :image
@@ -375,7 +378,6 @@ class DataBaseDataStore
         primary_key :id
         String :name
       end
-
     end
   end
 

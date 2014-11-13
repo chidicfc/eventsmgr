@@ -15,8 +15,8 @@ Antenna.configure do |config|
   config.frequency = "in.eventsmanager"
 
   #used for testing
-  config.replay = false
-  config.record = true
+  config.replay = true
+  config.record = false
 end
 
 Antenna::connect
