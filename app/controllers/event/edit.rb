@@ -3,7 +3,7 @@ class EditEventViewController
 
   def initialize(view=nil)
     @template_repo = EventTemplate::Repository.new
-    @event_repo = EventRepo.new
+    @event_repo = Event::Repository.new
     @coach_repo = CoachRepo.new
     @timezone_repo = Timezone::Repository.new
     @cohort_repo = CohortRepo.new

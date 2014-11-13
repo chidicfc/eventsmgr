@@ -2,7 +2,7 @@ class DeleteEventController
   attr_accessor :view
 
   def initialize(view=nil)
-    @event_repo = EventRepo.new
+    @event_repo = Event::Repository.new
     @view = view
   end
 
