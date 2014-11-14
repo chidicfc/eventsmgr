@@ -5,6 +5,7 @@ require "sinatra"
 require "require_all"
 
 
+
 require_all "app"
 
 
@@ -51,6 +52,7 @@ patch '/edit_template/:id' do
     edit_event_controller = EditEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
     edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
+    edit_event_controller.transmit_updated_template params[:id]
 
 
     redirect '/'
@@ -79,8 +81,11 @@ post '/new_template' do
     end
     new_event_controller = NewEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    new_event_controller.save params[:title], duration, array_fees, params[:description]
 
+
+    id = new_event_controller.save params[:title], duration, array_fees, params[:description]
+
+    new_event_controller.transmit_new_template id
     redirect '/'
 
   end
@@ -181,7 +186,7 @@ post '/:template_id/new_event' do
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
       @new_event_controller.add_event @new_event_view.event
-
+      
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event

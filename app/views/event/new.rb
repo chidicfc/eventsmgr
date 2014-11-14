@@ -33,8 +33,13 @@ class NewEventView
     view.event.selected_income_currency = params["income_currency"]
 
 
+
     @template_repo = EventTemplate::Repository.new
     view.template =  @template_repo.get template_id
+
+    cohort_repo = Cohort::Repository.new
+    view.event.selected_cohort_id = cohort_repo.get_cohort_id params["cohort"]
+    
 
     # @coach_repo = Cohort::Repository.new
     # view.searched_coaches = @coach_repo.

@@ -90,6 +90,8 @@ class EditEventViewController
       transmission = Radio::Transmission.new
       transmission.event = event
       t = transmitter.transmit transmission
+      p "event edited"
+      p t
       break
     end
   end

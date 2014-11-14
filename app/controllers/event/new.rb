@@ -39,7 +39,6 @@ class NewEventViewController
   end
 
   def add_event event
-    p "test"
     @event_repo.add_event event
   end
 
@@ -48,6 +47,7 @@ class NewEventViewController
       transmission = Radio::Transmission.new
       transmission.event = event
       t = transmitter.transmit transmission
+      p "event created"
       p t
       break
     end

@@ -71,6 +71,8 @@ class EventTemplate
       @datastore.load_default_coach_fees
     end
 
+    
+
   end
 
 end

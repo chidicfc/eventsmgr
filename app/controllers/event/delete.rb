@@ -28,6 +28,8 @@ class DeleteEventController
       transmission = Radio::Transmission.new
       transmission.event = event
       t = transmitter.transmit transmission
+      p "event deleted"
+      p t
       break
     end
   end

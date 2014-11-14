@@ -1,3 +1,11 @@
+require "yeasu"
+include Yeasu
+
+Yeasu::Radio.configuration do |config|
+  config.producer.name = "eventsmgr_updated_event_template"
+end
+
+
 class EditEventTemplateViewController
   attr_accessor :view
 
@@ -17,5 +25,19 @@ class EditEventTemplateViewController
 
   def update *args
     @template_repo.update_template *args
+  end
+
+  def transmit_updated_template template_id
+    template = get template_id
+
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,updated_event_template" do |transmitter|
+      transmission = Radio::Transmission.new
+      transmission.event_template = template
+      t = transmitter.transmit transmission
+      p "template created"
+      p t
+      break
+    end
+
   end
 end

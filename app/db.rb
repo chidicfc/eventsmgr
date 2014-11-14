@@ -164,7 +164,17 @@ class DataBaseDataStore
     coach_fees
   end
 
+  def get_cohort_id name
+    cohort_id = nil
+    DB[:cohorts].where(:name => name).each do |cohort_row|
+      cohort = Cohort.from_hash(cohort_row)
+      cohort_id = cohort.id
+    end
+    cohort_id
+  end
+
   def add *args
+    id = nil
     values = [*args]
     DB.transaction do
       template_id = DB[:event_templates].insert(:title => values[0], :duration => values[1], :description => values[3], :status => "active")
@@ -173,7 +183,9 @@ class DataBaseDataStore
         DB[:coach_fees].insert(:currency => value["currency#{count}".to_sym], :amount => value["amount#{count}".to_sym], :event_template_id => template_id)
         count += 1
       end
+      id = template_id
     end
+    id
   end
 
   def get template_id

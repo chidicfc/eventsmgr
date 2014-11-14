@@ -22,6 +22,10 @@ class Cohort
       @datastore.get_cohorts
     end
 
+    def get_cohort_id name
+      @datastore.get_cohort_id name
+    end
+
   end
 
 end
