@@ -278,11 +278,10 @@ class DataBaseDataStore
       if event.assigned_coaches != []
         event.assigned_coaches.each do |assigned_coach_name|
           #find coach by name
-          assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
-          assigned_coach_row[:event_id] = event_id
-          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-          # binding.remote_pry
-          DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+          DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
+            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+            DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+          end
         end
       end
     end
