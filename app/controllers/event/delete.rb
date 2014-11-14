@@ -21,8 +21,8 @@ class DeleteEventController
     @event_repo.delete_event event_id, template_id
   end
 
-  def transmit_deleted_event template_id, event_id
-    event = get_event template_id, event_id
+  def transmit_deleted_event event
+    
 
     Radio::Tunner.broadcast tags: "ciabos,ui,inbound,deleted_event" do |transmitter|
       transmission = Radio::Transmission.new

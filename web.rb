@@ -49,10 +49,10 @@ patch '/edit_template/:id' do
     for x in (0..count)
        array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
     end
-    edit_event_controller = EditEventTemplateViewController.new
+    edit_template_controller = EditEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
-    edit_event_controller.transmit_updated_template params[:id]
+    edit_template_controller.update params[:id], params[:title], duration, array_fees, params[:description]
+    edit_template_controller.transmit_updated_template params[:id]
 
 
     redirect '/'
@@ -62,9 +62,9 @@ end
 get '/new_template' do
 
   @new_template_view = NewEventTemplateView.new
-  @new_event_controller = NewEventTemplateViewController.new
-  @new_event_controller.view = @new_template_view
-  @new_event_controller.get_default_coach_fees
+  @new_template_controller = NewEventTemplateViewController.new
+  @new_template_controller.view = @new_template_view
+  @new_template_controller.get_default_coach_fees
   erb :new_template
 
 end
@@ -79,13 +79,13 @@ post '/new_template' do
     for x in (0..count)
        array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
     end
-    new_event_controller = NewEventTemplateViewController.new
+    new_template_controller = NewEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
 
-    id = new_event_controller.save params[:title], duration, array_fees, params[:description]
+    id = new_template_controller.save params[:title], duration, array_fees, params[:description]
 
-    new_event_controller.transmit_new_template id
+    new_template_controller.transmit_new_template id
     redirect '/'
 
   end
@@ -94,7 +94,11 @@ end
 delete '/event_template/:id' do
 
   # params.to_s
+  template = DeleteEventTemplateController.new.get params[:id]
+
   DeleteEventTemplateController.new.delete params[:id]
+
+  DeleteEventTemplateController.new.transmit_deleted_template template
   redirect '/'
 end
 
@@ -137,7 +141,7 @@ get '/:template_id/new_event' do
     @view.event = session["event"]
   end
 
-  @new_event_controller = NewEventViewController.new(@view)
+  @new_template_controller = NewEventViewController.new(@view)
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
   @new_event_controller.get_timezones
@@ -186,7 +190,7 @@ post '/:template_id/new_event' do
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
       @new_event_controller.add_event @new_event_view.event
-      
+
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event
@@ -317,8 +321,9 @@ get '/event/:template_id/:event_id/delete' do
   @controller.get_event params[:template_id], params[:event_id]
 
   if @view.event.assigned_coaches.count == 0
+    event = @controller.get_event params[:template_id], params[:event_id]
     @controller.delete params[:event_id], params[:template_id]
-    @controller.transmit_deleted_event params[:template_id], params[:event_id]
+    @controller.transmit_deleted_event event
   end
 
   redirect '/'
