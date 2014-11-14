@@ -16,7 +16,7 @@ class DeleteEventTemplateController
   end
 
   def get template_id
-    @template_repo.get id
+    @template_repo.get template_id
   end
 
   def transmit_deleted_template template
