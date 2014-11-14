@@ -141,7 +141,7 @@ get '/:template_id/new_event' do
     @view.event = session["event"]
   end
 
-  @new_template_controller = NewEventViewController.new(@view)
+  @new_event_controller = NewEventViewController.new(@view)
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
   @new_event_controller.get_timezones
