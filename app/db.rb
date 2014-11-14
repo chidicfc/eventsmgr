@@ -279,7 +279,6 @@ class DataBaseDataStore
         event.assigned_coaches.each do |assigned_coach_name|
           #find coach by name
           assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
-          binding.remote_pry
           assigned_coach_row[:event_id] = event_id
           assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
           # binding.remote_pry
