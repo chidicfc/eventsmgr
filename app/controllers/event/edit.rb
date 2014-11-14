@@ -1,3 +1,11 @@
+require "yeasu"
+include Yeasu
+
+Yeasu::Radio.configuration do |config|
+  config.producer.name = "eventsmgr_edit_event"
+end
+
+
 class EditEventViewController
   attr_accessor :view
 
@@ -75,6 +83,15 @@ class EditEventViewController
   def edit_event event
     @event_repo.edit_event event
     #@event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  end
+
+  def transmit_edited_event event
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,edited_event" do |transmitter|
+      transmission = Radio::Transmission.new
+      transmission.event = event
+      t = transmitter.transmit transmission
+      break
+    end
   end
 
   def display_coaches_by_letter letter

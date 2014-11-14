@@ -1,3 +1,11 @@
+require "yeasu"
+include Yeasu
+
+Yeasu::Radio.configuration do |config|
+  config.producer.name = "eventsmgr_new_event"
+end
+
+
 class NewEventViewController
   attr_accessor :view
 
@@ -31,7 +39,19 @@ class NewEventViewController
   end
 
   def add_event event
+    p "test"
     @event_repo.add_event event
+  end
+
+  def transmit_new_event event
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,new_event" do |transmitter|
+      transmission = Radio::Transmission.new
+      transmission.event = event
+      t = transmitter.transmit transmission
+      p t
+      break
+    end
+
   end
 
 end
