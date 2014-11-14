@@ -96,7 +96,7 @@
                 <br>
                 <select name="timezone" id="timezone" class="form-control">
                   <% for timezone in @view.timezones %>
-                    <% if @view.event.timezone == timezone.name %>
+                    <% if @view.event.selected_time_zone == timezone.name %>
                       <option selected="<%= timezone.name %>"><%= timezone.name %></option>
                     <% else %>
                       <option value="<%= timezone.name %>"><%= timezone.name %></option>
@@ -110,7 +110,7 @@
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
                   <% for cohort in @view.cohorts %>
-                    <% if @view.event.cohort == cohort.name %>
+                    <% if @view.event.selected_cohort == cohort.name %>
                       <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
                     <% else %>
                       <option value="<%= cohort.name %>"><%= cohort.name %></option>
@@ -142,7 +142,7 @@
                 <% coach_fee.each do |currency, amount| %>
                   <span class="noBreak">
                   <label><%= currency %>:</label>
-                  <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>" required="true">
+                  <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>">
                   </span>
                 <% end %>
               <% end %>

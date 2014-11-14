@@ -29,7 +29,7 @@
           <div class="col-md-9">
             <h4>Event Details</h4>
             <label>Subtitle (Location or Reference)</label>
-            <input type="text" name="sub_title" value="<%= @view.event.sub_title %>" class="form-control">
+            <input type="text" name="sub_title" value="<%= @view.event.title %>" class="form-control">
             <label>Date</label>
             <div class="form-group">
               <div class="input-group date datePicker">
@@ -142,18 +142,29 @@
             <fieldset>
             <div class="currencies coachesFee">
               <h4>Coaches Fee</h4>
-              <% for coach_fee in @view.template.coach_fees %>
 
-                <span class="noBreak">
-                <label><%= coach_fee.currency %>:</label>
-                  <% if @view.has_coach_fee? coach_fee.currency%>
-                    <input type="text" class="form-control" name="<%= coach_fee.currency%>" value="<%= @view.get_coach_fee_for coach_fee.currency %>" required="true">
-                  <% else %>
-                    <input type="text" class="form-control" name="<%= coach_fee.currency%>" value="<%= coach_fee.amount %>" required="true">
+              <% if @view.event.coach_fees != [] %>
+
+                <% @view.event.coach_fees.each do |coach_fee| %>
+                  <% coach_fee.each do |currency, amount| %>
+                    <span class="noBreak">
+                    <label><%= currency %>:</label>
+                    <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>" required="true">
+                    </span>
                   <% end %>
-                </span>
-                <br>
+                <% end %>
+
+              <% else %>
+
+                <% for coach_fee in @view.template.coach_fees %>
+                  <span class="noBreak">
+                    <label><%= coach_fee.currency %>:</label>
+                    <input type="text" class="form-control" name="<%= coach_fee.currency%>" value="<%= coach_fee.amount %>" required="true">
+                  </span>
+                <% end %>
+
               <% end %>
+
             </div>
           </fieldset>
 

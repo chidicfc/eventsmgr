@@ -2,7 +2,7 @@ class ShowArchiveEventTemplateController
   attr_accessor :view
 
   def initialize(view=nil)
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
     @view = view
   end
 

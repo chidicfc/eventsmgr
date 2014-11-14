@@ -57,7 +57,7 @@
         <% count = -1 %>
         <% for coach_fee in @edit_template_view.template.coach_fees %>
           <% count += 1 %>
-          
+
           <span class="noBreak">
             <label><%= coach_fee.currency %></label>
             <input type="text" name="amount<%=count%>" value="<%= coach_fee.amount %>" class="form-control" required="true">

@@ -12,4 +12,20 @@ class Cohort
     cohort
   end
 
+  class Repository
+
+    def initialize
+      @datastore = DataBaseDataStore.new
+    end
+
+    def get_cohorts
+      @datastore.get_cohorts
+    end
+
+    def get_cohort_id name
+      @datastore.get_cohort_id name
+    end
+
+  end
+
 end

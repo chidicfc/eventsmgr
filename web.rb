@@ -5,6 +5,7 @@ require "sinatra"
 require "require_all"
 
 
+
 require_all "app"
 
 
@@ -15,6 +16,7 @@ enable :sessions
 before'/' do
   @view = IndexView.new
   @controller = IndexViewController.new(@view)
+  @controller.load_default_coaches_fee
   @controller.display_templates
 end
 
@@ -47,9 +49,10 @@ patch '/edit_template/:id' do
     for x in (0..count)
        array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
     end
-    edit_event_controller = EditEventTemplateViewController.new
+    edit_template_controller = EditEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    edit_event_controller.update params[:id], params[:title], duration, array_fees, params[:description]
+    edit_template_controller.update params[:id], params[:title], duration, array_fees, params[:description]
+    edit_template_controller.transmit_updated_template params[:id]
 
 
     redirect '/'
@@ -59,9 +62,9 @@ end
 get '/new_template' do
 
   @new_template_view = NewEventTemplateView.new
-  @new_event_controller = NewEventTemplateViewController.new
-  @new_event_controller.view = @new_template_view
-  @new_event_controller.get_default_coach_fees
+  @new_template_controller = NewEventTemplateViewController.new
+  @new_template_controller.view = @new_template_view
+  @new_template_controller.get_default_coach_fees
   erb :new_template
 
 end
@@ -76,10 +79,13 @@ post '/new_template' do
     for x in (0..count)
        array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
     end
-    new_event_controller = NewEventTemplateViewController.new
+    new_template_controller = NewEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    new_event_controller.save params[:title], duration, array_fees, params[:description]
 
+
+    id = new_template_controller.save params[:title], duration, array_fees, params[:description]
+
+    new_template_controller.transmit_new_template id
     redirect '/'
 
   end
@@ -88,7 +94,11 @@ end
 delete '/event_template/:id' do
 
   # params.to_s
+  template = DeleteEventTemplateController.new.get params[:id]
+
   DeleteEventTemplateController.new.delete params[:id]
+
+  DeleteEventTemplateController.new.transmit_deleted_template template
   redirect '/'
 end
 
@@ -151,8 +161,7 @@ post '/:template_id/new_event' do
   @new_event_controller.get params[:template_id]
 
 
-  if params[:action] == ">>"
-
+  if params[:action] == ">"
     params["coaches"].each do |coach|
       @new_event_view.event.assigned_coaches << coach
     end
@@ -162,7 +171,7 @@ post '/:template_id/new_event' do
     end
 
 
-  elsif params[:action] == "<<"
+  elsif params[:action] == "<"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
     params["assigned_coaches"].each do |assigned_coach|
       @new_event_view.event.assigned_coaches.delete("#{assigned_coach}")
@@ -173,14 +182,22 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Create Event"
 
-    duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
+    # duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+    # start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
 
     if session["event"]
-      @new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].selected_coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
+
+      @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+      #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
+      @new_event_controller.add_event @new_event_view.event
+
+      @new_event_controller.transmit_new_event @new_event_view.event
     else
-      @new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.selected_coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
+      @new_event_controller.add_event @new_event_view.event
+
+      #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
     end
+
     session.clear
     redirect '/'
 
@@ -237,7 +254,7 @@ post '/event/:template_id/:event_id/edit' do
   @edit_event_controller.get params[:template_id]
 
 
-  if params[:action] == ">>"
+  if params[:action] == ">"
     params["coaches"].each do |coach|
       @view.event.assigned_coaches << coach
     end
@@ -248,7 +265,7 @@ post '/event/:template_id/:event_id/edit' do
     end
 
 
-  elsif params[:action] == "<<"
+  elsif params[:action] == "<"
     @view.event.assigned_coaches = session["event"].assigned_coaches
     params["assigned_coaches"].each do |assigned_coach|
       @view.event.assigned_coaches.delete("#{assigned_coach}")
@@ -265,8 +282,13 @@ post '/event/:template_id/:event_id/edit' do
     for coach_fee in @view.template.coach_fees
       coach_fees << {"#{coach_fee.currency}" => params["#{coach_fee.currency}".to_sym]}
     end
+    @view.event.assigned_coaches = session["event"].assigned_coaches
+    @view.event.coach_fees = coach_fees
 
-    @edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
+    @edit_event_controller.edit_event @view.event
+    @edit_event_controller.transmit_edited_event @view.event
+
+    #@edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
 
     session.clear
     redirect '/'
@@ -299,7 +321,9 @@ get '/event/:template_id/:event_id/delete' do
   @controller.get_event params[:template_id], params[:event_id]
 
   if @view.event.assigned_coaches.count == 0
+    event = @controller.get_event params[:template_id], params[:event_id]
     @controller.delete params[:event_id], params[:template_id]
+    @controller.transmit_deleted_event event
   end
 
   redirect '/'

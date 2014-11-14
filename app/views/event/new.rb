@@ -9,37 +9,44 @@ class NewEventView
     @cohorts = []
     @coach_fees = []
     @event = OpenStruct.new
-    @event.selected_coach_fees = {}
+    @event.coach_fees = []
     @event.assigned_coaches = []
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
   end
 
   def self.from_params params, template_id
 
     view = NewEventView.new
-
-    view.event.sub_title = params["sub_title"]
+    view.event.event_template_id = params["template_id"]
+    view.event.title = params["sub_title"]
     view.event.date = params["date"]
     view.event.description = params["description"]
     view.event.start_hours = params["start_hours"]
     view.event.start_mins = params["start_mins"]
     view.event.duration_hours = params["duration_hours"]
     view.event.duration_mins = params["duration_mins"]
+    view.event.duration = "#{params["duration_hours"]}:#{params["duration_mins"]}"
+    view.event.start_time = "#{params["start_hours"]}:#{params["start_mins"]}"
     view.event.selected_time_zone = params["timezone"]
     view.event.selected_cohort = params["cohort"]
     view.event.income_amount = params["income_amount"]
     view.event.selected_income_currency = params["income_currency"]
 
 
-    @template_repo = EventTemplateRepo.new
+
+    @template_repo = EventTemplate::Repository.new
     view.template =  @template_repo.get template_id
 
-    # @coach_repo = CohortRepo.new
+    cohort_repo = Cohort::Repository.new
+    view.event.selected_cohort_id = cohort_repo.get_cohort_id params["cohort"]
+
+
+    # @coach_repo = Cohort::Repository.new
     # view.searched_coaches = @coach_repo.
 
-    for coach_fee in view.template.coach_fees
-      view.event.selected_coach_fees["#{coach_fee.currency}"] = params["#{coach_fee.currency}"]
-    end
+  for coach_fee in view.template.coach_fees
+    view.event.coach_fees << {"#{coach_fee.currency}" => params["#{coach_fee.currency}"]}
+  end
 
     view
   end
@@ -53,12 +60,11 @@ class NewEventView
   end
 
   def has_coach_fee? name
-
-    @event.selected_coach_fees.has_key? name
+    @event.coach_fees.has_key? name
   end
 
   def get_coach_fee_for name
-    @event.selected_coach_fees[name]
+    @event.coach_fees[name]
   end
 
 end

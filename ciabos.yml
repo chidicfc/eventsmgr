@@ -1,5 +1,7 @@
 --- !ruby/object:Yeasu::Radio::Transmission
 table:
+  :version: 0.0.1
+
   :time_zones: America/Chicago|Asia/Shanghai|Asia/Singapore|Australia/Sydney|Europe/London
   :cohorts:
   - !ruby/object:OpenStruct
@@ -38,56 +40,56 @@ table:
       :name: Team Leader
       :id: 3
       :email: dummy@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Coach Sarah
       :id: 5
       :email: dummy@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Coach Simon
       :id: 6
       :email: dummy2@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Coach Patrick
       :id: 7
       :email: dummy1@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Coach Jean
       :id: 8
       :email: dummy3@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Will Stokely
       :id: 15
       :email: will@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Admin user
       :id: 16
       :email: dummy@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
       :name: Adam Wittig Staging
       :id: 1016
       :email: adam.wittig@coachinabox.biz
-      :image: 
+      :image:
     modifiable: true
   - !ruby/object:OpenStruct
     table:
@@ -132,7 +134,7 @@ table:
       :subtitle: Test 2 event
       :details: ''
       :event_type_id: 2
-      :cohort_id: 
+      :cohort_id:
       :timezone: London
       :start_time: '2014-08-25 10:00:00 +0100'
     modifiable: true
@@ -142,7 +144,7 @@ table:
       :subtitle: Adam's Test
       :details: ''
       :event_type_id: 2
-      :cohort_id: 
+      :cohort_id:
       :timezone: London
       :start_time: '2014-10-03 23:51:00 +0100'
     modifiable: true
@@ -152,7 +154,7 @@ table:
       :subtitle: Adam's Other Test
       :details: ''
       :event_type_id: 2
-      :cohort_id: 
+      :cohort_id:
       :timezone: London
       :start_time: '2014-10-03 23:54:00 +0100'
     modifiable: true
@@ -162,7 +164,7 @@ table:
       :subtitle: Adam's Hopefully final test
       :details: ''
       :event_type_id: 2
-      :cohort_id: 
+      :cohort_id:
       :timezone: London
       :start_time: '2014-09-22 23:55:00 +0100'
     modifiable: true
@@ -252,12 +254,23 @@ table:
       :subtitle: Adam's Hopefully final test
       :details: ''
       :event_type_id: 3
-      :cohort_id: 
+      :cohort_id:
       :timezone: London
       :start_time: '2014-10-17 11:31:00 +0100'
     modifiable: true
+
+  - !ruby/object:OpenStruct
+    table:
+      :id: 14
+      :subtitle: test
+      :details: test
+      :event_type_id: 4
+      :cohort_id: 3
+      :timezone: London
+      :start_time: '2014-11-04 16:39:00 +0000'
+    modifiable: true
   :origin: ciabos.com
   :tags: ciabos,ui,outbound,field_data
-  :id: 7cdbc5b0-459f-0132-5dad-040113afc801
+  :id: 693c68c0-4899-0132-430f-528db81e67fe
   :destination: in.eventsmanager.ciabos.com
-  :radio: Portsmouth-basestation-producer
+  :radio: portsmouth-harbour-producer

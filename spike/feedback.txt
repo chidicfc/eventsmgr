@@ -1,0 +1,1 @@
+default coach fees in new and edit template need a border

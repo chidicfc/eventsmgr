@@ -1,5 +1,9 @@
 require "sequel"
 require 'pry-remote'
+require 'yaml'
+require 'chronic_duration'
+require 'date'
+
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
 
@@ -37,14 +41,18 @@ end
 
 DB.create_table? :coaches do
   primary_key :id
+  foreign_key :event_id
   String :name
   String :email
+  String :image
 end
 
 DB.create_table? :assigned_coaches do
   primary_key :id
   foreign_key :event_id
   String :name
+  String :email
+  String :image
 end
 
 DB.create_table? :coach_fees do
@@ -68,49 +76,6 @@ end
 
 class DataBaseDataStore
 
-
-  def load_coaches
-    dataset = DB[:coaches]
-    dataset.insert(:name => "Cheryl Jackson", :email => "xx@yahoo.com")
-    dataset.insert(:name => "Tom Green", :email => "aa@yahoo.com")
-    dataset.insert(:name => "Matt Taylor", :email => "bb@yahoo.com")
-    dataset.insert(:name => "David Platt", :email => "cc@yahoo.com")
-    dataset.insert(:name => "Michael Jackson", :email => "dd@yahoo.com")
-    dataset.insert(:name => "Drew Black", :email => "ee@yahoo.com")
-    dataset.insert(:name => "Neptunes", :email => "neptune@yahoo.com")
-    dataset.insert(:name => "Mike Tello", :email => "tello@yahoo.com")
-    dataset.insert(:name => "Janet Jackson", :email => "janet@yahoo.com")
-    dataset.insert(:name => "Phil Jackson", :email => "phil@yahoo.com")
-  end
-
-  def load_cohorts
-    dataset = DB[:cohorts]
-    dataset.insert(:name => "2020 Project A Cohort B")
-    dataset.insert(:name => "2019 Project A Cohort B")
-    dataset.insert(:name => "Honda Project A Cohort B")
-    dataset.insert(:name => "Apple North America Cohort B")
-    dataset.insert(:name => "1999 Project B Cohort A")
-    dataset.insert(:name => "Microsoft A Cohort B")
-    dataset.insert(:name => "Mars Cohort A")
-    dataset.insert(:name => "2000 Project A Cohort B")
-    dataset.insert(:name => "Cadbury Project C Cohort B")
-    dataset.insert(:name => "Unilever Project A Cohort B")
-  end
-
-  def load_timezones
-    dataset = DB[:timezones]
-    dataset.insert(:name => "(GMT+00.00) + London")
-    dataset.insert(:name => "(GMT+00.00) + Europe/London")
-    dataset.insert(:name => "(GMT+10.00) + Sydney")
-    dataset.insert(:name => "(GMT+8.00) + Singapore")
-    dataset.insert(:name => "(GMT+8.00) + Beijing")
-    dataset.insert(:name => "(GMT+6.00) + Central America")
-    dataset.insert(:name => "(GMT-11.00) + Hawaii")
-    dataset.insert(:name => "(GMT-9.00) + Alaska")
-    dataset.insert(:name => "(GMT-7.00) + Arizona")
-    dataset.insert(:name => "(GMT-5.00) + Lima")
-  end
-
   def get_coaches
     coaches = []
     DB[:coaches].each do |coach_row|
@@ -131,12 +96,9 @@ class DataBaseDataStore
   end
 
   def get_timezones
-    timezones = []
     DB[:timezones].each do |timezone_row|
-      timezone = TimeZone.from_hash(timezone_row)
-      timezones << timezone
+      yield timezone_row
     end
-    timezones
   end
 
   def get_cohorts
@@ -148,39 +110,13 @@ class DataBaseDataStore
     cohorts
   end
 
-  def load_database
-
-    # 10.times do |index|
-    #   index += 1
-    #   dataset = DB[:event_templates]
-    #   event_template_id = dataset.insert(:title => "Boots Coaching Capability #{index}",:duration => "08:30",:description => "description #{index}", :status => "active")
-    #   load_default_coach_fees event_template_id
-    #
-    #   dataset = DB[:events]
-    #   event_id = dataset.insert(:title => "Winchester #{index} - October 11, 2011",:duration => "09:00", :event_template_id => event_template_id, :date => "19/07/2014", :start_time => "09:00", :timezone => "GMT", :cohort => "Apple MAC Division Cohort 1")
-    #   set_default_event_coach_fees event_template_id, event_id
-    #
-    #   dataset=DB[:coaches]
-    #   dataset.insert(:name => "Delaney Burke #{index}",:email => "delaney.burke@coachinabox.biz")
-    #   dataset.insert(:name => "Sarah Burke #{index}",:email => "delaney@yahoo.biz")
-    #   dataset.insert(:name => "Michael Jackson #{index}",:email => "m.jackson@coachinabox.biz")
-    #   dataset.insert(:name => "Tom Green #{index}",:email => "tom.green@coachinabox.biz")
-    #   dataset.insert(:name => "Dick Cheney #{index}",:email => "dick.c@coachinabox.biz")
-    # end
-
-    load_default_coach_fees
-    load_coaches
-    load_cohorts
-    load_timezones
-  end
-
   def load_default_coach_fees template_id=0
     dataset = DB[:coach_fees]
-    coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "EUR", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "AUD", :amount => "0.00", :event_template_id => template_id)
-    coach_fee = dataset.insert(:currency => "SGD", :amount => "0.00", :event_template_id => template_id)
+    coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "GBP", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "USD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "EUR", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "EUR", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "AUD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "AUD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
+    coach_fee = dataset.insert(:currency => "SGD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "SGD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
   end
 
   def set_default_event_coach_fees template_id, event_id
@@ -194,14 +130,10 @@ class DataBaseDataStore
 
   def all_templates
 
-    transmission = YAML.load(File.open("ciabos.yml"))
-
     templates = []
 
-    # if DB[:event_templates].all == []
-    #   load_database
-    #   all_templates
-    # else
+    unless DB[:event_templates].all == []
+
       DB[:event_templates].where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
         DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
@@ -216,26 +148,36 @@ class DataBaseDataStore
         end
 
         DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-          coach_fee = CoachFee.from_hash(coach_fee_row)
+          coach_fee = CoachesFee.from_hash(coach_fee_row)
           event_template.coach_fees << coach_fee
         end
 
         templates << event_template
       end
-    # end
+    end
     templates
   end
 
   def default_coach_fees
     coach_fees = []
     DB[:coach_fees].where(Sequel.&(:event_template_id => 0, :event_id => nil)).each do |coach_fee_row|
-      coach_fee = CoachFee.from_hash(coach_fee_row)
+      coach_fee = CoachesFee.from_hash(coach_fee_row)
       coach_fees << coach_fee
     end
     coach_fees
   end
 
+  def get_cohort_id name
+    cohort_id = nil
+    DB[:cohorts].where(:name => name).each do |cohort_row|
+      cohort = Cohort.from_hash(cohort_row)
+      cohort_id = cohort.id
+    end
+    cohort_id
+  end
+
   def add *args
+    id = nil
     values = [*args]
     DB.transaction do
       template_id = DB[:event_templates].insert(:title => values[0], :duration => values[1], :description => values[3], :status => "active")
@@ -244,7 +186,9 @@ class DataBaseDataStore
         DB[:coach_fees].insert(:currency => value["currency#{count}".to_sym], :amount => value["amount#{count}".to_sym], :event_template_id => template_id)
         count += 1
       end
+      id = template_id
     end
+    id
   end
 
   def get template_id
@@ -262,7 +206,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(:event_template_id => template_id, :event_id => nil).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         @event_template.coach_fees << coach_fee
       end
     end
@@ -316,7 +260,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 
@@ -337,34 +281,47 @@ class DataBaseDataStore
     value
   end
 
-  def add_event template_id, title, duration, description, start_date, start_time, timezone, cohort, coaches_fee, assigned_coaches, income_amount, income_currency
+  def add_event event
     DB.transaction do
-      event_id = DB[:events].insert(:event_template_id => template_id, :title => title, :duration => duration, :description => description, :date => start_date, :start_time => start_time, :timezone => timezone, :cohort => cohort, :income_amount => income_amount, :income_currency => income_currency)
+      event_id = DB[:events].insert(:event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
-      coaches_fee.each do |currency, amount|
-        DB[:coach_fees].insert(:event_template_id => template_id, :event_id => event_id, :currency => currency, :amount => amount)
+
+      event.coach_fees.each do |coaches_fee|
+        coaches_fee.each do |currency, amount|
+          DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event_id, :currency => currency, :amount => amount)
+        end
       end
-      if assigned_coaches != []
-        assigned_coaches.each do |assigned_coach|
-          DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach)
+
+      if event.assigned_coaches != []
+        event.assigned_coaches.each do |assigned_coach_name|
+          #find coach by name
+          DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
+            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+            DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+          end
         end
       end
     end
   end
 
-  def update_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  def update_event event
+    #template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
     DB.transaction do
-      DB[:events].where(:event_template_id => template_id, :id => event_id).update(:title => sub_title, :duration => duration, :description => description, :date => date, :start_time => start_time, :timezone => timezone, :cohort => cohort, :income_amount => income_amount, :income_currency => income_currency)
+      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
-      coach_fees.each do |coach_fee|
+      event.coach_fees.each do |coach_fee|
         coach_fee.each do |currency, amount|
-          DB[:coach_fees].where(:event_template_id => template_id, :event_id => event_id, :currency => currency).update(:amount => amount)
+          DB[:coach_fees].where(:event_template_id => event.event_template_id, :event_id => event.id, :currency => currency).update(:amount => amount)
         end
       end
 
-      DB[:assigned_coaches].where(:event_id => event_id).delete
-      assigned_coaches.each do |assigned_coach|
-        DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach)
+      DB[:assigned_coaches].where(:event_id => event.id).delete
+      event.assigned_coaches.each do |assigned_coach_name|
+        #find coach by name
+        DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
+          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+          DB[:assigned_coaches].insert(:event_id => event.id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+        end
       end
 
     end
@@ -406,14 +363,18 @@ class DataBaseDataStore
 
       DB.create_table? :coaches do
         primary_key :id
+        foreign_key :event_id
         String :name
         String :email
+        String :image
       end
 
       DB.create_table? :assigned_coaches do
         primary_key :id
         foreign_key :event_id
         String :name
+        String :email
+        String :image
       end
 
       DB.create_table? :coach_fees do
@@ -437,13 +398,13 @@ class DataBaseDataStore
     end
   end
 
-
+  #check this
   def get_event template_id, event_id
     DB[:events].where(:id => event_id).each do |event_row|
       @event = Event.from_hash(event_row)
 
       DB[:coach_fees].where(Sequel.&(:event_id => event_id, :event_template_id => template_id)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         @event.coach_fees << {"#{coach_fee.currency}" => "#{coach_fee.amount}"}
       end
 
@@ -479,7 +440,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 
@@ -509,7 +470,7 @@ class DataBaseDataStore
       end
 
       DB[:coach_fees].where(Sequel.&(:event_template_id => event_template_row[:id], :event_id => nil)).each do |coach_fee_row|
-        coach_fee = CoachFee.from_hash(coach_fee_row)
+        coach_fee = CoachesFee.from_hash(coach_fee_row)
         event_template.coach_fees << coach_fee
       end
 

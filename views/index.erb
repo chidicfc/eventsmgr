@@ -91,27 +91,26 @@
                     </tr>
                   </table>
                   <div id="eventPopoverContent<%= event.id %>" style="display: none">
-                    <% if event.assigned_coaches.count != 0 %>
+                    <% unless event.assigned_coaches.count == 0 %>
 
                       <% for assigned_coach in event.assigned_coaches %>
-
                       <!-- HTML TO FILL EVENT POPOVER begin-->
                         <div class="eventPopoverTables">
                           <div class="eventPopoverTable">
                             <table>
                               <tr>
                                 <td>
-                                  <img src="/img/avatar.gif">
+                                  <img src="<%= assigned_coach.image %>">
                                 </td>
                                 <td>
                                   <p>&nbsp;&nbsp;Name: <%= assigned_coach.name %></p>
-                                  <p>&nbsp;&nbsp;Email: </p>
+                                  <p>&nbsp;&nbsp;Email: <%= assigned_coach.email %></p>
                                   <p>&nbsp;&nbsp;Calendar</p>
                                 </td>
                               </tr>
                               <tr>
                                 <td colspan="2">
-                                  <button type="button" class="btn btn-success btn-xs pull-right">Email All</button>
+                                  <button type="button" class="btn btn-success btn-xs pull-right">Email</button>
                                 </td>
                               </tr>
                             </table>
@@ -157,7 +156,7 @@
     </div> -->
 
     <!-- MODAL FOR DELETE ALERT -->
-    <div class="modal fade" id="confirm">
+    <!-- <div class="modal fade" id="confirm">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -173,7 +172,7 @@
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal --> -->
 <script>
 function toggle(obj) {
 

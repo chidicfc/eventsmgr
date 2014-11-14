@@ -1,12 +1,20 @@
+require "yeasu"
+include Yeasu
+
+Yeasu::Radio.configuration do |config|
+  config.producer.name = "eventsmgr_edit_event"
+end
+
+
 class EditEventViewController
   attr_accessor :view
 
   def initialize(view=nil)
-    @template_repo = EventTemplateRepo.new
-    @event_repo = EventRepo.new
-    @coach_repo = CoachRepo.new
-    @timezone_repo = TimezoneRepo.new
-    @cohort_repo = CohortRepo.new
+    @template_repo = EventTemplate::Repository.new
+    @event_repo = Event::Repository.new
+    @coach_repo = Coach::Repository.new
+    @timezone_repo = TimeZone::Repository.new
+    @cohort_repo = Cohort::Repository.new
     @view = view
   end
 
@@ -40,19 +48,21 @@ class EditEventViewController
 
     view = EditEventView.new
 
+    view.event.event_template_id = params["template_id"]
+    view.event.id = params["event_id"]
     view.event.title = params["sub_title"]
     view.event.date = params["date"]
     view.event.description = params["description"]
-    view.event.timezone = params["timezone"]
-    view.event.cohort = params["cohort"]
+    view.event.selected_time_zone = params["timezone"]
+    view.event.selected_cohort = params["cohort"]
     view.event.income_amount = params["income_amount"]
     view.event.income_currency = params["income_currency"]
-    view.event.start_time = ["#{params[:start_hours]}","#{params[:start_mins]}"]
-    view.event.duration = ["#{params[:duration_hours]}","#{params[:duration_mins]}"]
+    view.event.start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
+    view.event.duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
 
 
-    @template_repo = EventTemplateRepo.new
+    @template_repo = EventTemplate::Repository.new
     view.template =  @template_repo.get template_id
 
     for coach_fee in view.template.coach_fees
@@ -70,8 +80,20 @@ class EditEventViewController
     view.event.assigned_coaches.uniq!
   end
 
-  def edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
-    @event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  def edit_event event
+    @event_repo.edit_event event
+    #@event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  end
+
+  def transmit_edited_event event
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,edited_event" do |transmitter|
+      transmission = Radio::Transmission.new
+      transmission.event = event
+      t = transmitter.transmit transmission
+      p "event edited"
+      p t
+      break
+    end
   end
 
   def display_coaches_by_letter letter

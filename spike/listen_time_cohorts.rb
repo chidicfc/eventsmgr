@@ -24,16 +24,19 @@ include Yeasu
 Radio::Tunner.listen_on "in.eventsmanager" do |receiver|
 
   receiver.receive do |transmission|
+    puts transmission.tags
 
+    if transmission.tags.include?("field_data")
 
-    if File.exists?("ciabos.yml")
-      YAML.load(File.open("ciabos.yml"))
+      if File.exists?("ciabos.yml")
+        YAML.load(File.open("ciabos.yml"))
+        puts "load from file!"
+      else
+        File.open("ciabos.yml", 'w') { |file| file.write(YAML.dump(transmission)) }
+        #File.open("ciabos.data", 'w') { |file| file.write(Oj.dump(transmission)) }
+        puts "save to file!"
+      end
 
-      puts "load from file!"
-    else
-      File.open("ciabos.yml", 'w') { |file| file.write(transmission.to_yaml) }
-      #File.open("ciabos.data", 'w') { |file| file.write(Oj.dump(transmission)) }
-      puts "save to file!"
     end
 
 

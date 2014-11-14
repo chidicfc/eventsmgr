@@ -14,12 +14,14 @@ gem 'riot'
 gem 'pry'
 gem "sequel"
 gem "oj"
+gem "chronic_duration"
 gem 'activesupport', '~> 4.1.6'
 gem 'tzinfo', '~> 1.2.2'
 # gem "sqlite3"
 gem "poltergeist"
 gem 'simplecov', '~> 0.9.0'
 gem "yeasu"
+gem "antenna"
 
 group :development do
   gem 'sqlite3'

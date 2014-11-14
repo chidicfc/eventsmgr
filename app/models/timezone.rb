@@ -12,4 +12,21 @@ class TimeZone
     timezone
   end
 
+  class Repository
+
+    def initialize
+      @datastore = DataBaseDataStore.new
+    end
+
+    def get_timezones
+      timezones = []
+      @datastore.get_timezones do |timezone_row|
+        timezone = TimeZone.from_hash(timezone_row)
+        timezones << timezone
+      end
+      timezones
+    end
+
+  end
+
 end
