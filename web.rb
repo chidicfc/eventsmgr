@@ -188,7 +188,7 @@ post '/:template_id/new_event' do
 
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
     end
-    
+
     session.clear
     redirect '/'
 
@@ -313,6 +313,7 @@ get '/event/:template_id/:event_id/delete' do
 
   if @view.event.assigned_coaches.count == 0
     @controller.delete params[:event_id], params[:template_id]
+    @controller.transmit_deleted_event params[:template_id], params[:event_id]
   end
 
   redirect '/'

@@ -1,3 +1,10 @@
+require "yeasu"
+include Yeasu
+
+Yeasu::Radio.configuration do |config|
+  config.producer.name = "eventsmgr_delete_event"
+end
+
 class DeleteEventController
   attr_accessor :view
 
@@ -12,6 +19,17 @@ class DeleteEventController
 
   def delete event_id, template_id
     @event_repo.delete_event event_id, template_id
+  end
+
+  def transmit_deleted_event template_id, event_id
+    event = get_event template_id, event_id
+
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,deleted_event" do |transmitter|
+      transmission = Radio::Transmission.new
+      transmission.event = event
+      t = transmitter.transmit transmission
+      break
+    end
   end
 
 end
