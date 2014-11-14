@@ -271,8 +271,10 @@ class DataBaseDataStore
       event_id = DB[:events].insert(:event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
 
-      event.coach_fees.each do |currency, amount|
-        DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event_id, :currency => currency, :amount => amount)
+      event.coach_fees.each do |coaches_fee|
+        coaches_fee.each do |currency, amount|
+          DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event_id, :currency => currency, :amount => amount)
+        end
       end
 
       if event.assigned_coaches != []
