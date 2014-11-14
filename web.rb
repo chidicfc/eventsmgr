@@ -181,8 +181,8 @@ post '/:template_id/new_event' do
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
       @new_event_controller.add_event @new_event_view.event
     else
-      raise
-      @new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
+      @new_event_controller.add_event @new_event_view.event
+      #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
     end
     session.clear
     redirect '/'
@@ -268,8 +268,12 @@ post '/event/:template_id/:event_id/edit' do
     for coach_fee in @view.template.coach_fees
       coach_fees << {"#{coach_fee.currency}" => params["#{coach_fee.currency}".to_sym]}
     end
+    @view.event.assigned_coaches = session["event"].assigned_coaches
+    @view.event.coach_fees = coach_fees
 
-    @edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
+    @edit_event_controller.edit_event @view.event
+
+    #@edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
 
     session.clear
     redirect '/'

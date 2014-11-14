@@ -40,15 +40,17 @@ class EditEventViewController
 
     view = EditEventView.new
 
+    view.event.event_template_id = params["template_id"]
+    view.event.id = params["event_id"]
     view.event.title = params["sub_title"]
     view.event.date = params["date"]
     view.event.description = params["description"]
-    view.event.timezone = params["timezone"]
-    view.event.cohort = params["cohort"]
+    view.event.selected_time_zone = params["timezone"]
+    view.event.selected_cohort = params["cohort"]
     view.event.income_amount = params["income_amount"]
     view.event.income_currency = params["income_currency"]
-    view.event.start_time = ["#{params[:start_hours]}","#{params[:start_mins]}"]
-    view.event.duration = ["#{params[:duration_hours]}","#{params[:duration_mins]}"]
+    view.event.start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
+    view.event.duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
 
 
@@ -70,8 +72,9 @@ class EditEventViewController
     view.event.assigned_coaches.uniq!
   end
 
-  def edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
-    @event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  def edit_event event
+    @event_repo.edit_event event
+    #@event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
   end
 
   def display_coaches_by_letter letter

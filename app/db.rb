@@ -289,23 +289,24 @@ class DataBaseDataStore
     end
   end
 
-  def update_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+  def update_event event
+    #template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
     DB.transaction do
-      DB[:events].where(:event_template_id => template_id, :id => event_id).update(:title => sub_title, :duration => duration, :description => description, :date => date, :start_time => start_time, :timezone => timezone, :cohort => cohort, :income_amount => income_amount, :income_currency => income_currency)
+      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
-      coach_fees.each do |coach_fee|
+      event.coach_fees.each do |coach_fee|
         coach_fee.each do |currency, amount|
-          DB[:coach_fees].where(:event_template_id => template_id, :event_id => event_id, :currency => currency).update(:amount => amount)
+          DB[:coach_fees].where(:event_template_id => event.event_template_id, :event_id => event.id, :currency => currency).update(:amount => amount)
         end
       end
 
-      DB[:assigned_coaches].where(:event_id => event_id).delete
-      assigned_coaches.each do |assigned_coach_name|
+      DB[:assigned_coaches].where(:event_id => event.id).delete
+      event.assigned_coaches.each do |assigned_coach_name|
         #find coach by name
-        assigned_coach_row = DB[:coaches].where(:name => assigned_coach_name)
-        assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-
-        DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+        DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
+          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+          DB[:assigned_coaches].insert(:event_id => event.id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+        end
       end
 
     end

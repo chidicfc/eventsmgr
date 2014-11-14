@@ -40,8 +40,8 @@ class Event
       @datastore.get_event template_id, event_id
     end
 
-    def edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
-      @datastore.update_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
+    def edit_event event
+      @datastore.update_event event
     end
 
     def delete_event event_id, template_id
