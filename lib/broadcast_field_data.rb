@@ -10,6 +10,6 @@ Radio::Tunner.broadcast tags: "ciabos,ui,inbound,field_data" do |transmitter|
   transmission = Radio::Transmission.new
 
   t = transmitter.transmit transmission
-  puts "Request sent for Timezones and Cohorts in transmission of id: #{t.id}"
+  puts "Request sent for field data in transmission of id: #{t.id}"
   break
 end
