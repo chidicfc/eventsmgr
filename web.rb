@@ -133,8 +133,8 @@ get '/:template_id/new_event' do
     session.clear
   end
 
-  @view.event.start_hours = "9"
-  @view.event.start_mins = "0"
+  @view.event.start_hours = "09"
+  @view.event.start_mins = "00"
   @view.event.date = Time.now.strftime("%d/%m/%Y")
 
   if session.has_key? "event"
