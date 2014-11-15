@@ -9,7 +9,7 @@ require 'pg'
 # DB = Sequel.sqlite('app/eventsmanager.db')
 
 configure :production do
-  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_PINK']
+  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_WHITE_URL']
 end
 
 configure :development do
