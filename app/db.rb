@@ -8,7 +8,7 @@ require 'date'
 # DB = Sequel.sqlite('app/eventsmanager.db')
 
 configure :production do
-  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_CRIMSON_URL']
+  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_PINK']
 end
 
 configure :development do
