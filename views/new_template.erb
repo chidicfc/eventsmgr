@@ -1,5 +1,5 @@
 <div class="container search">
-  <form class="navbar-form pull-right" role="search" action="/search_templates_by_name" method="post">
+  <form class="navbar-form pull-right" role="search" action="/search_templates_by_name" method="post" onsubmit="return validateForm()">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Event Templates" name="search" id="srch-term">
         <div class="input-group-btn">
@@ -29,10 +29,10 @@
     <div class="row">
       <div class="col-md-6">
         <label>Title</label>
-        <input type="text" class="form-control" name="title">
+        <input type="text" class="form-control" name="title" data-validation="required" data-validation-error-msg="You did not enter a title" required>
 
-        <!-- <label>Duration (hh:mm)</label>
-        <input type="text" class="form-control" placeholder="Duration" name="duration"> -->
+        <!-- https://github.com/victorjonsson/jQuery-Form-Validator/
+        Jquery form validator -->
 
         <label>Duration</label><br>
         <select name="duration_hours" id="duration_hours" class="formControl1 form-control selectSmall">
@@ -85,3 +85,6 @@
       </div>
     </div>
   </form>
+
+  <script> $.validate();
+  </script>
