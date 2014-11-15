@@ -18,7 +18,7 @@ end
 
 DB.create_table? :event_templates do
   primary_key :id
-  String :title
+  String :title, :unique=>true
   String :duration
   String :description
   String :status
@@ -27,7 +27,7 @@ end
 DB.create_table? :events do
   primary_key :id
   foreign_key :event_template_id
-  String :title
+  String :title, :unique=>true
   String :duration
   String :description
   String :date
@@ -42,7 +42,7 @@ end
 DB.create_table? :coaches do
   primary_key :id
   foreign_key :event_id
-  String :name
+  String :name, :unique=>true
   String :email
   String :image
 end
@@ -70,7 +70,7 @@ end
 
 DB.create_table? :cohorts do
   primary_key :id
-  String :name
+  String :name, :unique=>true
 end
 
 
@@ -338,9 +338,10 @@ class DataBaseDataStore
       DB.run("DROP TABLE cohorts")
 
 
+
       DB.create_table? :event_templates do
         primary_key :id
-        String :title
+        String :title, :unique=>true
         String :duration
         String :description
         String :status
@@ -349,7 +350,7 @@ class DataBaseDataStore
       DB.create_table? :events do
         primary_key :id
         foreign_key :event_template_id
-        String :title
+        String :title, :unique=>true
         String :duration
         String :description
         String :date
@@ -364,7 +365,7 @@ class DataBaseDataStore
       DB.create_table? :coaches do
         primary_key :id
         foreign_key :event_id
-        String :name
+        String :name, :unique=>true
         String :email
         String :image
       end
@@ -392,7 +393,7 @@ class DataBaseDataStore
 
       DB.create_table? :cohorts do
         primary_key :id
-        String :name
+        String :name, :unique=>true
       end
 
     end
