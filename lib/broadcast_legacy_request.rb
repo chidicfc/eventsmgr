@@ -11,4 +11,5 @@ Radio::Tunner.broadcast tags: "ciabos,ui,inbound,legacy_data" do |transmitter|
 
   t = transmitter.transmit transmission
   puts "Request sent for legacy data in transmission of id: #{t.id}"
+  break
 end
