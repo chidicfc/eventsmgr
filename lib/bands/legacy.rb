@@ -11,15 +11,20 @@ class LegacyData < Antenna::Band
       # StoreEventTemplate.new template
 
       d = template.duration.split(' ')
+
+      if d[0].to_i < 10
+        d[0] = "0%s" % d[0]
+      end
+
       case d[1]
       when "hours"
-        template.duration = "#{d[0]}:0"
+        template.duration = "#{d[0]}:00"
       when "seconds"
-        template.duration = "0:0"
+        template.duration = "00:00"
       when "mins"
-        template.duration = "0:#{d[0]}"
+        template.duration = "00:#{d[0]}"
       when "minutes"
-        template.duration = "0:#{d[0]}"
+        template.duration = "00:#{d[0]}"
       end
 
       dataset = DB[:event_templates]
