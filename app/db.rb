@@ -3,6 +3,7 @@ require 'pry-remote'
 require 'yaml'
 require 'chronic_duration'
 require 'date'
+require 'pg'
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
