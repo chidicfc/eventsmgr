@@ -38,7 +38,7 @@
             <div class="panel-heading" id="<%= template.id %>">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= template.id %>">
-                  <button type="button" class="btn btn-default btn-xs plus">
+                  <button type="button" class="btn btn-default btn-xs plus" style="cursor:pointer; cursor: hand;">
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>
                   <%= template.title %>&nbsp;&nbsp;(<%= template.events.count %>, <%= template.duration%>)
@@ -76,13 +76,13 @@
                         </span>
                       </td>
                       <td>
-                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit">
+                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/edit?action=new"><button type="button" class="btn btn-default btn-xs eventEdit" name="event_action" value="Edit" style="cursor:pointer; cursor: hand;">
                           <span class="glyphicon glyphicon-pencil"></span>
                           </button>
                         </a>
                       </td>
                       <td>
-                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete">
+                        <a href="/event/<%= event.event_template_id %>/<%= event.id %>/delete"><button type="button" class="btn btn-default btn-xs eventDelete" name="event_action" value="Delete" style="cursor:pointer; cursor: hand;">
                           <span class="glyphicon glyphicon-remove"></span>
                           </button>
                         </a>
