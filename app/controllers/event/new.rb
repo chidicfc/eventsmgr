@@ -6,6 +6,10 @@ Yeasu::Radio.configuration do |config|
 end
 
 
+class EventTransmission < Radio::Transmission
+  tags "ciabos,ui,inbound,new_event"
+end
+
 class NewEventViewController
   attr_accessor :view
 
@@ -43,14 +47,28 @@ class NewEventViewController
   end
 
   def transmit_new_event event
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,new_event" do |transmitter|
-      transmission = Radio::Transmission.new
-      transmission.event = event
-      t = transmitter.transmit transmission
-      p "event created"
-      p t
-      break
-    end
+
+
+    transmission = EventTransmission.new
+
+    transmission.event = OpenStruct.new
+    transmission.event.title = event.title
+    transmission.event.date = event.date
+    transmission.event.description = event.description
+    transmission.event.start_hours = event.start_hours
+    transmission.event.start_mins = event.start_mins
+    transmission.event.duration_hours = event.duration_hours
+    transmission.event.duration_mins = event.duration_mins
+    transmission.event.timezone = event.selected_time_zone
+    transmission.event.cohort = event.selected_cohort
+    transmission.event.coach_fees = event.coach_fees
+    transmission.event.income_amount = event.income_amount
+    transmission.event.income_currency = event.selected_income_currency
+    transmission.event.assigned_coaches = event.assigned_coaches
+    transmission.event.event_template_id = event.event_template_id
+    transmission.event.id = event.id
+
+    transmission.transmit
 
   end
 

@@ -11,6 +11,14 @@ require_all "app"
 
 enable :sessions
 
+configure do
+  # logging is enabled by default in classic style applications,
+  # so `enable :logging` is not needed
+  file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
+  file.sync = true
+  use Rack::CommonLogger, file
+end
+
 
 
 before'/' do
@@ -194,7 +202,7 @@ post '/:template_id/new_event' do
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event
-
+      @new_event_controller.transmit_new_event @new_event_view.event
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
     end
 
