@@ -12,11 +12,16 @@ class DeleteEventController
 
   def initialize(view=nil)
     @event_repo = Event::Repository.new
+    @coach_repo = Coach::Repository.new
     @view = view
   end
 
   def get_event template_id, event_id
     @view.event = @event_repo.get_event template_id, event_id
+  end
+
+  def get_coaches
+    @view.coaches = @coach_repo.get_coaches
   end
 
   def delete event_id, template_id
@@ -28,7 +33,7 @@ class DeleteEventController
 
     Radio::Tunner.broadcast tags: "ciabos,ui,inbound,deleted_event" do |transmitter|
       transmission = Radio::Transmission.new
-      
+
       transmission.event = OpenStruct.new
       transmission.event.title = event.title
       transmission.event.date = event.date

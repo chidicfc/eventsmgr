@@ -206,14 +206,30 @@ post '/:template_id/new_event' do
 
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
 
-      #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
       @new_event_controller.add_event @new_event_view.event
+
+      assigned_coaches_ids = []
+      @new_event_view.event.assigned_coaches.each do |assigned_coach_name|
+        coach = @new_event_view.coaches.find { |coach| coach.name == assigned_coach_name }
+        assigned_coaches_ids << coach.coach_id
+      end
+
+      @new_event_view.event.assigned_coaches = assigned_coaches_ids
 
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event
+
+      assigned_coaches_ids = []
+      @new_event_view.event.assigned_coaches.each do |assigned_coach_name|
+        coach = @new_event_view.coaches.find { |coach| coach.name == assigned_coach_name }
+        assigned_coaches_ids << coach.coach_id
+      end
+
+      @new_event_view.event.assigned_coaches = assigned_coaches_ids
+
       @new_event_controller.transmit_new_event @new_event_view.event
-      #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], @new_event_view.event.coach_fees, @new_event_view.event.assigned_coaches, params[:income_amount], params[:income_currency]
+
     end
 
     session.clear
@@ -304,6 +320,15 @@ post '/event/:template_id/:event_id/edit' do
     @view.event.coach_fees = coach_fees
 
     @edit_event_controller.edit_event @view.event
+
+    assigned_coaches_ids = []
+    @view.event.assigned_coaches.each do |assigned_coach_name|
+      coach = @view.coaches.find { |coach| coach.name == assigned_coach_name }
+      assigned_coaches_ids << coach.coach_id
+    end
+
+    @view.event.assigned_coaches = assigned_coaches_ids
+
     @edit_event_controller.transmit_edited_event @view.event
 
     #@edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
@@ -336,11 +361,13 @@ end
 get '/event/:template_id/:event_id/delete' do
   @view = DeleteEventView.new
   @controller = DeleteEventController.new(@view)
+
   @controller.get_event params[:template_id], params[:event_id]
 
   if @view.event.assigned_coaches.count == 0
     event = @controller.get_event params[:template_id], params[:event_id]
     @controller.delete params[:event_id], params[:template_id]
+
     @controller.transmit_deleted_event event
   end
 

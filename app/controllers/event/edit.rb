@@ -86,9 +86,10 @@ class EditEventViewController
   end
 
   def transmit_edited_event event
+    
     Radio::Tunner.broadcast tags: "ciabos,ui,inbound,edited_event" do |transmitter|
       transmission = Radio::Transmission.new
-      
+
       transmission.event = OpenStruct.new
       transmission.event.title = event.title
       transmission.event.date = event.date

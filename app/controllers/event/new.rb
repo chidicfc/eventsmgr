@@ -47,7 +47,7 @@ class NewEventViewController
   end
 
   def transmit_new_event event
-
+    
 
     transmission = EventTransmission.new
 

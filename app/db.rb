@@ -6,15 +6,15 @@ require 'date'
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
-DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+# DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
 
-# configure :production do
-#   DB = Sequel.connect ENV['DATABASE_URL']
-# end
-#
-# configure :development do
-#   DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
-# end
+configure :production do
+  DB = Sequel.connect ENV['DATABASE_URL']
+end
+
+configure :development do
+  DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+end
 
 def create_tables
   DB.create_table? :event_templates do
