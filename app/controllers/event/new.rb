@@ -47,7 +47,7 @@ class NewEventViewController
   end
 
   def transmit_new_event event
-    
+
 
     transmission = EventTransmission.new
 
@@ -67,7 +67,7 @@ class NewEventViewController
     transmission.event.assigned_coaches = event.assigned_coaches
     transmission.event.event_template_id = event.event_template_id
     transmission.event.id = event.id
-
+    
     transmission.transmit
 
   end
