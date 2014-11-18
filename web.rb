@@ -3,7 +3,6 @@ require "pry-remote"
 require "date"
 require "sinatra"
 require "require_all"
-require 'securerandom'
 
 
 
@@ -91,7 +90,7 @@ post '/new_template' do
     new_template_controller = NewEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
-    id = SecureRandom.uuid
+    #id = SecureRandom.uuid
 
     template = EventTemplate.new
     template.title = params[:title]

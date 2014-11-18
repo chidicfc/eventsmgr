@@ -6,11 +6,11 @@ class EventTemplate
   def initialize()
     @events = []
     @coach_fees = []
-    @id = UUID.new.generate
   end
 
   def self.from_hash(row)
     template = EventTemplate.new
+    template.id = row[:id]
     template.title = row[:title]
     template.duration =row[:duration]
     template.description =row[:description]
