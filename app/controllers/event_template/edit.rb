@@ -30,7 +30,7 @@ class EditEventTemplateViewController
   def transmit_updated_template template_id
     template = @template_repo.get template_id
 
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,updated_event_template" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,edit_event_template" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.event_type = OpenStruct.new
       transmission.event_type.title = template.title
