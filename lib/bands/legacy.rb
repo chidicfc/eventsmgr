@@ -29,6 +29,7 @@ class LegacyData < Antenna::Band
 
       dataset = DB[:event_templates]
       if dataset.where(:title => template.title).all == []
+        template.id = UUID.new.generate
         dataset.insert(:id => template.id, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
 
         unless template.coaches_fees == []
@@ -43,6 +44,7 @@ class LegacyData < Antenna::Band
         unless template.events == []
           template.events.each do |event|
             dataset = DB[:events]
+            event.id = UUID.new.generate
             dataset.insert(:id => event.id, :title => event.subtitle, :duration => template.duration, :event_template_id => template.id, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => event.timezone, :cohort => event.cohort_name)
 
             unless event.coaches == []

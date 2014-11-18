@@ -28,7 +28,7 @@ def create_tables
   DB.create_table? :events do
     primary_key :id, :type => :uuid
     foreign_key :event_template_id, :type => :uuid
-    String :title, :unique=>true
+    String :title
     String :duration
     String :description
     String :date
