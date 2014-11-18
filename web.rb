@@ -3,6 +3,7 @@ require "pry-remote"
 require "date"
 require "sinatra"
 require "require_all"
+require 'securerandom'
 
 
 
@@ -90,10 +91,19 @@ post '/new_template' do
     new_template_controller = NewEventTemplateViewController.new
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
+    id = SecureRandom.uuid
 
-    id = new_template_controller.save params[:title], duration, array_fees, params[:description]
+    template = EventTemplate.new
+    template.title = params[:title]
+    template.duration = duration
+    template.coach_fees = array_fees
+    template.description = params[:description]
 
-    new_template_controller.transmit_new_template id
+    new_template_controller.save template
+    #new_template_controller.save params[:title], duration, array_fees, params[:description], id
+
+    new_template_controller.transmit_new_template template
+
     redirect '/'
 
   end
@@ -196,6 +206,7 @@ post '/:template_id/new_event' do
     if session["event"]
 
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+
       #@new_event_controller.add_event params[:template_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], session["event"].coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
       @new_event_controller.add_event @new_event_view.event
 

@@ -22,11 +22,10 @@ gem "poltergeist"
 gem 'simplecov', '~> 0.9.0'
 gem "yeasu"
 gem "antenna"
+gem 'sinatra-flash'
+gem 'pg'
+gem "uuid"
 
-group :development do
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
-end
+# group :development do
+#   gem 'sqlite3'
+# end

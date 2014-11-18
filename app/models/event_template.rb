@@ -6,11 +6,11 @@ class EventTemplate
   def initialize()
     @events = []
     @coach_fees = []
+    @id = UUID.new.generate
   end
 
   def self.from_hash(row)
     template = EventTemplate.new
-    template.id = row[:id]
     template.title = row[:title]
     template.duration =row[:duration]
     template.description =row[:description]
@@ -32,7 +32,7 @@ class EventTemplate
     end
 
     def get template_id
-      @datastore.get template_id.to_i
+      @datastore.get template_id
     end
 
     def update_template *args
@@ -40,11 +40,11 @@ class EventTemplate
     end
 
     def delete_template id
-      @datastore.delete_template id.to_i
+      @datastore.delete_template id
     end
 
     def archive_template id
-      @datastore.archive_template id.to_i
+      @datastore.archive_template id
     end
 
     def show_archive
@@ -71,7 +71,7 @@ class EventTemplate
       @datastore.load_default_coach_fees
     end
 
-    
+
 
   end
 

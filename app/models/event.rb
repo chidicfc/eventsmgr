@@ -10,6 +10,7 @@ class Event
     @event_template_id = event_template_id
     @assigned_coaches = []
     @coach_fees = []
+    @id = UUID.new.generate
   end
 
   def self.from_hash (row)

@@ -19,12 +19,11 @@ class NewEventTemplateViewController
     @view.coach_fees = @coach_fees_repo.default_coach_fees
   end
 
-  def save *args
-    @template_repo.add *args
+  def save template
+    @template_repo.add template
   end
 
-  def transmit_new_template id
-    template = @template_repo.get id
+  def transmit_new_template template
     Radio::Tunner.broadcast tags: "ciabos,ui,inbound,new_event_template" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.event_type = OpenStruct.new
@@ -34,8 +33,10 @@ class NewEventTemplateViewController
       transmission.event_type.duration_hours = template.duration.split(":")[0]
       transmission.event_type.duration_mins = template.duration.split(":")[1]
       transmission.event_type.coaches_fees_attributes = []
+      count = 0
       template.coach_fees.each do |coaches_fee|
-        transmission.event_type.coaches_fees_attributes << {"#{coaches_fee.currency}" => "#{coaches_fee.amount}" }
+        transmission.event_type.coaches_fees_attributes << {coaches_fee["currency#{count}".to_sym] => coaches_fee["amount#{count}".to_sym] }
+        count += 1
       end
       t = transmitter.transmit transmission
       p "template created"

@@ -6,72 +6,77 @@ require 'date'
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
+DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
 
-configure :production do
-  DB = Sequel.connect ENV['HEROKU_POSTGRESQL_WHITE_URL']
+# configure :production do
+#   DB = Sequel.connect ENV['DATABASE_URL']
+# end
+#
+# configure :development do
+#   DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+# end
+
+def create_tables
+  DB.create_table? :event_templates do
+    primary_key :id, :type => :uuid
+    String :title, :unique=>true
+    String :duration
+    String :description
+    String :status
+  end
+
+  DB.create_table? :events do
+    primary_key :id, :type => :uuid
+    foreign_key :event_template_id, :type => :uuid
+    String :title, :unique=>true
+    String :duration
+    String :description
+    String :date
+    String :start_time
+    String :timezone
+    String :cohort
+    String :income_amount
+    String :income_currency
+
+  end
+
+  DB.create_table? :coaches do
+    primary_key :id
+    foreign_key :event_id, :type => :uuid
+    String :name, :unique=>true
+    String :email
+    String :image
+  end
+
+  DB.create_table? :assigned_coaches do
+    primary_key :id
+    foreign_key :event_id, :type => :uuid
+    String :name
+    String :email
+    String :image
+  end
+
+  DB.create_table? :coach_fees do
+    primary_key :id
+    foreign_key :event_template_id, :type => :uuid
+    foreign_key :event_id, :type => :uuid
+    String :currency
+    String :amount
+  end
+
+  DB.create_table? :timezones do
+    primary_key :id
+    String :name
+  end
+
+  DB.create_table? :cohorts do
+    primary_key :id
+    String :name, :unique=>true
+  end
+
 end
 
-configure :development do
-  DB = Sequel.sqlite('app/eventsmanager.db')
-end
-
-
-DB.create_table? :event_templates do
-  primary_key :id
-  String :title, :unique=>true
-  String :duration
-  String :description
-  String :status
-end
-
-DB.create_table? :events do
-  primary_key :id
-  foreign_key :event_template_id
-  String :title, :unique=>true
-  String :duration
-  String :description
-  String :date
-  String :start_time
-  String :timezone
-  String :cohort
-  String :income_amount
-  String :income_currency
-
-end
-
-DB.create_table? :coaches do
-  primary_key :id
-  foreign_key :event_id
-  String :name, :unique=>true
-  String :email
-  String :image
-end
-
-DB.create_table? :assigned_coaches do
-  primary_key :id
-  foreign_key :event_id
-  String :name
-  String :email
-  String :image
-end
-
-DB.create_table? :coach_fees do
-  primary_key :id
-  foreign_key :event_template_id
-  foreign_key :event_id
-  String :currency
-  String :amount
-end
-
-DB.create_table? :timezones do
-  primary_key :id
-  String :name
-end
-
-DB.create_table? :cohorts do
-  primary_key :id
-  String :name, :unique=>true
-end
+create_tables
 
 
 class DataBaseDataStore
@@ -110,7 +115,7 @@ class DataBaseDataStore
     cohorts
   end
 
-  def load_default_coach_fees template_id=0
+  def load_default_coach_fees template_id="8a9ca4bb85f04a1a9ea1949833d76586"
     dataset = DB[:coach_fees]
     coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "GBP", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
     coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "USD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
@@ -160,7 +165,7 @@ class DataBaseDataStore
 
   def default_coach_fees
     coach_fees = []
-    DB[:coach_fees].where(Sequel.&(:event_template_id => 0, :event_id => nil)).each do |coach_fee_row|
+    DB[:coach_fees].where(Sequel.&(:event_template_id => "8a9ca4bb85f04a1a9ea1949833d76586", :event_id => nil)).each do |coach_fee_row|
       coach_fee = CoachesFee.from_hash(coach_fee_row)
       coach_fees << coach_fee
     end
@@ -176,19 +181,16 @@ class DataBaseDataStore
     cohort_id
   end
 
-  def add *args
-    id = nil
-    values = [*args]
+  def add template
     DB.transaction do
-      template_id = DB[:event_templates].insert(:title => values[0], :duration => values[1], :description => values[3], :status => "active")
+      DB[:event_templates].insert(:id => template.id, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
+
       count = 0
-      values[2].each do |value|
-        DB[:coach_fees].insert(:currency => value["currency#{count}".to_sym], :amount => value["amount#{count}".to_sym], :event_template_id => template_id)
+      template.coach_fees.each do |coach_fee|
+        DB[:coach_fees].insert(:currency => coach_fee["currency#{count}".to_sym], :amount => coach_fee["amount#{count}".to_sym], :event_template_id => template.id)
         count += 1
       end
-      id = template_id
     end
-    id
   end
 
   def get template_id
@@ -339,63 +341,7 @@ class DataBaseDataStore
 
 
 
-      DB.create_table? :event_templates do
-        primary_key :id
-        String :title, :unique=>true
-        String :duration
-        String :description
-        String :status
-      end
-
-      DB.create_table? :events do
-        primary_key :id
-        foreign_key :event_template_id
-        String :title, :unique=>true
-        String :duration
-        String :description
-        String :date
-        String :start_time
-        String :timezone
-        String :cohort
-        String :income_amount
-        String :income_currency
-
-      end
-
-      DB.create_table? :coaches do
-        primary_key :id
-        foreign_key :event_id
-        String :name, :unique=>true
-        String :email
-        String :image
-      end
-
-      DB.create_table? :assigned_coaches do
-        primary_key :id
-        foreign_key :event_id
-        String :name
-        String :email
-        String :image
-      end
-
-      DB.create_table? :coach_fees do
-        primary_key :id
-        foreign_key :event_template_id
-        foreign_key :event_id
-        String :currency
-        String :amount
-      end
-
-      DB.create_table? :timezones do
-        primary_key :id
-        String :name
-      end
-
-      DB.create_table? :cohorts do
-        primary_key :id
-        String :name, :unique=>true
-      end
-
+      create_tables
     end
   end
 
