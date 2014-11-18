@@ -216,6 +216,10 @@ post '/:template_id/new_event' do
 
       @new_event_view.event.assigned_coaches = assigned_coaches_ids
 
+      cohort = @new_event_view.cohorts.find { |cohort| cohort.name == @new_event_view.event.selected_cohort }
+      @new_event_view.event.selected_cohort = cohort.id
+
+
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event
@@ -227,6 +231,9 @@ post '/:template_id/new_event' do
       end
 
       @new_event_view.event.assigned_coaches = assigned_coaches_ids
+
+      cohort = @new_event_view.cohorts.find { |cohort| cohort.name == @new_event_view.event.selected_cohort }
+      @new_event_view.event.selected_cohort = cohort.id
 
       @new_event_controller.transmit_new_event @new_event_view.event
 
@@ -329,9 +336,10 @@ post '/event/:template_id/:event_id/edit' do
 
     @view.event.assigned_coaches = assigned_coaches_ids
 
+    cohort = @view.cohorts.find { |cohort| cohort.name == @view.event.selected_cohort }
+    @view.event.selected_cohort = cohort.id
     @edit_event_controller.transmit_edited_event @view.event
 
-    #@edit_event_controller.edit_event params[:template_id], params[:event_id], params[:sub_title], duration, params[:description], params[:date], start_time, params[:timezone], params[:cohort], coach_fees, session["event"].assigned_coaches, params[:income_amount], params[:income_currency]
 
     session.clear
     redirect '/'
@@ -366,8 +374,12 @@ get '/event/:template_id/:event_id/delete' do
 
   if @view.event.assigned_coaches.count == 0
     event = @controller.get_event params[:template_id], params[:event_id]
+    @controller.get_cohorts
     @controller.delete params[:event_id], params[:template_id]
 
+    cohort = @view.cohorts.find { |cohort| cohort.name == event.selected_cohort }
+    event.selected_cohort = cohort.id
+  
     @controller.transmit_deleted_event event
   end
 

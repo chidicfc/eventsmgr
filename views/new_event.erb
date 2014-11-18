@@ -127,9 +127,9 @@
                 <select name="cohort" id="cohort" class="form-control">
                   <% for cohort in @view.cohorts %>
                     <% if @view.event.selected_cohort == cohort.name %>
-                      <option selected value="<%= cohort.id %>"><%= cohort.name %></option>
+                      <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
                     <% else %>
-                      <option value="<%= cohort.id %>"><%= cohort.name %></option>
+                      <option value="<%= cohort.name %>"><%= cohort.name %></option>
                     <% end %>
                   <% end %>
                 </select>
