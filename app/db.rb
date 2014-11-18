@@ -287,12 +287,12 @@ class DataBaseDataStore
   def add_event event
     event.id = UUID.new.generate
     DB.transaction do
-      event_id = DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
+      DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone.split(" ")[1], :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
 
       event.coach_fees.each do |coaches_fee|
         coaches_fee.each do |currency, amount|
-          DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event_id, :currency => currency, :amount => amount)
+          DB[:coach_fees].insert(:event_template_id => event.event_template_id, :event_id => event.id, :currency => currency, :amount => amount)
         end
       end
 
@@ -301,7 +301,7 @@ class DataBaseDataStore
           #find coach by name
           DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            DB[:assigned_coaches].insert(:event_id => event_id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+            DB[:assigned_coaches].insert(:event_id => event.id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
           end
         end
       end
