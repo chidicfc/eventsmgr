@@ -106,6 +106,7 @@ class EditEventViewController
       transmission.event.assigned_coaches = event.assigned_coaches
       transmission.event.event_template_id = event.event_template_id
       transmission.event.id = event.id
+      transmission.event.timestamp = Time.now.strftime("%d-%m-%Y %H:%M:%S.%2N")
 
       t = transmitter.transmit transmission
       p "event edited"

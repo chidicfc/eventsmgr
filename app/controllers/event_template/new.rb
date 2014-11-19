@@ -38,6 +38,7 @@ class NewEventTemplateViewController
         transmission.event_type.coaches_fees_attributes << {coaches_fee["currency#{count}".to_sym] => coaches_fee["amount#{count}".to_sym] }
         count += 1
       end
+      transmission.event_type.timestamp = Time.now.strftime("%d-%m-%Y %H:%M:%S.%2N")
       t = transmitter.transmit transmission
       p "template created"
       p t
