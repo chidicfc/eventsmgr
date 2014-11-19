@@ -80,33 +80,30 @@ end
 
 post '/new_template' do
 
-  if params[:action]=="Cancel"
-    redirect '/'
-  elsif params[:action] = "Create Template"
-    count = params[:count].to_i
-    array_fees = []
-    for x in (0..count)
-       array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
-    end
-    new_template_controller = NewEventTemplateViewController.new
-    duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-
-    #id = SecureRandom.uuid
-
-    template = EventTemplate.new
-    template.title = params[:title]
-    template.duration = duration
-    template.coach_fees = array_fees
-    template.description = params[:description]
-
-    new_template_controller.save template
-    #new_template_controller.save params[:title], duration, array_fees, params[:description], id
-
-    new_template_controller.transmit_new_template template
-
-    redirect '/'
-
+  count = params[:count].to_i
+  array_fees = []
+  for x in (0..count)
+     array_fees << {"currency#{x}".to_sym => params["currency#{x}".to_sym], "amount#{x}".to_sym => params["amount#{x}".to_sym]}
   end
+  new_template_controller = NewEventTemplateViewController.new
+  duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
+
+  #id = SecureRandom.uuid
+
+  template = EventTemplate.new
+  template.title = params[:title]
+  template.duration = duration
+  template.coach_fees = array_fees
+  template.description = params[:description]
+
+  new_template_controller.save template
+  #new_template_controller.save params[:title], duration, array_fees, params[:description], id
+
+  new_template_controller.transmit_new_template template
+
+  redirect '/'
+
+
 end
 
 delete '/event_template/:id' do
@@ -258,8 +255,6 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Show All"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
-  elsif params[:action] == "Cancel"
-    redirect '/'
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
