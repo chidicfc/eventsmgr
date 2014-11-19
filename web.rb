@@ -114,7 +114,13 @@ delete '/event_template/:id' do
   # params.to_s
   template = DeleteEventTemplateController.new.get params[:id]
 
-  DeleteEventTemplateController.new.delete params[:id]
+  result = DeleteEventTemplateController.new.delete params[:id]
+
+  if result
+    flash[:success] = "#{template.title} template deleted!"
+  else
+    flash[:error] = "Templates with events can't be deleted!"
+  end
 
   DeleteEventTemplateController.new.transmit_deleted_template template
   redirect '/'
