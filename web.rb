@@ -3,6 +3,7 @@ require "pry-remote"
 require "date"
 require "sinatra"
 require "require_all"
+require 'sinatra/flash'
 
 
 
@@ -373,14 +374,17 @@ get '/event/:template_id/:event_id/delete' do
   @controller.get_event params[:template_id], params[:event_id]
 
   if @view.event.assigned_coaches.count == 0
-    event = @controller.get_event params[:template_id], params[:event_id]
+    event = @view.event
     @controller.get_cohorts
     @controller.delete params[:event_id], params[:template_id]
+    flash[:success] = "#{event.title} Event deleted!"
 
     cohort = @view.cohorts.find { |cohort| cohort.name == event.selected_cohort }
     event.selected_cohort = cohort.id
-  
+
     @controller.transmit_deleted_event event
+  else
+    flash[:error] = "Events with coaches can't be deleted!"
   end
 
   redirect '/'
