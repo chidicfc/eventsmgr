@@ -40,7 +40,11 @@
             <% if hours < 10 %>
               <% hours = "0%d" % hours %>
             <% end %>
-            <option value="<%= hours %>"><%= hours %></option>
+            <% if @new_template_view.selected_hours == hours %>
+              <option selected value="<%= hours %>"><%= hours %></option>
+            <% else %>
+              <option value="<%= hours %>"><%= hours %></option>
+            <% end %>
           <% end %>
         </select>
         :
@@ -49,7 +53,11 @@
             <% if mins < 10 %>
               <% mins = "0%d" % mins %>
             <% end %>
-            <option  value="<%= mins %>"><%= mins %></option>
+            <% if @new_template_view.selected_mins == mins %>
+              <option  selected value="<%= mins %>"><%= mins %></option>
+            <% else %>
+              <option  value="<%= mins %>"><%= mins %></option>
+            <% end %>  
           <%end %>
         </select>
 

@@ -73,6 +73,8 @@ get '/new_template' do
   @new_template_view = NewEventTemplateView.new
   @new_template_controller = NewEventTemplateViewController.new
   @new_template_controller.view = @new_template_view
+  @new_template_view.selected_hours = "01"
+  @new_template_view.selected_mins = "00"
   @new_template_controller.get_default_coach_fees
   erb :new_template
 
