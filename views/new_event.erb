@@ -78,7 +78,7 @@
               </div>
 
               <div class="col-md-3 quarter">
-                <label>Duration</label>
+                <label>Duration <span class="blue">(hh:mm)</span></label>
                 <br>
                 <select name="duration_hours" id="duration_hours" class="form-control selectSmall">
                   <% 24.times do |hours|%>
@@ -122,10 +122,11 @@
                 </select>
               </div>
               <div class="col-md-3 quarter">
-                <label>Cohort</label>
+                <label>Cohort <span class="red">*</span></label>
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
                   <% for cohort in @view.cohorts %>
+                    <option value="Please Choose">Please Choose</option>
                     <% if @view.event.selected_cohort == cohort.name %>
                       <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
                     <% else %>

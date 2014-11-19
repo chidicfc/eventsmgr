@@ -34,13 +34,13 @@
         <!-- https://github.com/victorjonsson/jQuery-Form-Validator/
         Jquery form validator -->
 
-        <label>Duration (hh:mm)</label><br>
+        <label>Duration <span class="blue">(hh:mm)</span></label><br>
         <select name="duration_hours" id="duration_hours" class="formControl1 form-control selectSmall">
           <% 24.times do |hours|%>
             <% if hours < 10 %>
               <% hours = "0%d" % hours %>
             <% end %>
-            <% if @new_template_view.selected_hours == hours %>
+            <% if @new_template_view.selected_duration_hours == hours %>
               <option selected value="<%= hours %>"><%= hours %></option>
             <% else %>
               <option value="<%= hours %>"><%= hours %></option>
@@ -53,11 +53,11 @@
             <% if mins < 10 %>
               <% mins = "0%d" % mins %>
             <% end %>
-            <% if @new_template_view.selected_mins == mins %>
+            <% if @new_template_view.selected_duration_mins == mins %>
               <option  selected value="<%= mins %>"><%= mins %></option>
             <% else %>
               <option  value="<%= mins %>"><%= mins %></option>
-            <% end %>  
+            <% end %>
           <%end %>
         </select>
 

@@ -73,8 +73,8 @@ get '/new_template' do
   @new_template_view = NewEventTemplateView.new
   @new_template_controller = NewEventTemplateViewController.new
   @new_template_controller.view = @new_template_view
-  @new_template_view.selected_hours = "01"
-  @new_template_view.selected_mins = "00"
+  @new_template_view.selected_duration_hours = "01"
+  @new_template_view.selected_duration_mins = "00"
   @new_template_controller.get_default_coach_fees
   erb :new_template
 
@@ -161,6 +161,8 @@ get '/:template_id/new_event' do
 
   if params[:action]=="new"
     session.clear
+    @view.event.duration_hours = "01"
+    @view.event.duration_mins = "00"
   end
 
   @view.event.start_hours = "09"
@@ -212,8 +214,12 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Create Event"
 
-    # duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
-    # start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
+    if @new_event_view.event.selected_cohort == "Please Choose"
+      flash[:error] = "Please choose a cohort"
+      session["event"] = @new_event_view.event
+      redirect "#{params[:template_id]}/new_event"
+    end
+
 
     if session["event"]
 
