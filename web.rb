@@ -128,7 +128,14 @@ end
 
 patch '/event_template/:id' do
 
-  ArchiveEventTemplateController.new.archive params[:id]
+  result = ArchiveEventTemplateController.new.archive params[:id]
+
+  if result
+    flash[:success] = "Template archived!"
+  else
+    flash[:error] = "Dates of Template's events should be earlier than 2 days from now!"
+  end
+
   redirect '/'
 end
 
