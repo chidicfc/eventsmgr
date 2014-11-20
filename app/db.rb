@@ -115,7 +115,7 @@ class DataBaseDataStore
     cohorts
   end
 
-  def load_default_coach_fees template_id="8a9ca4bb85f04a1a9ea1949833d76586"
+  def load_default_coach_fees template_id="8a9ca4bb-85f0-4a1a-9ea1-949833d76586"
     dataset = DB[:coach_fees]
     coach_fee = dataset.insert(:currency => "GBP", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "GBP", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
     coach_fee = dataset.insert(:currency => "USD", :amount => "0.00", :event_template_id => template_id) if dataset.where(:currency => "USD", :amount => "0.00", :event_template_id => template_id, :event_id => nil).all == []
@@ -165,7 +165,7 @@ class DataBaseDataStore
 
   def default_coach_fees
     coach_fees = []
-    DB[:coach_fees].where(Sequel.&(:event_template_id => "8a9ca4bb85f04a1a9ea1949833d76586", :event_id => nil)).each do |coach_fee_row|
+    DB[:coach_fees].where(Sequel.&(:event_template_id => "8a9ca4bb-85f0-4a1a-9ea1-949833d76586", :event_id => nil)).each do |coach_fee_row|
       coach_fee = CoachesFee.from_hash(coach_fee_row)
       coach_fees << coach_fee
     end

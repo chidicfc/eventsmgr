@@ -30,6 +30,7 @@ before'/' do
 end
 
 get '/' do
+  # @controller.broadcast_sso_id params[:sso_id]
   @controller.display_templates
   erb :index
 end

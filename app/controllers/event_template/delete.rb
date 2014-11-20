@@ -37,7 +37,6 @@ class DeleteEventTemplateController
       t = transmitter.transmit transmission
       p "template deleted"
       p t
-      break
     end
 
   end

@@ -42,7 +42,6 @@ class NewEventTemplateViewController
       t = transmitter.transmit transmission
       p "template created"
       p t
-      break
     end
   end
 end

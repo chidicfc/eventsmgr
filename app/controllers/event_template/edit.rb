@@ -46,7 +46,6 @@ class EditEventTemplateViewController
       t = transmitter.transmit transmission
       p "template updated"
       p t
-      break
     end
 
   end
