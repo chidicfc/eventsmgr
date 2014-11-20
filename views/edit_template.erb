@@ -31,7 +31,7 @@
       <label>Title <span class="red">*</span></label>
       <input type="text" class="form-control" value="<%= @edit_template_view.template.title %>" name="title" data-validation="required" data-validation-error-msg="You did not enter a title">
 
-      <label>Duration <span class="blue">(hh:mm)</span></label><br><select class="form-control selectSmall" name="duration_hours" id="duration_hours">
+      <label>Duration <span class="grey">(hh:mm)</span></label><br><select class="form-control selectSmall" name="duration_hours" id="duration_hours">
         <% 24.times do |hours|%>
           <% if hours < 10 %>
             <% hours = "0%d" % hours %>
