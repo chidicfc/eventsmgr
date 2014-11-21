@@ -13,7 +13,7 @@ Antenna.configure do |config|
   config.bands_folder = "lib/bands"
 
   config.name = "eventsmanager.ui"
-  config.frequency = "in.eventsmanager"
+  config.frequency = "in.#{settings.environment[0..3]}.eventsmanager"
 
   #used for testing
   # config.replay = true

@@ -10,7 +10,11 @@ class LegacyData < Antenna::Band
     transmission.event_types.each do |template|
       # StoreEventTemplate.new template
 
-      d = template.duration.split(' ')
+      unless template.duration.nil?
+        d = template.duration.split(' ')
+      else
+        d = ["0", "seconds"]
+      end
 
       if d[0].to_i < 10
         d[0] = "0%s" % d[0]
