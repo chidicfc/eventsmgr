@@ -10,11 +10,18 @@ require 'date'
 
 configure :production do
   DB = Sequel.connect ENV['DATABASE_URL']
+  # set :environment, :production
 end
 
 configure :development do
   DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+  # set :environment, :development
 end
+
+# configure :test do
+#   DB = Sequel.connect ENV['DATABASE_URL']
+#   set :environment, :test
+# end
 
 def create_tables
   DB.create_table? :event_templates do

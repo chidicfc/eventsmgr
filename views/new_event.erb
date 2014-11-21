@@ -125,8 +125,8 @@
                 <label>Cohort <span class="red">*</span></label>
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
+                  <option value="Please Choose">Please Choose</option>
                   <% for cohort in @view.cohorts %>
-                    <option value="Please Choose">Please Choose</option>
                     <% if @view.event.selected_cohort == cohort.name %>
                       <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
                     <% else %>
