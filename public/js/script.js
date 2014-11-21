@@ -11,22 +11,16 @@ $( document ).ready(function() {
 		$(this).closest('.panel-default').fadeOut();
 	});
 
+	$( "button.plus" ).click(function() {
+		buttonsSpan = $("button.plus").find("span.glyphicon").removeClass("glyphicon-minus");
+	});
+
+
 	$( ".panel-title a" ).click(function() {
 		$(this).find('.glyphicon-plus').toggleClass('glyphicon-minus');
 	});
 
-	$( "button.plus" ).click(function() {
 
-		buttonsSpan = $("div#accordion").find("span.glyphicon");
-
-		buttonsSpan.each( function(index, value) {
-
-			if (buttonsSpan[index].className == "glyphicon glyphicon-plus glyphicon-minus") {
-
-				buttonsSpan[index].className = "glyphicon glyphicon-plus";
-			}
-		});
-	});
 
 
 
