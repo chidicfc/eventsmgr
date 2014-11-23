@@ -22,25 +22,10 @@ include Yeasu
 # end
 
 
-Radio::Tunner.listen_on "in.eventsmanager" do |receiver|
+Radio::Tunner.listen_on "in.deve.eventsmanager" do |receiver|
 
   receiver.receive do |transmission|
     puts transmission.tags
-
-    if transmission.tags.include?("legacy_data")
-
-      if File.exists?("legacy_data.yml")
-        data = YAML.load(File.open("legacy_data.yml"))
-
-
-        puts "loaded from legacy_data file!"
-      else
-        File.open("legacy_data.yml", 'w') { |file| file.write(YAML.dump(transmission)) }
-        #File.open("ciabos.data", 'w') { |file| file.write(Oj.dump(transmission)) }
-        puts "saved legacy data to file!"
-      end
-    end
-
 
   end
 

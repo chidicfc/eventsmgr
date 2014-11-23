@@ -1,0 +1,252 @@
+<div class="container search">
+  <form class="navbar-form pull-right" role="search" action="/search_templates_by_name" method="post">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Event Templates" name="search" id="srch-term">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="action" value="GO"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+  </form>
+
+<div class="btn-group btn-group-xs pull-right alphabet">
+  <% for letter in [*'A'..'Z'] %>
+
+      <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></a>
+
+  <% end %>
+</div> <!--class="btn-group btn-group-xs pull-right" -->
+</div> <!--class="container search" -->
+
+<div class="container mainContent createNewEvent">
+  <form id="form_id" method="post">
+        <input type="hidden" name="addEvent" value="addEvent">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Edit <%= @view.template.title %> event</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <h4>Event Details</h4>
+            <label>Subtitle (Location or Reference) <span class="red">*</span></label>
+            <input type="text" name="sub_title" value="<%= @view.event.title %>" class="form-control" data-validation="required" data-validation-error-msg="You did not enter a Subtitle">
+            <label>Date</label>
+            <div class="form-group">
+              <div class="input-group date datePicker">
+                <input type="text" id="datepicker" name="date" value="<%= @view.event.date %>">
+
+              </div>
+            </div>
+            <label>Event Details</label>
+            <% if @view.event.description%>
+               <textarea name="description" class="form-control descript"><%= @view.event.description %></textarea>
+            <% else %>
+              <textarea name="description" class="form-control descript"><%= @view.template.description %></textarea>
+            <% end %>
+
+            <div class="row">
+              <div class="col-md-3 quarter">
+                <label>Local Start time</label>
+                <br>
+                <select name="start_hours" id="start_hours" class="form-control selectSmall">
+                  <% 24.times do |hours|%>
+                    <% if hours < 10 %>
+                      <% hours = "0%d" % hours %>
+                    <% end %>
+                    <% if @view.event.start_time[0].to_s == hours.to_s %>
+                      <option selected  value="<%= hours %>"><%= hours %></option>
+                    <% else %>
+                      <option value="<%= hours %>"><%= hours %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                :
+                <select name="start_mins" id="start_mins" class="form-control selectSmall">
+                  <% 60.times do |mins| %>
+                    <% if mins < 10 %>
+                      <% mins = "0%d" % mins %>
+                    <% end %>
+                    <% if @view.event.start_time[1].to_s == mins.to_s %>
+                      <option selected  value="<%= mins %>"><%= mins %></option>
+                    <%else %>
+                      <option  value="<%= mins %>"><%= mins %></option>
+                    <%end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-md-3 quarter">
+                <label>Duration <span class="grey">(hh:mm)</span></label>
+                <br>
+                <select name="duration_hours" id="duration_hours" class="form-control selectSmall">
+                  <% 24.times do |hours|%>
+                    <% if hours < 10 %>
+                      <% hours = "0%d" % hours %>
+                    <% end %>
+                    <% if @view.event.duration[0].to_s == hours.to_s %>
+                      <option selected  value="<%= hours %>"><%= hours %></option>
+                    <% else %>
+                      <option value="<%= hours %>"><%= hours %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                :
+                <select name="duration_mins" id="duration_mins" class="form-control selectSmall">
+                  <% 60.times do |mins| %>
+                    <% if mins < 10 %>
+                      <% mins = "0%d" % mins %>
+                    <% end %>
+                    <% if @view.event.duration[1].to_s == mins.to_s %>
+                      <option selected  value="<%= mins %>"><%= mins %></option>
+                    <%else %>
+                      <option  value="<%= mins %>"><%= mins %></option>
+                    <%end %>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-md-3 quarter">
+                <label>Timezone</label>
+                <br>
+                <select name="timezone" id="timezone" class="form-control">
+                  <% for timezone in @view.timezones %>
+                    <% if @view.event.selected_time_zone == timezone.name %>
+                      <option selected="<%= timezone.name %>"><%= timezone.name %></option>
+                    <% else %>
+                      <option value="<%= timezone.name %>"><%= timezone.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+
+              </div>
+              <div class="col-md-3 quarter">
+                <label>Cohort</label>
+                <br>
+                <select name="cohort" id="cohort" class="form-control">
+                  <% for cohort in @view.cohorts %>
+                    <% if @view.event.selected_cohort == cohort.name %>
+                      <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
+                    <% else %>
+                      <option value="<%= cohort.name %>"><%= cohort.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+
+              </div>
+            </div>
+          </div>
+
+          <!--stopped here
+
+            var date1 = $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+
+            date1
+            "10/09/2014"
+            §§§
+            var setDate = $( "#datepicker" ).datepicker( "setDate", "10/12/2012" )
+
+          -->
+
+          <div class="col-md-3">
+            <fieldset>
+            <div class="currencies coachesFee">
+              <h4>Coaches Fee</h4>
+
+              <% @view.event.coach_fees.each do |coach_fee| %>
+                <% coach_fee.each do |currency, amount| %>
+                  <span class="noBreak">
+                  <label><%= currency %>:</label>
+                  <input type="text" class="form-control" name="<%= currency%>" value="<%= amount %>">
+                  </span>
+                <% end %>
+              <% end %>
+
+            </div>
+          </fieldset>
+
+
+            <fieldset>
+            <div class="currencies incomeDetails">
+              <h4>Income Details</h4>
+              <label>Income Amount:</label>
+              <input type="text" class="form-control" name="income_amount" value="<%= @view.event.income_amount %>">
+
+
+              <p>
+              <label>Income Currency:</label>
+
+              <select name="income_currency" id="income_currency" class="form-control selectSmall">
+                <% for coach_fee in @view.template.coach_fees %>
+                  <% if @view.event.income_currency == coach_fee.currency %>
+                    <option selected value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                  <% else %>
+                    <option value="<%= coach_fee.currency %>"><%= coach_fee.currency %></option>
+                  <% end %>
+                <% end %>
+              </select>
+              </p>
+
+
+            </div>
+          </fieldset>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9 assignCoaches">
+            <h4>Coaches</h4>
+            <div class="btn-group btn-group-sm">
+
+              <input class="btn btn-default" type="submit" name="action" value="Show All" id="Show All">
+
+              <% for letter in [*'A'..'Z'] %>
+                  <input class="btn btn-default" type="submit" name="action" value="<%= letter %>" id="<%= letter %>">
+              <% end %>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 multiVals">
+            <label><strong>Coaches</strong></label>&nbsp;&nbsp;
+            <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
+              <% if defined? (@view.event.searched_coaches) %>
+                <% for searched_coach in @view.event.searched_coaches %>
+                  <option value="<%= searched_coach.name %>"><%= searched_coach.name %></option>
+                <% end %>
+              <% else  %>
+                <% for coach in @view.coaches %>
+                  <option value="<%= coach.name %>"><%= coach.name %></option>
+                <% end %>
+              <% end %>
+
+            </select>
+
+          </div>
+          <div class="col-md-1 multiControls">
+            <center>
+              <input type="submit" name="action" value="&gt;" id="add_coaches">
+              <input type="submit" name="action" value="&lt;" id="dissociate_coaches">
+              <input type="submit" name="action" value="Reset" id="reset">
+            </center>
+          </div>
+          <div class="col-md-4 multiVals">
+            <label><strong>Assigned Coaches</strong></label>
+            <select name="assigned_coaches[]" multiple="multiple" id="assigned_coaches_list" class="mutiSelect" size="10">
+              <% for coach in @view.event.assigned_coaches %>
+                <option value="<%= coach %>"><%= coach %></option>
+              <%end%>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <input class="btn btn-success pull-right apply" type="submit" name="action" value="Edit Event" id="edit_event">
+            <a href="/"><input class="btn btn-default btn-xs pull-right cancel" type="button" value="Cancel" name="action"></a>
+          </div>
+        </div>
+      </form>
+
+
+
+      <script> $.validate();
+      </script>
