@@ -13,13 +13,13 @@ class LegacyData < Antenna::Band
     transmission.event_types.each do |template|
       # StoreEventTemplate.new template
 
-      unless template.duration.nil?
+      unless template.duration.nil? || template.duration.empty?
         d = template.duration.split(' ')
       else
         d = ["0", "seconds"]
       end
 
-      if d[0].to_i < 10 && (d[1].include? "hour") || (d[1].include? "min") || (d[1].include? "sec") && d[2].nil?
+      if d[0].to_i < 10 && (d[1].include? "hour") || (d[1].include? "min") || (d[1].include? "sec")
         d[0] = "0%s" % d[0]
       end
 
@@ -29,6 +29,14 @@ class LegacyData < Antenna::Band
         template.duration = "00:00"
       elsif (d[1].include? "min") && d[2].nil?
         template.duration = "00:#{d[0]}"
+      elsif (d[1].include? "hour") && (d[3].include? "min")
+        if d[2].to_i < 10
+          d[2] = "0%s" % d[2]
+        end
+        template.duration = "#{d[0]}:#{d[2]}"
+      elsif (d[1].include? "day") && d[2].nil?
+        d[0] = "#{d[0].to_i * 8}"
+        template.duration = "#{d[0]}:00"
       end
 
       dataset = DB[:event_templates]
