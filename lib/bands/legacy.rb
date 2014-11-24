@@ -36,6 +36,9 @@ class LegacyData < Antenna::Band
         template.duration = "#{d[0]}:#{d[2]}"
       elsif (d[1].include? "day") && d[2].nil?
         d[0] = "#{d[0].to_i * 8}"
+        if d[0].to_i < 10
+          d[0] = "0%s" % d[0]
+        end
         template.duration = "#{d[0]}:00"
       end
 
