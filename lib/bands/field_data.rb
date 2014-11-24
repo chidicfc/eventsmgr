@@ -5,7 +5,6 @@ class FieldData < Antenna::Band
     transmission.tags.include? "field_data"
   end
   def tune
-    puts transmission
     begin
     transmission.coaches.each do |coach|
       dataset = DB[:coaches]

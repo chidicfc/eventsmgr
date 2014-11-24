@@ -8,7 +8,6 @@ class LegacyData < Antenna::Band
 
   def tune
     puts "processing legacy data"
-    puts transmission
     begin
     transmission.event_types.each do |template|
       # StoreEventTemplate.new template
