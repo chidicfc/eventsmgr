@@ -15,7 +15,7 @@ Radio::Tunner.broadcast tags: "ciabos,ui,outbound,deve,legacy_data" do |transmit
   event_type.title = "test broadcast"
   event_type.description = "template"
   event_type.id = "ff08f280-54d8-0132-115d-6476baaeb9c4"
-  event_type.duration = "2 days"
+  event_type.duration = "30 minutes"
   event_type.coaches_fees = []
   event_type.events = []
   event_type.timestamp = Time.now.strftime("%d-%m-%Y %H:%M:%S.%2N")

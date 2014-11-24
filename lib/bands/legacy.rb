@@ -19,7 +19,7 @@ class LegacyData < Antenna::Band
         d = ["0", "seconds"]
       end
 
-      if d[0].to_i < 10 && (d[1].include? "hour") || (d[1].include? "min") || (d[1].include? "sec")
+      if (d[0].to_i < 10) && ((d[1].include? "hour") || (d[1].include? "min") || (d[1].include? "sec"))
         d[0] = "0%s" % d[0]
       end
 
@@ -27,7 +27,7 @@ class LegacyData < Antenna::Band
         template.duration = "#{d[0]}:00"
       elsif (d[1].include? "sec") && d[2].nil?
         template.duration = "00:00"
-      elsif (d[1].include? "min") && d[2].nil?
+      elsif (d[1].include? "min")
         template.duration = "00:#{d[0]}"
       elsif (d[1].include? "hour") && (d[3].include? "min")
         if d[2].to_i < 10
