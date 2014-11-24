@@ -100,7 +100,11 @@
                             <table>
                               <tr>
                                 <td>
-                                  <img src="<%= assigned_coach.image %>">
+                                  <% if assigned_coach.image.nil? || assigned_coach.image.empty? %>
+                                    <img src="/images/avatar.gif">
+                                  <% else %>
+                                    <img src="<%= assigned_coach.image %>">
+                                  <% end %>
                                 </td>
                                 <td>
                                   <p>&nbsp;&nbsp;Name: <%= assigned_coach.name %></p>
