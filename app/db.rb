@@ -90,7 +90,7 @@ class DataBaseDataStore
 
   def get_coaches
     coaches = []
-    DB[:coaches].each do |coach_row|
+    DB[:coaches].order(:name).each do |coach_row|
       coach = Coach.from_hash(coach_row)
       coaches << coach
     end
@@ -115,7 +115,7 @@ class DataBaseDataStore
 
   def get_cohorts
     cohorts = []
-    DB[:cohorts].each do |cohort_row|
+    DB[:cohorts].order(:name).each do |cohort_row|
       cohort = Cohort.from_hash(cohort_row)
       cohorts << cohort
     end
