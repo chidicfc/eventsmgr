@@ -6,17 +6,17 @@ require 'date'
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
-# DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
 
-configure :production do
-  DB = Sequel.connect ENV['DATABASE_URL']
-  # set :environment, :production
-end
-
-configure :development do
-  DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
-  # set :environment, :development
-end
+# configure :production do
+#   DB = Sequel.connect ENV['DATABASE_URL']
+#   # set :environment, :production
+# end
+#
+# configure :development do
+#   DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+#   # set :environment, :development
+# end
 
 # configure :test do
 #   DB = Sequel.connect ENV['DATABASE_URL']
@@ -148,7 +148,7 @@ class DataBaseDataStore
 
     unless DB[:event_templates].all == []
 
-      DB[:event_templates].where(:status => "active").each do |event_template_row|
+      DB[:event_templates].order(:title).where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
         DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
           event = Event.from_hash(event_row)

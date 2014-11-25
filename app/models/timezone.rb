@@ -1,4 +1,5 @@
 require "active_support/all"
+require "tzinfo"
 
 class TimeZone
 
@@ -21,15 +22,21 @@ class TimeZone
     end
 
     def get_timezones
-      timezones = []
-      @datastore.get_timezones do |timezone_row|
-        timezone = TimeZone.from_hash(timezone_row)
+      # # timezones = []
+      # # tzinfo_timezones = []
+      # # @datastore.get_timezones do |timezone_row|
+      # #   timezone = TimeZone.from_hash(timezone_row)
+      # #
+      # #   # time_zone = ActiveSupport::TimeZone.new timezone.name
+      # #   # timezone.name = "(GMT#{time_zone.formatted_offset}) #{time_zone.name}"
+      # #   timezones << timezone
+      # # end
+      # timezones
+      TZInfo::Timezone.all
+    end
 
-        time_zone = ActiveSupport::TimeZone.new timezone.name
-        timezone.name = "(GMT#{time_zone.formatted_offset}) #{time_zone.name}"
-        timezones << timezone
-      end
-      timezones
+    def timezones_identifiers
+      TZInfo::Timezone.all_data_zone_identifiers
     end
 
   end

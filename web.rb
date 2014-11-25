@@ -20,6 +20,12 @@ enable :sessions
 #   use Rack::CommonLogger, file
 # end
 
+helpers do
+  def sso_id?
+    session[:status] = false
+  end
+end
+
 
 
 before'/' do
@@ -30,9 +36,25 @@ before'/' do
 end
 
 get '/' do
-  # @controller.broadcast_sso_id params[:sso_id]
-  @controller.display_templates
+    # @controller.broadcast_sso_id params[:sso_id]
+    @controller.display_templates
   erb :index
+end
+
+get '/authenticate/:sso_id' do
+  sso = Session.new(params[:sso_id])
+  sso.braodcast
+
+  erb :authenticating
+
+end
+
+post '/authenticated/:sso_id' do
+
+end
+
+get '/error' do
+  redirect 'http://app.coachinabox.biz'
 end
 
 get '/reset' do
@@ -168,6 +190,7 @@ get '/:template_id/new_event' do
 
   @view.event.start_hours = "09"
   @view.event.start_mins = "00"
+  @view.event.selected_time_zone = "Europe - London" if @view.event.selected_time_zone.nil?
   @view.event.date = Time.now.strftime("%d/%m/%Y")
 
   if session.has_key? "event"

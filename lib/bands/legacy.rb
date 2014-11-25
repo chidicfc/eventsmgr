@@ -1,4 +1,5 @@
 require "pry"
+require "active_support/all"
 
 class LegacyData < Antenna::Band
 
@@ -59,7 +60,7 @@ class LegacyData < Antenna::Band
           template.events.each do |event|
             dataset = DB[:events]
             event.id = UUID.new.generate
-            dataset.insert(:id => event.id, :title => event.subtitle, :duration => template.duration, :event_template_id => template.id, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => event.timezone, :cohort => event.cohort_name)
+            dataset.insert(:id => event.id, :title => event.subtitle, :duration => template.duration, :event_template_id => template.id, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => ActiveSupport::TimeZone.find_tzinfo("#{event.timezone}").to_s, :cohort => event.cohort_name)
 
             unless event.coaches.empty?
               event.coaches.each do |coach|

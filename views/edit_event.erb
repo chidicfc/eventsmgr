@@ -108,10 +108,10 @@
                 <br>
                 <select name="timezone" id="timezone" class="form-control">
                   <% for timezone in @view.timezones %>
-                    <% if @view.event.selected_time_zone == timezone.name %>
-                      <option selected="<%= timezone.name %>"><%= timezone.name %></option>
+                    <% if @view.event.selected_time_zone == timezone.to_s %>
+                      <option selected="<%= timezone.to_s %>"><%= timezone.to_s %></option>
                     <% else %>
-                      <option value="<%= timezone.name %>"><%= timezone.name %></option>
+                      <option value="<%= timezone.to_s %>"><%= timezone.to_s %></option>
                     <% end %>
                   <% end %>
                 </select>

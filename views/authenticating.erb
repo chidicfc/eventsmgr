@@ -1,0 +1,34 @@
+<script charset="utf-8">
+  var pubnub = PUBNUB.init({
+    publish_key: 'pub-c-be2eb8a7-f428-4ed6-809e-54c1bc26c7e8',
+    subscribe_key: 'sub-c-a5ad922a-a9f7-11e3-85d3-02ee2ddab7fe'
+  });
+
+
+
+  //Subscribe to the demo_tutorial channel
+  pubnub.subscribe({
+    channel: 'events-authentication',
+    message: function(m){
+
+      if (m.ok) {
+          window.location = "/authenticated?sso_token=" + m.sso_token
+      }else{
+          window.location = "/error"
+      }
+
+    }
+   });
+</script>
+
+<p>
+  Authenticating <br><img src="/images/spiffygif_30x30.gif" alt="" />
+</p>
+
+<div id="sso_id" class="hidden">
+  <form id="form_id" action=""  method="post">
+    <input type="submit" name="some_name" value="">
+
+  </form>
+
+</div>

@@ -1,10 +1,3 @@
-require "yeasu"
-include Yeasu
-
-Yeasu::Radio.configuration do |config|
-  config.producer.name = "check_sso_id"
-end
-
 class IndexViewController
   attr_accessor :view
 
@@ -29,14 +22,4 @@ class IndexViewController
     @template_repo.load_default_coaches_fee
   end
 
-  def broadcast_sso_id sso_id
-
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,sso" do |transmitter|
-      transmission = Radio::Transmission.new
-      transmission.sso_id = sso_id
-
-      t = transmitter.transmit transmission
-    end
-
-  end
 end
