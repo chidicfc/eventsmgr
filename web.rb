@@ -31,17 +31,15 @@ end
 before'/' do
   @view = IndexView.new
   @controller = IndexViewController.new(@view)
-  @controller.load_default_coaches_fee
-  @controller.display_templates
 end
 
 get '/' do
-    # @controller.broadcast_sso_id params[:sso_id]
+    @controller.load_default_coaches_fee
     @controller.display_templates
   erb :index
 end
 
-get '/authenticate/:sso_id' do
+get '/authenticating/:sso_id' do
   sso = Session.new(params[:sso_id])
   sso.braodcast
 
