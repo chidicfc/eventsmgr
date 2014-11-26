@@ -134,6 +134,8 @@ GEM
       thor
       thread
       uuid
+    yeasu-pubnub (0.0.8)
+      yeasu
 
 PLATFORMS
   ruby
@@ -160,3 +162,4 @@ DEPENDENCIES
   uuid
   wrong
   yeasu
+  yeasu-pubnub

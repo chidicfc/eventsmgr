@@ -25,6 +25,7 @@ gem "antenna"
 gem 'sinatra-flash'
 gem 'pg'
 gem "uuid"
+gem "yeasu-pubnub"
 
 # group :development do
 #   gem 'sqlite3'
