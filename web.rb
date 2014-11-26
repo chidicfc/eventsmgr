@@ -155,7 +155,7 @@ patch '/event_template/:id' do
   if result
     flash[:success] = "Template archived!"
   else
-    flash[:error] = "Dates of Template's events should be earlier than 2 days from now!"
+    flash[:error] = "Can't archive an event template which has live events!"
   end
 
   redirect '/'

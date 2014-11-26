@@ -288,7 +288,7 @@ class DataBaseDataStore
   def isArchive? events
     value = true
     events.each do |event|
-      value = false if Date.today <= (Date.parse(event.date) + 2)
+      value = false if Date.today <= Date.parse(event.date)
     end
     value
   end
