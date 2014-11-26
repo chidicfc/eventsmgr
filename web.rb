@@ -181,11 +181,13 @@ end
 get '/:template_id/new_event' do
 
   @view = NewEventView.new
+  @new_event_controller = NewEventViewController.new(@view)
+  @new_event_controller.get params[:template_id]
 
   if params[:action]=="new"
     session.clear
-    @view.event.duration_hours = "01"
-    @view.event.duration_mins = "00"
+    @view.event.duration_hours = @view.template.duration.split(":")[0]
+    @view.event.duration_mins = @view.template.duration.split(":")[1]
   end
 
   @view.event.start_hours = "09"
@@ -197,12 +199,11 @@ get '/:template_id/new_event' do
     @view.event = session["event"]
   end
 
-  @new_event_controller = NewEventViewController.new(@view)
+
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
   @new_event_controller.get_timezones
-  @new_event_controller.get params[:template_id]
-
+  
   erb :new_event
 end
 
