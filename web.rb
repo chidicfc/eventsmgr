@@ -169,8 +169,10 @@ get '/show_archive' do
 end
 
 patch '/archive_event_template/:id' do
-  @controller = ShowArchiveEventTemplateController.new
+  @view = ShowArchiveEventTemplateView.new
+  @controller = ShowArchiveEventTemplateController.new(@view)
   @controller.unarchive params[:id]
+  redirect '/' if @controller.show.empty?
   redirect '/show_archive'
 end
 
@@ -203,7 +205,7 @@ get '/:template_id/new_event' do
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
   @new_event_controller.get_timezones
-  
+
   erb :new_event
 end
 
