@@ -226,6 +226,9 @@ post '/:template_id/new_event' do
       NewEventView.set_assigned_coaches(@new_event_view, session["event"].assigned_coaches)
     end
 
+    session["event"] = @new_event_view.event
+    redirect "#{params[:template_id]}/new_event#coaches"
+
 
   elsif params[:action] == "<"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
@@ -233,8 +236,14 @@ post '/:template_id/new_event' do
       @new_event_view.event.assigned_coaches.delete("#{assigned_coach}")
     end
 
+    session["event"] = @new_event_view.event
+    redirect "#{params[:template_id]}/new_event#coaches"
+
   elsif params[:action] == "Reset"
     @new_event_view.event.assigned_coaches = []
+
+    session["event"] = @new_event_view.event
+    redirect "#{params[:template_id]}/new_event#coaches"
 
   elsif params[:action] == "Create Event"
 
@@ -287,6 +296,10 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Show All"
     @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+
+    session["event"] = @new_event_view.event
+    redirect "#{params[:template_id]}/new_event#coaches"
+
   else
     for letter in [*'A'..'Z']
       if params[:action] == letter
@@ -294,12 +307,15 @@ post '/:template_id/new_event' do
         @new_event_controller.display_coaches_by_letter letter
       end
     end
+
+    session["event"] = @new_event_view.event
+    redirect "#{params[:template_id]}/new_event#coaches"
   end
 
 
-  session["event"] = @new_event_view.event
-
-  redirect "#{params[:template_id]}/new_event"
+  # session["event"] = @new_event_view.event
+  #
+  # redirect "#{params[:template_id]}/new_event"
 end
 
 
