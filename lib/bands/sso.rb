@@ -1,4 +1,5 @@
 require "pry"
+require "pry-remote"
 require "yeasu/pubnub"
 
 class SSO < Antenna::Band
@@ -7,11 +8,12 @@ class SSO < Antenna::Band
   end
   def tune
     begin
-      binding.pry
+      puts "starting sso transmission"
+      binding.remote_pry
       m =  Pubnub::Outbound::Message.new
       m.channel = "events-authentication"
       m.body.ok = true
-      m.body.sso_token = "simabaisbad"
+      m.body.sso_token = transmission.sso_token
       m.push
 
     rescue => e
