@@ -15,21 +15,11 @@ class Session
 
   def broadcast
 
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,sso" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,stag,sso" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.sso_id = @sso_id
 
       t = transmitter.transmit transmission
-    end
-
-  end
-
-  def receive_user_data
-
-    Radio::Tunner.listen_on "in.stag.eventsmanager" do |receiver|
-      receiver.receive do |transmission|
-        binding.remote_pry
-      end
     end
 
   end

@@ -6,7 +6,7 @@ Yeasu::Radio.configuration do |config|
 end
 
 
-Radio::Tunner.broadcast tags: "ciabos,ui,outbound,deve,sso" do |transmitter|
+Radio::Tunner.broadcast tags: "ciabos,ui,outbound,stag,sso" do |transmitter|
 
   transmission = Radio::Transmission.new
   transmission.sso_token = "123"
