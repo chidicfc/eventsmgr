@@ -11,7 +11,7 @@
 <div class="btn-group btn-group-xs pull-right alphabet">
   <% for letter in [*'A'..'Z'] %>
 
-      <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><label id="<%= letter %>"><%= letter %></label></a>
+      <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><%= letter %></a>
 
   <% end %>
 </div> <!--class="btn-group btn-group-xs pull-right" -->
@@ -110,11 +110,8 @@
                                   <p>&nbsp;&nbsp;Name: <%= assigned_coach.name %></p>
                                   <p>&nbsp;&nbsp;Email: <%= assigned_coach.email %></p>
                                   <p>&nbsp;&nbsp;Calendar</p>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td colspan="2">
-                                  <button type="button" class="btn btn-success btn-xs pull-right">Email</button>
+                                  <p>&nbsp;&nbsp;<a href="mailto:<%= assigned_coach.email %>">Send email</a>
+                                  </p>
                                 </td>
                               </tr>
                             </table>

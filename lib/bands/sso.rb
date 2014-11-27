@@ -9,11 +9,10 @@ class SSO < Antenna::Band
     begin
 
       m =  Pubnub::Outbound::Message.new
-      m.channel = "events-authentication"
       m.body.sso_token = transmission.sso_id
       m.body.ok = true
-      m.transmit_on_outbound
-
+      m.push
+      
     rescue => e
       p e.message
       p e.backtrace
