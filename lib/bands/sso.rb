@@ -9,7 +9,6 @@ class SSO < Antenna::Band
   def tune
     begin
       puts "starting sso transmission"
-      binding.remote_pry
       m =  Pubnub::Outbound::Message.new
       m.channel = "events-authentication"
       m.body.ok = true
