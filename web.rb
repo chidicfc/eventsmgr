@@ -41,7 +41,7 @@ end
 
 get '/authenticating/:sso_id' do
   sso = Session.new(params[:sso_id])
-  sso.braodcast
+  sso.broadcast
 
   erb :authenticating
 

@@ -8,7 +8,7 @@ end
 class Session
   attr_accessor :sso_id
 
-  def initialize
+  def initialize(sso_id)
     @sso_id = sso_id
   end
 
