@@ -111,8 +111,6 @@ post '/new_template' do
   new_template_controller = NewEventTemplateViewController.new
   duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
 
-  #id = SecureRandom.uuid
-
   template = EventTemplate.new
   template.title = params[:title]
   template.duration = duration
