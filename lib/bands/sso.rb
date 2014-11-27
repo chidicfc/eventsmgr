@@ -7,12 +7,13 @@ class SSO < Antenna::Band
   end
   def tune
     begin
-
+      binding.pry
       m =  Pubnub::Outbound::Message.new
-      m.body.sso_token = transmission.sso_id
+      m.channel = "events-authentication"
       m.body.ok = true
+      m.body.sso_token = "simabaisbad"
       m.push
-      
+
     rescue => e
       p e.message
       p e.backtrace

@@ -11,10 +11,10 @@
     channel: 'events-authentication',
     message: function(m){
 
-      if (m.ok) {
-          window.location = "/authenticated?sso_token=" + m.sso_token
+      if (m.indexOf("ok=true") > 0) {
+          window.location = "/authenticated?sso_token=" + m.sso_token;
       }else{
-          window.location = "/error"
+          window.location = "/unauthenticated";
       }
 
     }
