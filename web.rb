@@ -10,9 +10,11 @@ require 'sinatra/flash'
 require_all "app"
 
 
-# enable :sessions
+enable :sessions
 
-use Rack::Session::Cookie, :expire_after => 120, # In seconds
+# use Rack::Session::Cookie, :path => '/',
+#                            :expire_after => 120 # In seconds
+
 
 # configure do
 #   # logging is enabled by default in classic style applications,
@@ -22,21 +24,13 @@ use Rack::Session::Cookie, :expire_after => 120, # In seconds
 #   use Rack::CommonLogger, file
 # end
 
-helpers do
-  def sso_id?
-    session[:status] = false
-  end
-end
-
-
-
 before'/' do
   @view = IndexView.new
   @controller = IndexViewController.new(@view)
 end
 
 get '/' do
-  if sso_id?
+  if session[:status]
     @controller.load_default_coaches_fee
     @controller.display_templates
     erb :index
@@ -48,7 +42,7 @@ end
 
 get '/authenticating/:sso_id' do
 
-  use Rack::Session::Cookie, :expire_after => 120
+
   sso = Session.new(params[:sso_id])
   sso.broadcast
 
@@ -57,10 +51,11 @@ get '/authenticating/:sso_id' do
 end
 
 post '/authenticated' do
-  session[:return_to] = params[:return_to]
+
   session[:sso_token] = params[:sso_token]
   session[:user_timezone] = params[:user_timezone]
   session[:status] = true
+
 
   redirect '/'
 end
@@ -68,7 +63,16 @@ end
 get '/error' do
 
   erb :error
-  # redirect 'http://app.coachinabox.biz'
+  redirect 'http://app.coachinabox.biz'
+end
+
+get '/dashboard' do
+
+  session.clear
+
+  redirect 'https://staging.ciabos.com/dashboard'
+
+
 end
 
 get '/reset' do
