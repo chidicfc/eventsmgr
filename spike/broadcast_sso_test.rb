@@ -38,7 +38,7 @@ value2["roles_mask"] = 255
 session["current_user"] = value2
 
 
-Radio::Tunner.broadcast tags: "ciabos,ui,outbound,deve,sso" do |transmitter|
+Radio::Tunner.broadcast tags: "ciabos,ui,outbound,#{settings.environment[0..3]},sso" do |transmitter|
 
   transmission = Radio::Transmission.new
   transmission.session = session
