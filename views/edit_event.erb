@@ -210,7 +210,7 @@
         </div>
         <div class="row">
           <div class="col-md-4 multiVals">
-            <label><strong>Coaches</strong></label>&nbsp;&nbsp;
+            <label><a id="coaches"><strong>Coaches</strong></a></label>&nbsp;&nbsp;
             <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
               <% if defined? (@view.event.searched_coaches) %>
                 <% for searched_coach in @view.event.searched_coaches %>

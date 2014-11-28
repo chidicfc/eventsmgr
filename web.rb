@@ -401,6 +401,9 @@ post '/event/:template_id/:event_id/edit' do
 
     end
 
+    session["event"] = @view.event
+    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+
 
   elsif params[:action] == "<"
     @view.event.assigned_coaches = session["event"].assigned_coaches
@@ -408,8 +411,14 @@ post '/event/:template_id/:event_id/edit' do
       @view.event.assigned_coaches.delete("#{assigned_coach}")
     end
 
+    session["event"] = @view.event
+    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+
   elsif params[:action] == "Reset"
     @view.event.assigned_coaches = []
+
+    session["event"] = @view.event
+    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
 
   elsif params[:action] == "Edit Event"
 
@@ -442,6 +451,10 @@ post '/event/:template_id/:event_id/edit' do
 
   elsif params[:action] == "Show All"
     @view.event.assigned_coaches = session["event"].assigned_coaches
+
+    session["event"] = @view.event
+    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+
   elsif params[:action] == "Cancel"
     redirect '/'
   else
@@ -451,14 +464,16 @@ post '/event/:template_id/:event_id/edit' do
         @edit_event_controller.display_coaches_by_letter letter
       end
     end
+
+    session["event"] = @view.event
+    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+
   end
 
 
 
-  session["event"] = @view.event
-
-
-  redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+  # session["event"] = @view.event
+  # redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
 
 end
 
