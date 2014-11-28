@@ -364,8 +364,8 @@ get '/event/:template_id/:event_id/edit' do
       session["event"] = nil
     end
 
-    @edit_event_controller.get_event params[:template_id], params[:event_id] unless session.has_key? "event"
-    @view.event = session["event"] if session.has_key? "event"
+    @edit_event_controller.get_event params[:template_id], params[:event_id] if session["event"].nil?
+    @view.event = session["event"] unless session["event"].nil?
     @edit_event_controller.get_coaches
     @edit_event_controller.get_cohorts
     @edit_event_controller.get_timezones

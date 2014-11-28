@@ -47,7 +47,7 @@ class DeleteEventController
       transmission.event.start_mins = event.start_time.split(":")[1]
       transmission.event.duration_hours = event.duration.split(":")[0]
       transmission.event.duration_mins = event.duration.split(":")[1]
-      transmission.event.timezone = event.selected_time_zone.split(" ")[1]
+      transmission.event.timezone = event.selected_time_zone
       transmission.event.cohort = event.selected_cohort
       transmission.event.coach_fees = event.coach_fees
       transmission.event.income_amount = event.income_amount

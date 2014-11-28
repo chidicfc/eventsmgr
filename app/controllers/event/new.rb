@@ -1,4 +1,5 @@
 require "yeasu"
+require "pry-remote"
 include Yeasu
 
 Yeasu::Radio.configuration do |config|
@@ -59,7 +60,7 @@ class NewEventViewController
     transmission.event.start_mins = event.start_mins
     transmission.event.duration_hours = event.duration_hours
     transmission.event.duration_mins = event.duration_mins
-    transmission.event.timezone = event.selected_time_zone.split(" ")[1]
+    transmission.event.timezone = event.selected_time_zone
     transmission.event.cohort = event.selected_cohort
     transmission.event.coach_fees = event.coach_fees
     transmission.event.income_amount = event.income_amount
