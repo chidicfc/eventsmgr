@@ -361,7 +361,7 @@ get '/event/:template_id/:event_id/edit' do
     @edit_event_controller = EditEventViewController.new(@view)
 
     if params[:action]=="new"
-      session.clear
+      session["event"] = nil
     end
 
     @edit_event_controller.get_event params[:template_id], params[:event_id] unless session.has_key? "event"
@@ -437,7 +437,7 @@ post '/event/:template_id/:event_id/edit' do
     @edit_event_controller.transmit_edited_event @view.event
 
 
-    session.clear
+    session["event"] = nil
     redirect '/'
 
   elsif params[:action] == "Show All"
