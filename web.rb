@@ -36,12 +36,11 @@ get '/' do
     erb :index
 
   else
-    erb :error
+    redirect 'http://app.coachinabox.biz'
   end
 end
 
 get '/authenticating/:sso_id' do
-
 
   sso = Session.new(params[:sso_id])
   sso.broadcast
@@ -56,36 +55,38 @@ post '/authenticated' do
   session[:user_timezone] = params[:user_timezone]
   session[:status] = true
 
-
   redirect '/'
 end
 
 get '/error' do
-
-  erb :error
   redirect 'http://app.coachinabox.biz'
 end
 
 get '/dashboard' do
 
   session.clear
-
   redirect 'https://staging.ciabos.com/dashboard'
-
-
 end
 
 get '/reset' do
-  @controller = ResetTemplateController.new
-  @controller.reset
+  if session[:status]
+    @controller = ResetTemplateController.new
+    @controller.reset
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 
 get '/event_template/:id/edit' do |n|
-  @edit_template_view = EditEventTemplateView.new
-  @edit_template_controller = EditEventTemplateViewController.new(@edit_template_view)
-  @edit_template_controller.get n
-  erb :edit_template
+  if session[:status]
+    @edit_template_view = EditEventTemplateView.new
+    @edit_template_controller = EditEventTemplateViewController.new(@edit_template_view)
+    @edit_template_controller.get n
+    erb :edit_template
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 patch '/edit_template/:id' do
@@ -110,14 +111,17 @@ patch '/edit_template/:id' do
 end
 
 get '/new_template' do
-
-  @new_template_view = NewEventTemplateView.new
-  @new_template_controller = NewEventTemplateViewController.new
-  @new_template_controller.view = @new_template_view
-  @new_template_view.selected_duration_hours = "01"
-  @new_template_view.selected_duration_mins = "00"
-  @new_template_controller.get_default_coach_fees
-  erb :new_template
+  if session[:status]
+    @new_template_view = NewEventTemplateView.new
+    @new_template_controller = NewEventTemplateViewController.new
+    @new_template_controller.view = @new_template_view
+    @new_template_view.selected_duration_hours = "01"
+    @new_template_view.selected_duration_mins = "00"
+    @new_template_controller.get_default_coach_fees
+    erb :new_template
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 
 end
 
@@ -148,20 +152,23 @@ post '/new_template' do
 end
 
 delete '/event_template/:id' do
+  if session[:status]
+    # params.to_s
+    template = DeleteEventTemplateController.new.get params[:id]
 
-  # params.to_s
-  template = DeleteEventTemplateController.new.get params[:id]
+    result = DeleteEventTemplateController.new.delete params[:id]
 
-  result = DeleteEventTemplateController.new.delete params[:id]
+    if result
+      flash[:success] = "#{template.title} template deleted!"
+    else
+      flash[:error] = "Templates with events can't be deleted!"
+    end
 
-  if result
-    flash[:success] = "#{template.title} template deleted!"
+    DeleteEventTemplateController.new.transmit_deleted_template template
+    redirect '/'
   else
-    flash[:error] = "Templates with events can't be deleted!"
+    redirect 'http://app.coachinabox.biz'
   end
-
-  DeleteEventTemplateController.new.transmit_deleted_template template
-  redirect '/'
 end
 
 patch '/event_template/:id' do
@@ -178,10 +185,14 @@ patch '/event_template/:id' do
 end
 
 get '/show_archive' do
-  @show_archive_view = ShowArchiveEventTemplateView.new
-  @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
-  @show_archive_controller.show
-  erb :archive
+  if session[:status]
+    @show_archive_view = ShowArchiveEventTemplateView.new
+    @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
+    @show_archive_controller.show
+    erb :archive
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 patch '/archive_event_template/:id' do
@@ -193,38 +204,45 @@ patch '/archive_event_template/:id' do
 end
 
 get '/show_event_templates' do
-  redirect '/'
+  if session[:status]
+    redirect '/'
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 get '/:template_id/new_event' do
+  if session[:status]
+    @view = NewEventView.new
+    @new_event_controller = NewEventViewController.new(@view)
+    @new_event_controller.get params[:template_id]
 
-  @view = NewEventView.new
-  @new_event_controller = NewEventViewController.new(@view)
-  @new_event_controller.get params[:template_id]
+    if params[:action]=="new"
+      session["event"] = nil
+      @view.event.duration_hours = @view.template.duration.split(":")[0]
+      @view.event.duration_mins = @view.template.duration.split(":")[1]
+    end
 
-  if params[:action]=="new"
-    session["event"] = nil
-    @view.event.duration_hours = @view.template.duration.split(":")[0]
-    @view.event.duration_mins = @view.template.duration.split(":")[1]
+    @view.event.start_hours = "09"
+    @view.event.start_mins = "00"
+
+
+    @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
+    @view.event.date = Time.now.strftime("%d/%m/%Y")
+
+    if !(session["event"].nil?)
+      @view.event = session["event"]
+    end
+
+
+    @new_event_controller.get_coaches
+    @new_event_controller.get_cohorts
+    @new_event_controller.get_timezones
+
+    erb :new_event
+  else
+    redirect 'http://app.coachinabox.biz'
   end
-
-  @view.event.start_hours = "09"
-  @view.event.start_mins = "00"
-
-
-  @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
-  @view.event.date = Time.now.strftime("%d/%m/%Y")
-
-  if !(session["event"].nil?)
-    @view.event = session["event"]
-  end
-
-
-  @new_event_controller.get_coaches
-  @new_event_controller.get_cohorts
-  @new_event_controller.get_timezones
-
-  erb :new_event
 end
 
 post '/:template_id/new_event' do
@@ -342,22 +360,26 @@ end
 
 get '/event/:template_id/:event_id/edit' do
 
-  @view = EditEventView.new
-  @edit_event_controller = EditEventViewController.new(@view)
+  if session[:status]
+    @view = EditEventView.new
+    @edit_event_controller = EditEventViewController.new(@view)
 
-  if params[:action]=="new"
-    session.clear
+    if params[:action]=="new"
+      session.clear
+    end
+
+    @edit_event_controller.get_event params[:template_id], params[:event_id] unless session.has_key? "event"
+    @view.event = session["event"] if session.has_key? "event"
+    @edit_event_controller.get_coaches
+    @edit_event_controller.get_cohorts
+    @edit_event_controller.get_timezones
+    @edit_event_controller.get params[:template_id]
+
+    session["event"] = @view.event
+    erb :edit_event
+  else
+    redirect 'http://app.coachinabox.biz'
   end
-
-  @edit_event_controller.get_event params[:template_id], params[:event_id] unless session.has_key? "event"
-  @view.event = session["event"] if session.has_key? "event"
-  @edit_event_controller.get_coaches
-  @edit_event_controller.get_cohorts
-  @edit_event_controller.get_timezones
-  @edit_event_controller.get params[:template_id]
-
-  session["event"] = @view.event
-  erb :edit_event
 end
 
 post '/event/:template_id/:event_id/edit' do
@@ -445,33 +467,41 @@ post '/event/:template_id/:event_id/edit' do
 end
 
 get '/event/:template_id/:event_id/delete' do
-  @view = DeleteEventView.new
-  @controller = DeleteEventController.new(@view)
+  if session[:status]
+    @view = DeleteEventView.new
+    @controller = DeleteEventController.new(@view)
 
-  @controller.get_event params[:template_id], params[:event_id]
+    @controller.get_event params[:template_id], params[:event_id]
 
-  if @view.event.assigned_coaches.count == 0
-    event = @view.event
-    @controller.get_cohorts
-    @controller.delete params[:event_id], params[:template_id]
-    flash[:success] = "#{event.title} Event deleted!"
+    if @view.event.assigned_coaches.count == 0
+      event = @view.event
+      @controller.get_cohorts
+      @controller.delete params[:event_id], params[:template_id]
+      flash[:success] = "#{event.title} Event deleted!"
 
-    cohort = @view.cohorts.find { |cohort| cohort.name == event.selected_cohort }
-    event.selected_cohort = cohort.id
+      cohort = @view.cohorts.find { |cohort| cohort.name == event.selected_cohort }
+      event.selected_cohort = cohort.id
 
-    @controller.transmit_deleted_event event
+      @controller.transmit_deleted_event event
+    else
+      flash[:error] = "Events with coaches can't be deleted!"
+    end
+
+    redirect '/'
   else
-    flash[:error] = "Events with coaches can't be deleted!"
+    redirect 'http://app.coachinabox.biz'
   end
-
-  redirect '/'
 end
 
 get '/search_templates_by_letter/:letter' do
-  @view = IndexView.new
-  @controller = IndexViewController.new(@view)
-  @controller.display_templates_by_letter params[:letter], "active"
-  erb :index
+  if session[:status]
+    @view = IndexView.new
+    @controller = IndexViewController.new(@view)
+    @controller.display_templates_by_letter params[:letter], "active"
+    erb :index
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 post '/search_templates_by_name' do
@@ -485,10 +515,14 @@ post '/search_templates_by_name' do
 end
 
 get '/search_archive_templates_by_letter/:letter' do
-  @show_archive_view = ShowArchiveEventTemplateView.new
-  @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
-  @controller.display_templates_by_letter params[:letter], "archive"
-  erb :archive
+  if session[:status]
+    @show_archive_view = ShowArchiveEventTemplateView.new
+    @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
+    @controller.display_templates_by_letter params[:letter], "archive"
+    erb :archive
+  else
+    redirect 'http://app.coachinabox.biz'
+  end
 end
 
 post '/search_archive_templates_by_name' do
