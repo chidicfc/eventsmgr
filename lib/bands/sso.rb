@@ -9,11 +9,20 @@ class SSO < Antenna::Band
   def tune
     begin
       puts "starting sso transmission"
+
       m =  Pubnub::Outbound::Message.new
       m.channel = "events-authentication"
-      m.body.ok = true
-      m.body.sso_token = transmission.sso_token
-      m.push
+
+      if transmission.status == "pass"
+        puts transmission.status
+        m.body.ok = true
+        m.body.sso_token = transmission.session["session"]["session_id"]
+        m.push
+      else
+        puts transmission.status
+        m.body.ok = false
+        m.push
+      end
 
     rescue => e
       p e.message

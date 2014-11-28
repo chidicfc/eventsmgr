@@ -47,12 +47,15 @@ get '/authenticating/:sso_id' do
 
 end
 
-post '/authenticated/:sso_id' do
-
+post '/authenticated' do
+  session[:status] = true
+  erb :success
 end
 
 get '/error' do
-  redirect 'http://app.coachinabox.biz'
+
+  erb :error
+  # redirect 'http://app.coachinabox.biz'
 end
 
 get '/reset' do
@@ -183,7 +186,7 @@ get '/:template_id/new_event' do
   @new_event_controller.get params[:template_id]
 
   if params[:action]=="new"
-    session.clear
+    session["event"] = nil
     @view.event.duration_hours = @view.template.duration.split(":")[0]
     @view.event.duration_mins = @view.template.duration.split(":")[1]
   end
@@ -193,7 +196,7 @@ get '/:template_id/new_event' do
   @view.event.selected_time_zone = "Europe - London" if @view.event.selected_time_zone.nil?
   @view.event.date = Time.now.strftime("%d/%m/%Y")
 
-  if session.has_key? "event"
+  if !(session["event"].nil?)
     @view.event = session["event"]
   end
 

@@ -12,9 +12,10 @@
     message: function(m){
 
       if (m.ok) {
-          window.location = "/authenticated?sso_token=" + m.sso_token;
+          // window.location = "/authenticated?sso_token=" + m.sso_token;
+          $("#form_id").submit();
       }else{
-          window.location = "/unauthenticated";
+          window.location = "/error";
       }
 
     }
@@ -26,8 +27,9 @@
 </p>
 
 <div id="sso_id" class="hidden">
-  <form id="form_id" action=""  method="post">
-    <input type="submit" name="some_name" value="">
+  <form id="form_id" action="/authenticated"  method="post">
+    <input type="text" name="sso_token" value="">
+    <input type="submit" name="authenticate" value="submit">
 
   </form>
 
