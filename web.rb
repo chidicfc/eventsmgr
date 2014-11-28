@@ -58,10 +58,6 @@ post '/authenticated' do
   redirect '/'
 end
 
-get '/error' do
-  redirect 'http://app.coachinabox.biz'
-end
-
 get '/dashboard' do
 
   session.clear
@@ -330,7 +326,7 @@ post '/:template_id/new_event' do
 
     end
 
-    session.clear
+    session["event"] = nil
     redirect '/'
 
   elsif params[:action] == "Show All"
