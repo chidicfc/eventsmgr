@@ -6,7 +6,7 @@ Yeasu::Radio.configuration do |config|
 end
 
 
-Radio::Tunner.broadcast tags: "ciabos,ui,outbound,stag,legacy" do |transmitter|
+Radio::Tunner.broadcast tags: "ciabos,ui,outbound,#{settings.environment[0..3]},legacy" do |transmitter|
 
   transmission = Radio::Transmission.new
   transmission.event_types = OpenStruct.new

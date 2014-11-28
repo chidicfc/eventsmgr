@@ -36,7 +36,7 @@ class DeleteEventController
   def transmit_deleted_event event
 
 
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,delete_event,stag" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,delete_event,#{settings.environment[0..3]}" do |transmitter|
       transmission = Radio::Transmission.new
 
       transmission.event = OpenStruct.new
