@@ -13,6 +13,11 @@ configure :production do
   # set :environment, :production
 end
 
+configure :staging do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  # set :environment, :production
+end
+
 configure :development do
   DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
   # set :environment, :development
