@@ -210,7 +210,9 @@ get '/:template_id/new_event' do
 
   @view.event.start_hours = "09"
   @view.event.start_mins = "00"
-  @view.event.selected_time_zone = "Europe - London" if @view.event.selected_time_zone.nil?
+
+
+  @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
   @view.event.date = Time.now.strftime("%d/%m/%Y")
 
   if !(session["event"].nil?)
