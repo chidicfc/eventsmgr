@@ -17,6 +17,8 @@ class SSO < Antenna::Band
         puts transmission.status
         m.body.ok = true
         m.body.sso_token = transmission.session["session"]["session_id"]
+        m.body.user_timezone = transmission.session["timezone"]
+        m.body.return_to = transmission.session["session"]["return_to"]
         m.push
       else
         puts transmission.status

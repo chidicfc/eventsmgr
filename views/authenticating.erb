@@ -13,6 +13,9 @@
 
       if (m.ok) {
           // window.location = "/authenticated?sso_token=" + m.sso_token;
+          $("input[name=sso_token]").val(m.sso_token);
+          $("input[name=user_timezone]").val(m.user_timezone);
+          $("input[name=return_to]").val(m.return_to);
           $("#form_id").submit();
       }else{
           window.location = "/error";
@@ -29,6 +32,8 @@
 <div id="sso_id" class="hidden">
   <form id="form_id" action="/authenticated"  method="post">
     <input type="text" name="sso_token" value="">
+    <input type="text" name="user_timezone" value="">
+    <input type="text" name="return_to" value="">
     <input type="submit" name="authenticate" value="submit">
 
   </form>

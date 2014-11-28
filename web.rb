@@ -48,6 +48,9 @@ get '/authenticating/:sso_id' do
 end
 
 post '/authenticated' do
+  session[:return_to] = params[:return_to]
+  session[:sso_token] = params[:sso_token]
+  session[:user_timezone] = params[:user_timezone]
   session[:status] = true
   erb :success
 end
