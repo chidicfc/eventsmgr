@@ -10,7 +10,9 @@ require 'sinatra/flash'
 require_all "app"
 
 
-enable :sessions
+# enable :sessions
+
+use Rack::Session::Cookie, :expire_after => 120, # In seconds
 
 # configure do
 #   # logging is enabled by default in classic style applications,
@@ -34,12 +36,19 @@ before'/' do
 end
 
 get '/' do
+  if sso_id?
     @controller.load_default_coaches_fee
     @controller.display_templates
-  erb :index
+    erb :index
+
+  else
+    erb :error
+  end
 end
 
 get '/authenticating/:sso_id' do
+
+  use Rack::Session::Cookie, :expire_after => 120
   sso = Session.new(params[:sso_id])
   sso.broadcast
 
@@ -52,7 +61,8 @@ post '/authenticated' do
   session[:sso_token] = params[:sso_token]
   session[:user_timezone] = params[:user_timezone]
   session[:status] = true
-  erb :success
+
+  redirect '/'
 end
 
 get '/error' do
