@@ -24,7 +24,7 @@ class NewEventTemplateViewController
   end
 
   def transmit_new_template template
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,new_event_template,#{settings.environment[0..3]}" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,new_event_template,stag" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.event_type = OpenStruct.new
       transmission.event_type.title = template.title

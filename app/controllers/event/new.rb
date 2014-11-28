@@ -7,7 +7,7 @@ end
 
 
 class EventTransmission < Radio::Transmission
-  tags "ciabos,ui,inbound,new_event,#{settings.environment[0..3]}"
+  tags "ciabos,ui,inbound,new_event,stag"
 end
 
 class NewEventViewController

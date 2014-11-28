@@ -22,7 +22,7 @@ include Yeasu
 # end
 
 
-Radio::Tunner.listen_on "in.#{settings.environment[0..3]}.eventsmanager" do |receiver|
+Radio::Tunner.listen_on "in.#{stag[0..3]}.eventsmanager" do |receiver|
 
   receiver.receive do |transmission|
     puts transmission.tags
