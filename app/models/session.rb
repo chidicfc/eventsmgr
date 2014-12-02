@@ -15,7 +15,7 @@ class Session
 
   def broadcast
 
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,stag,sso" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,#{ENV["YEASU_ENV"]},sso" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.sso_id = @sso_id
 

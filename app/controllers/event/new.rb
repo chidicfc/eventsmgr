@@ -9,7 +9,7 @@ end
 
 
 class EventTransmission < Radio::Transmission
-  tags "ciabos,ui,inbound,new_event,stag"
+  tags "ciabos,ui,inbound,new_event,#{ENV["YEASU_ENV"]}"
 end
 
 class NewEventViewController

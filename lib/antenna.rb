@@ -13,7 +13,7 @@ Antenna.configure do |config|
   config.bands_folder = "lib/bands"
 
   config.name = "eventsmanager.ui"
-  config.frequency = "in.stag.eventsmanager"
+  config.frequency = "in.#{ENV["YEASU_ENV"]}.eventsmanager"
 
   #used for testing
   # config.replay = true
