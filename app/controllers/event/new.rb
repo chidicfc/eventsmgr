@@ -9,7 +9,7 @@ end
 
 
 class EventTransmission < Radio::Transmission
-  tags "ciabos,ui,inbound,new_event,deve"
+  tags "ciabos,ui,inbound,new_event,stag"
 end
 
 class NewEventViewController

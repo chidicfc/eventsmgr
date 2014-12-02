@@ -6,7 +6,7 @@ Yeasu::Radio.configuration do |config|
 end
 
 
-Radio::Tunner.broadcast tags: "ciabos,ui,inbound,field_data,deve" do |transmitter|
+Radio::Tunner.broadcast tags: "ciabos,ui,inbound,field_data,stag" do |transmitter|
   transmission = Radio::Transmission.new
 
   t = transmitter.transmit transmission
