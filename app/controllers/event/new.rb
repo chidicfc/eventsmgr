@@ -1,5 +1,6 @@
 require "yeasu"
 require "pry-remote"
+# require "resolv-replace.rb"
 include Yeasu
 
 Yeasu::Radio.configuration do |config|
@@ -8,7 +9,7 @@ end
 
 
 class EventTransmission < Radio::Transmission
-  tags "ciabos,ui,inbound,new_event,stag"
+  tags "ciabos,ui,inbound,new_event,deve"
 end
 
 class NewEventViewController

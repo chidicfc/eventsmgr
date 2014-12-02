@@ -52,9 +52,6 @@
 
   <body>
 
-    <div id="version">
-    </div>
-
     <!-- Static navbar -->
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -68,10 +65,10 @@
           <a class="navbar-brand" href="#">
             <img src="/img/logo.png" class="logo">
           </a>
-        </div>
+        </div> <!-- class="navbar-header" -->
 
-      </div>
-    </div>
+      </div>  <!-- container -->
+    </div> <!-- class="navbar navbar-default navbar-static-top" -->
 
     <div id="flash">
       <%= styled_flash %>
@@ -80,8 +77,8 @@
 
 
       <%= yield %>
-    </div>
 
+  </div>
 
 
 

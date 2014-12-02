@@ -21,7 +21,7 @@ class DeleteEventTemplateController
 
   def transmit_deleted_template template
     #template = @template_repo.get id
-    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,delete_event_template,stag" do |transmitter|
+    Radio::Tunner.broadcast tags: "ciabos,ui,inbound,delete_event_template,deve" do |transmitter|
       transmission = Radio::Transmission.new
       transmission.event_type = OpenStruct.new
       transmission.event_type.title = template.title

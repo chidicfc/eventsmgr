@@ -13,13 +13,13 @@
   </form>
 
 
-<div class="btn-group btn-group-xs pull-right alphabet">
-  <% for letter in [*'A'..'Z'] %>
+  <div class="btn-group btn-group-xs pull-right alphabet">
+    <% for letter in [*'A'..'Z'] %>
 
-      <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><%= letter %></a>
+        <a href="/search_templates_by_letter/<%= letter %>" class="btn btn-default"><%= letter %></a>
 
-  <% end %>
-</div> <!--class="btn-group btn-group-xs pull-right" -->
+    <% end %>
+  </div> <!--class="btn-group btn-group-xs pull-right" -->
 </div> <!--class="container search" -->
 
 <div class="container mainContent createNewEvent">
@@ -28,12 +28,13 @@
     <div class="row">
       <div class="col-md-12">
         <h3>Create New Event Template</h3>
-      </div>
-    </div>
+      </div> <!--class="col-md-12" -->
+    </div>  <!--class="row" -->
     <div class="row">
       <div class="col-md-6">
         <label>Title <span class="red">*</span></label>
-        <input type="text" class="form-control" name="title" data-validation="required" data-validation-error-msg="You did not enter a title">
+        <input type="text" class="form-control" name="title" required>
+        <!-- <input type="text" class="form-control" name="title" data-validation="required" data-validation-error-msg="You did not enter a title"> -->
 
         <!-- https://github.com/victorjonsson/jQuery-Form-Validator/
         Jquery form validator -->
@@ -80,20 +81,20 @@
           <% end %>
           <input type="hidden" name="count" value="<%= count %>">
 
-        </div>
+        </div> <!--class="currencies" -->
       </fieldset>
 
-      </div>
+    </div> <!--class="col-md-6" -->
 
       <div class="col-md-6">
         <label>Description</label>
         <textarea name="description" class="form-control descript"></textarea>
       </div>
-    </div>
+    </div> <!--class="row" -->
     <div class="row">
       <div class="col-md-12">
         <input class="btn btn-success pull-right apply" type="submit" value="Create Template" name="action">
-        <a href="/"><input class="btn btn-default btn-xs pull-right cancel" name="action" type="button" value="Cancel"></a>
+        <a href="/" class="btn btn-default btn-xs pull-right cancel" style="cursor:pointer; cursor: hand;">Cancel</a>
       </div>
     </div>
   </form>
