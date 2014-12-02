@@ -56,8 +56,11 @@
                     <span onclick="$(this).parent().submit()">Delete</span>
                   </form>
                 </a>
-
-                <a class="btn btn-primary btn-xs pull-right">
+                <% if template.isArchive%>
+                  <a class="btn btn-primary btn-xs pull-right">
+                <% else %>
+                  <a class="btn btn-default btn-xs pull-right grey">
+                <% end %>
                   <form name="archiveForm" action="/event_template/<%= template.id %>" method="post">
                     <input type="hidden" name="_method" value="Patch" />
                     <span onclick="$(this).parent().submit()">Archive</span>

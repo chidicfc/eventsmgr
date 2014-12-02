@@ -21,5 +21,5 @@ class IndexViewController
   def load_default_coaches_fee
     @template_repo.load_default_coaches_fee
   end
-  
+
 end

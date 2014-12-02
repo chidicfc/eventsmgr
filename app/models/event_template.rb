@@ -1,6 +1,6 @@
 class EventTemplate
 
-  attr_accessor :title, :duration, :description
+  attr_accessor :title, :duration, :description, :isArchive
   attr_accessor :events, :coach_fees, :id, :status
 
   def initialize()

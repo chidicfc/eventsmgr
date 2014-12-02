@@ -171,6 +171,8 @@ class DataBaseDataStore
           event_template.coach_fees << coach_fee
         end
 
+        event_template.isArchive = isArchive? event_template.events
+
         templates << event_template
       end
     end
