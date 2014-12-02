@@ -94,16 +94,11 @@
                           </button>
                         </a>
                       </td>
-                      <td>
-                        <% unless event.assigned_coaches.count == 0 %>
-                          <% for assigned_coach in event.assigned_coaches %>
-                            <% @view.coaches_emails << assigned_coach.email %>
-                          <% end %>
-                          <% coaches_emails = @view.coaches_emails.join(";") %>
-                          &nbsp;&nbsp;<a href="mailto:<%= coaches_emails %>">Email all coaches</a>
-                        <% end %>
-                      </td>
-
+                      <% unless event.coaches_emails.nil? && event.coaches_emails.empty? %>
+                        <td>
+                          &nbsp;&nbsp;<a href="mailto:<%=event.coaches_emails.join(';') %>">Email coach/coaches</a>
+                        </td>
+                      <% end %>
                     </tr>
                   </table>
                   <div id="eventPopoverContent<%= event.id %>" style="display: none">

@@ -3,13 +3,14 @@ class Event
   attr_accessor :title, :date, :description, :coach_fees, :id
   attr_accessor :start_time, :duration, :event_template_id
   attr_accessor :assigned_coaches, :selected_time_zone, :selected_cohort, :coaches
-  attr_accessor :income_amount, :income_currency
+  attr_accessor :income_amount, :income_currency, :coaches_emails
 
   def initialize (title, event_template_id)
     @title = title
     @event_template_id = event_template_id
     @assigned_coaches = []
     @coach_fees = []
+    @coaches_emails = []
     @id = UUID.new.generate
   end
 

@@ -160,6 +160,7 @@ class DataBaseDataStore
           if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
             DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
               assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+              event.coaches_emails << assigned_coach.email
               event.assigned_coaches << assigned_coach
             end
           end
