@@ -3,12 +3,26 @@ require 'pry-remote'
 require 'yaml'
 require 'chronic_duration'
 require 'date'
+require 'sinatra'
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
 # DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
 
+configure :production do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :production
+end
 
+configure :staging do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :staging
+end
+
+configure :development do
+  DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+  set :environment, :development
+end
 
 # configure :test do
 #   DB = Sequel.connect ENV['DATABASE_URL']
