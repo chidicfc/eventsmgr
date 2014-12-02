@@ -12,17 +12,23 @@ require_all "app"
 
 enable :sessions
 
-# use Rack::Session::Cookie, :path => '/',
-#                            :expire_after => 120 # In seconds
+
+configure :production do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :production
+end
+
+configure :staging do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :staging
+end
+
+configure :development do
+  DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+  set :environment, :development
+end
 
 
-# configure do
-#   # logging is enabled by default in classic style applications,
-#   # so `enable :logging` is not needed
-#   file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
-#   file.sync = true
-#   use Rack::CommonLogger, file
-# end
 
 before'/' do
   @view = IndexView.new
