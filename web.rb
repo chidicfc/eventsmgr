@@ -308,6 +308,7 @@ post '/:template_id/new_event' do
 
     if @new_event_view.event.selected_cohort == "Please Choose"
       flash[:error] = "Please choose a cohort"
+      @new_event_view.event.assigned_coaches = session["event"].assigned_coaches if session["event"].assigned_coaches
       session["event"] = @new_event_view.event
       redirect "#{params[:template_id]}/new_event"
     end
