@@ -417,27 +417,49 @@ post '/event/:template_id/:event_id/edit' do
 
 
   if params[:action] == ">"
-    params["coaches"].each do |coach|
-      @view.event.assigned_coaches << coach
+    unless params[:coaches].nil?
+      params["coaches"].each do |coach|
+        @view.event.assigned_coaches << coach
+      end
+
+      if session["event"]
+        EditEventViewController.set_assigned_coaches(@view, session["event"].assigned_coaches)
+
+      end
+
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+    else
+
+      flash[:error] = "Please choose a coach"
+
+      if session["event"]
+        EditEventViewController.set_assigned_coaches(@view, session["event"].assigned_coaches)
+
+      end
+
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+
     end
-
-    if session["event"]
-      EditEventViewController.set_assigned_coaches(@view, session["event"].assigned_coaches)
-
-    end
-
-    session["event"] = @view.event
-    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
 
 
   elsif params[:action] == "<"
-    @view.event.assigned_coaches = session["event"].assigned_coaches
-    params["assigned_coaches"].each do |assigned_coach|
-      @view.event.assigned_coaches.delete("#{assigned_coach}")
-    end
+    unless params[:assigned_coaches].nil?
 
-    session["event"] = @view.event
-    redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+      @view.event.assigned_coaches = session["event"].assigned_coaches
+      params["assigned_coaches"].each do |assigned_coach|
+        @view.event.assigned_coaches.delete("#{assigned_coach}")
+      end
+
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
+    else
+      flash[:error] = "Please choose an assigned coach"
+      @view.event.assigned_coaches = session["event"].assigned_coaches if session["event"]
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+    end
 
   elsif params[:action] == "Reset"
     @view.event.assigned_coaches = []
