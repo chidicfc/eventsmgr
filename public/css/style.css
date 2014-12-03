@@ -612,3 +612,9 @@ select.startTime{
 .hidden{
 	display: none;
 }
+.plus span{
+	left: 6px !important;
+	top: 5px !important;
+	text-indent: 0px;
+	position: absolute;
+}
