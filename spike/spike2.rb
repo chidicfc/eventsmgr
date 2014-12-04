@@ -19,8 +19,8 @@ puts
 # puts "COACHES"
 # p DB[:coaches].all
 # puts
-puts "TIMEZONES"
-p DB[:timezones].all
-puts
+# puts "TIMEZONES"
+# p DB[:timezones].all
+# puts
 # puts "COHORTS"
 # p DB[:cohorts].all

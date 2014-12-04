@@ -54,7 +54,7 @@ end
 get '/dashboard' do
 
   session.clear
-  redirect 'https://staging.ciabos.com/dashboard'
+  redirect 'http://app.coachinabox.biz'
 end
 
 get '/reset' do
@@ -216,9 +216,9 @@ get '/:template_id/new_event' do
     @view.event.start_mins = "00"
 
 
-    @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
+  #  @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
 
-    # @view.event.selected_time_zone = "Europe - London"
+    @view.event.selected_time_zone = "Europe - London"
     @view.event.date = Time.now.strftime("%d/%m/%Y")
 
     if !(session["event"].nil?)
@@ -390,6 +390,7 @@ get '/event/:template_id/:event_id/edit' do
     @edit_event_controller.get params[:template_id]
 
     session["event"] = @view.event
+
     erb :edit_event
   else
     redirect 'http://app.coachinabox.biz'

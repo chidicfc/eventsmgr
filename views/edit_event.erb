@@ -56,7 +56,7 @@
                     <% if hours < 10 %>
                       <% hours = "0%d" % hours %>
                     <% end %>
-                    <% if @view.event.start_time[0].to_s == hours.to_s %>
+                    <% if @view.event.start_time.split(":")[0].to_s == hours.to_s %>
                       <option selected  value="<%= hours %>"><%= hours %></option>
                     <% else %>
                       <option value="<%= hours %>"><%= hours %></option>
@@ -69,7 +69,7 @@
                     <% if mins < 10 %>
                       <% mins = "0%d" % mins %>
                     <% end %>
-                    <% if @view.event.start_time[1].to_s == mins.to_s %>
+                    <% if @view.event.start_time.split(":")[1].to_s == mins.to_s %>
                       <option selected  value="<%= mins %>"><%= mins %></option>
                     <%else %>
                       <option  value="<%= mins %>"><%= mins %></option>
@@ -85,7 +85,7 @@
                     <% if hours < 10 %>
                       <% hours = "0%d" % hours %>
                     <% end %>
-                    <% if @view.event.duration[0].to_s == hours.to_s %>
+                    <% if @view.event.duration.split(":")[0].to_s == hours.to_s %>
                       <option selected  value="<%= hours %>"><%= hours %></option>
                     <% else %>
                       <option value="<%= hours %>"><%= hours %></option>
@@ -98,7 +98,7 @@
                     <% if mins < 10 %>
                       <% mins = "0%d" % mins %>
                     <% end %>
-                    <% if @view.event.duration[1].to_s == mins.to_s %>
+                    <% if @view.event.duration.split(":")[1].to_s == mins.to_s %>
                       <option selected  value="<%= mins %>"><%= mins %></option>
                     <%else %>
                       <option  value="<%= mins %>"><%= mins %></option>

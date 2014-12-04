@@ -40,8 +40,6 @@ class EditEventViewController
 
   def get_event template_id, event_id
     @view.event = @event_repo.get_event template_id, event_id
-    @view.event.start_time = split_time @view.event.start_time
-    @view.event.duration = split_time @view.event.duration
   end
 
   def self.from_params params, template_id
