@@ -111,7 +111,7 @@
                 <br>
                 <select name="timezone" id="timezone" class="form-control">
                   <% for timezone in @view.timezones %>
-                    <% if @view.event.selected_time_zone == timezone.to_s %>
+                    <% if @view.event.selected_time_zone.to_s == timezone.to_s %>
                       <option selected="<%= timezone.to_s %>"><%= timezone.to_s %></option>
                     <% else %>
                       <option value="<%= timezone.to_s %>"><%= timezone.to_s %></option>
@@ -125,10 +125,10 @@
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
                   <% for cohort in @view.cohorts %>
-                    <% if @view.event.selected_cohort == cohort.name %>
-                      <option selected value="<%= cohort.name %>"><%= cohort.name %></option>
+                    <% if @view.event.selected_cohort.to_s == cohort.name.to_s %>
+                      <option selected value="<%= cohort.name.to_s %>"><%= cohort.name.to_s %></option>
                     <% else %>
-                      <option value="<%= cohort.name %>"><%= cohort.name %></option>
+                      <option value="<%= cohort.name.to_s %>"><%= cohort.name.to_s %></option>
                     <% end %>
                   <% end %>
                 </select>
