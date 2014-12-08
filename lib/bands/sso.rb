@@ -20,10 +20,12 @@ class SSO < Antenna::Band
         m.body.user_timezone = transmission.session["timezone"]
         m.body.return_to = transmission.session["session"]["return_to"]
         m.push
+        puts "Sent sso authentication - pass"
       else
         puts transmission.status
         m.body.ok = false
         m.push
+        puts "Sent sso authentication - fail"
       end
 
     rescue => e
