@@ -7,7 +7,7 @@ class CoachUpdate < Antenna::Band
   def tune
     begin
       dataset = DB[:coaches]
-      dataset.insert(:id => coach.id, :name => coach.name, :email => coach.email, :image => coach.image) if dataset.where(:id => coach.id.to_i).all.empty?
+      dataset.insert(:id => transmission.id, :name => transmission.name, :email => transmission.email, :image => transmission.image) if dataset.where(:id => transmission.id.to_i).all.empty?
     rescue => e
       puts "rescue starting"
       p e.message
