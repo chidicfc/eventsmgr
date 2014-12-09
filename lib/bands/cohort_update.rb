@@ -6,7 +6,8 @@ class CohortUpdate < Antenna::Band
   end
   def tune
     begin
-      DB[:cohorts].insert(:id => transmission.cohort.id, :name => transmission.cohort.name) if dataset.where(:id => transmission.cohort.id.to_i).all.empty?
+      dataset = DB[:cohorts]
+      dataset.insert(:id => transmission.cohort.id, :name => transmission.cohort.name) if dataset.where(:id => transmission.cohort.id.to_i).all.empty?
     rescue => e
       puts "rescue starting"
       p e.message
