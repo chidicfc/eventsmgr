@@ -4,6 +4,8 @@ class CoachUpdate < Antenna::Band
   def tunnable?
     transmission.tags.include? "coach_updated"
   end
+
+  
   def tune
     begin
       dataset = DB[:coaches]

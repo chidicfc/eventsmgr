@@ -4,6 +4,7 @@ class CohortUpdate < Antenna::Band
   def tunnable?
     transmission.tags.include? "cohort_updated"
   end
+  
   def tune
     begin
       dataset = DB[:cohorts]
