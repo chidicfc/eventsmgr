@@ -7,8 +7,9 @@
 
 
   //Subscribe to the demo_tutorial channel
+  console.log("<%=@sso_id %>-events-authentication");
   pubnub.subscribe({
-    channel: 'events-authentication',
+    channel: "<%=@sso_id %>-events-authentication",
     message: function(m){
 
       if (m.ok) {

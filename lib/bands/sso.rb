@@ -11,7 +11,7 @@ class SSO < Antenna::Band
       puts "starting sso transmission"
 
       m =  Pubnub::Outbound::Message.new
-      m.channel = "events-authentication"
+      m.channel = "#{transmission.session["session"]["session_id"]}-events-authentication"
 
       if transmission.status == "pass"
         puts transmission.status
