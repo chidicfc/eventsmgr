@@ -48,6 +48,7 @@ def create_tables
     String :start_time
     String :timezone
     String :cohort
+    Integer :cohort_id
     String :income_amount
     String :income_currency
 

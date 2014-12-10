@@ -58,7 +58,7 @@ class LegacyData < Antenna::Band
           unless template.events.empty?
             template.events.each do |event|
               dataset = DB[:events]
-              dataset.insert(:id => event.uuid, :title => event.subtitle, :duration => template.duration, :event_template_id => template.uuid, :date => Date.parse(event.start_time).strftime("%d/%m/%Y"), :start_time => event.start_time.split(" ")[1], :timezone => ActiveSupport::TimeZone.find_tzinfo("#{event.timezone}").to_s, :cohort => event.cohort_name)
+              dataset.insert(:id => event.uuid,:income_amount => event.income_amount,:income_currency => event.income_currency,:title => event.subtitle,:duration => template.duration,:description => event.details,:event_template_id => template.uuid,:date => Date.parse(event.start_time).strftime("%d/%m/%Y"),:start_time => event.start_time.split(" ")[1],:timezone => ActiveSupport::TimeZone.find_tzinfo("#{event.timezone}").to_s,:cohort => event.cohort_name,:cohort_id => event.cohort_id)
 
               unless event.coaches.empty?
                 event.coaches.each do |coach|
@@ -67,8 +67,8 @@ class LegacyData < Antenna::Band
                 end
               end
 
-              unless template.coaches_fees.empty?
-                template.coaches_fees.each do |coaches_fee|
+              unless event.coaches_fees.empty?
+                event.coaches_fees.each do |coaches_fee|
                   dataset = DB[:coach_fees]
                   coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.uuid, :event_id => event.uuid)
                 end
