@@ -85,7 +85,7 @@ def create_tables
 
   DB.create_table? :cohorts do
     primary_key :id
-    String :name, :unique=>true
+    String :name
   end
 
 end
