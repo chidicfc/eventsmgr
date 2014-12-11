@@ -8,12 +8,12 @@ class FieldData < Antenna::Band
     begin
       transmission.coaches.each do |coach|
         dataset = DB[:coaches]
-        dataset.insert(:id => coach.id, :name => coach.name, :email => coach.email, :image => coach.image) if dataset.where(:id => coach.id).all == []
+        dataset.insert(:id => coach.id, :name => coach.name, :email => coach.email, :image => coach.image) if dataset.where(:id => coach.id.to_i).all == []
       end
 
       transmission.cohorts.each do |cohort|
         dataset = DB[:cohorts]
-        dataset.insert(:id => cohort.id, :name => cohort.name) if dataset.where(:id => cohort.id).all == []
+        dataset.insert(:id => cohort.id, :name => cohort.name) if dataset.where(:id => cohort.id.to_i).all == []
       end
 
 
