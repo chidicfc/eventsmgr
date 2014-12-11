@@ -125,10 +125,10 @@
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
                   <% for cohort in @view.cohorts %>
-                    <% if @view.event.selected_cohort.to_s == cohort.name.to_s %>
-                      <option selected value="<%= cohort.name.to_s %>"><%= cohort.name.to_s %></option>
+                    <% if @view.event.selected_cohort_id.to_i == cohort.id %>
+                      <option selected value="<%= cohort.id %>"><%= cohort.name.to_s %></option>
                     <% else %>
-                      <option value="<%= cohort.name.to_s %>"><%= cohort.name.to_s %></option>
+                      <option value="<%= cohort.id %>"><%= cohort.name.to_s %></option>
                     <% end %>
                   <% end %>
                 </select>

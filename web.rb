@@ -242,6 +242,7 @@ post '/:template_id/new_event' do
 
   @new_event_view = NewEventView.from_params params, params[:template_id]
 
+
   @new_event_controller = NewEventViewController.new(@new_event_view)
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
@@ -323,9 +324,6 @@ post '/:template_id/new_event' do
 
       @new_event_view.event.assigned_coaches = assigned_coaches_ids
 
-      cohort = @new_event_view.cohorts.find { |cohort| cohort.name == @new_event_view.event.selected_cohort }
-      @new_event_view.event.selected_cohort = cohort.id
-
 
       @new_event_controller.transmit_new_event @new_event_view.event
     else
@@ -385,6 +383,7 @@ get '/event/:template_id/:event_id/edit' do
     end
 
     @edit_event_controller.get_event params[:template_id], params[:event_id] if session["event"].nil?
+
     @view.event = session["event"] unless session["event"].nil?
     @edit_event_controller.get_coaches
     @edit_event_controller.get_cohorts
@@ -392,7 +391,6 @@ get '/event/:template_id/:event_id/edit' do
     @edit_event_controller.get params[:template_id]
 
     session["event"] = @view.event
-
 
 
     erb :edit_event
@@ -405,6 +403,7 @@ post '/event/:template_id/:event_id/edit' do
 
 
   @view = EditEventViewController.from_params params, params[:template_id]
+
 
   @edit_event_controller = EditEventViewController.new(@view)
 
@@ -426,6 +425,7 @@ post '/event/:template_id/:event_id/edit' do
       end
 
       session["event"] = @view.event
+      
       redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
     else
 
@@ -486,8 +486,7 @@ post '/event/:template_id/:event_id/edit' do
 
     @view.event.assigned_coaches = assigned_coaches_ids
 
-    cohort = @view.cohorts.find { |cohort| cohort.name == @view.event.selected_cohort }
-    @view.event.selected_cohort = cohort.id
+
     @edit_event_controller.transmit_edited_event @view.event
 
 

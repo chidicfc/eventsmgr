@@ -330,7 +330,8 @@ class DataBaseDataStore
   def update_event event
     #template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
     DB.transaction do
-      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
+      
+      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:cohort_id => event.selected_cohort_id,:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
       event.coach_fees.each do |coach_fee|
         coach_fee.each do |currency, amount|
@@ -366,10 +367,21 @@ class DataBaseDataStore
     end
   end
 
+  def get_cohort id
+    cohort_name = nil
+    DB[:cohorts].where(:id => id).each do |cohort_row|
+      cohort = Cohort.from_hash(cohort_row)
+      cohort_name = cohort.name
+    end
+    cohort_name
+
+  end
+
   #check this
   def get_event template_id, event_id
     DB[:events].where(:id => event_id).each do |event_row|
       @event = Event.from_hash(event_row)
+      @event.selected_cohort = get_cohort @event.selected_cohort_id
 
       DB[:coach_fees].where(Sequel.&(:event_id => event_id, :event_template_id => template_id)).each do |coach_fee_row|
         coach_fee = CoachesFee.from_hash(coach_fee_row)

@@ -2,8 +2,8 @@ class Event
 
   attr_accessor :title, :date, :description, :coach_fees, :id
   attr_accessor :start_time, :duration, :event_template_id
-  attr_accessor :assigned_coaches, :selected_time_zone, :selected_cohort, :coaches
-  attr_accessor :income_amount, :income_currency, :coaches_emails
+  attr_accessor :assigned_coaches, :selected_time_zone, :selected_cohort_id, :coaches
+  attr_accessor :income_amount, :income_currency, :coaches_emails, :selected_cohort
 
   def initialize (title, event_template_id)
     @title = title
@@ -22,7 +22,7 @@ class Event
     event.date = row[:date]
     event.start_time = row[:start_time]
     event.selected_time_zone = row[:timezone]
-    event.selected_cohort = row[:cohort]
+    event.selected_cohort_id = row[:cohort_id]
     event.income_amount = row[:income_amount]
     event.income_currency = row[:income_currency]
     event

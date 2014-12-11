@@ -62,7 +62,7 @@ class NewEventViewController
     transmission.event.duration_hours = event.duration_hours
     transmission.event.duration_mins = event.duration_mins
     transmission.event.timezone = event.selected_time_zone
-    transmission.event.cohort = event.selected_cohort
+    transmission.event.cohort = event.selected_cohort_id
     transmission.event.coach_fees = event.coach_fees
     transmission.event.income_amount = event.income_amount
     transmission.event.income_currency = event.selected_income_currency

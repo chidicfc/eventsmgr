@@ -52,7 +52,7 @@ class EditEventViewController
     view.event.date = params["date"]
     view.event.description = params["description"]
     view.event.selected_time_zone = params["timezone"]
-    view.event.selected_cohort = params["cohort"]
+    view.event.selected_cohort_id = params["cohort"]
     view.event.income_amount = params["income_amount"]
     view.event.income_currency = params["income_currency"]
     view.event.start_time = "#{params[:start_hours]}:#{params[:start_mins]}"
@@ -97,7 +97,7 @@ class EditEventViewController
       transmission.event.duration_hours = event.duration.split(":")[0]
       transmission.event.duration_mins = event.duration.split(":")[1]
       transmission.event.timezone = event.selected_time_zone
-      transmission.event.cohort = event.selected_cohort
+      transmission.event.cohort = event.selected_cohort_id
       transmission.event.coach_fees = event.coach_fees
       transmission.event.income_amount = event.income_amount
       transmission.event.income_currency = event.income_currency
