@@ -306,7 +306,7 @@ class DataBaseDataStore
   def add_event event
     event.id = UUID.new.generate
     DB.transaction do
-      DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
+      DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort_id => event.selected_cohort_id, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
 
       event.coach_fees.each do |coaches_fee|

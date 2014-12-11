@@ -28,7 +28,7 @@ class NewEventView
     view.event.duration = "#{params["duration_hours"]}:#{params["duration_mins"]}"
     view.event.start_time = "#{params["start_hours"]}:#{params["start_mins"]}"
     view.event.selected_time_zone = params["timezone"]
-    view.event.selected_cohort = params["cohort"]
+    view.event.selected_cohort_id = params["cohort"]
     view.event.income_amount = params["income_amount"]
     view.event.selected_income_currency = params["income_currency"]
 
