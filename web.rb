@@ -23,7 +23,7 @@ before'/' do
 end
 
 get '/' do
-  if session[:status] = true
+  if session[:status]
     @controller.load_default_coaches_fee
     @controller.display_templates
     erb :index
@@ -59,7 +59,7 @@ get '/dashboard' do
 end
 
 get '/reset' do
-  if session[:status] = true
+  if session[:status]
     @controller = ResetTemplateController.new
     @controller.reset
   else
@@ -69,7 +69,7 @@ end
 
 
 get '/event_template/:id/edit' do |n|
-  if session[:status] = true
+  if session[:status]
     @edit_template_view = EditEventTemplateView.new
     @edit_template_controller = EditEventTemplateViewController.new(@edit_template_view)
     @edit_template_controller.get n
@@ -101,7 +101,7 @@ patch '/edit_template/:id' do
 end
 
 get '/new_template' do
-  if session[:status] = true
+  if session[:status]
     @new_template_view = NewEventTemplateView.new
     @new_template_controller = NewEventTemplateViewController.new
     @new_template_controller.view = @new_template_view
@@ -142,7 +142,7 @@ post '/new_template' do
 end
 
 delete '/event_template/:id' do
-  if session[:status] = true
+  if session[:status]
     # params.to_s
     template = DeleteEventTemplateController.new.get params[:id]
 
@@ -175,7 +175,7 @@ patch '/event_template/:id' do
 end
 
 get '/show_archive' do
-  if session[:status] = true
+  if session[:status]
     @show_archive_view = ShowArchiveEventTemplateView.new
     @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
     @show_archive_controller.show
@@ -194,7 +194,7 @@ patch '/archive_event_template/:id' do
 end
 
 get '/show_event_templates' do
-  if session[:status] = true
+  if session[:status]
     redirect '/'
   else
     redirect 'http://app.coachinabox.biz/users/sign_in'
@@ -202,7 +202,7 @@ get '/show_event_templates' do
 end
 
 get '/:template_id/new_event' do
-  if session[:status] = true
+  if session[:status]
     @view = NewEventView.new
     @new_event_controller = NewEventViewController.new(@view)
     @new_event_controller.get params[:template_id]
@@ -217,9 +217,9 @@ get '/:template_id/new_event' do
     @view.event.start_mins = "00"
 
 
-    # @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
+    @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
 
-    @view.event.selected_time_zone = "Europe - London"
+    #@view.event.selected_time_zone = "Europe - London"
     @view.event.date = Time.now.strftime("%d/%m/%Y")
 
     if !(session["event"].nil?)
@@ -374,7 +374,7 @@ end
 
 get '/event/:template_id/:event_id/edit' do
 
-  if session[:status] = true
+  if session[:status]
     @view = EditEventView.new
     @edit_event_controller = EditEventViewController.new(@view)
 
@@ -425,7 +425,7 @@ post '/event/:template_id/:event_id/edit' do
       end
 
       session["event"] = @view.event
-      
+
       redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
     else
 
@@ -522,7 +522,7 @@ post '/event/:template_id/:event_id/edit' do
 end
 
 get '/event/:template_id/:event_id/delete' do
-  if session[:status] = true
+  if session[:status]
     @view = DeleteEventView.new
     @controller = DeleteEventController.new(@view)
 
@@ -549,7 +549,7 @@ get '/event/:template_id/:event_id/delete' do
 end
 
 get '/search_templates_by_letter/:letter' do
-  if session[:status] = true
+  if session[:status]
     @view = IndexView.new
     @controller = IndexViewController.new(@view)
     @controller.display_templates_by_letter params[:letter], "active"
@@ -570,7 +570,7 @@ post '/search_templates_by_name' do
 end
 
 get '/search_archive_templates_by_letter/:letter' do
-  if session[:status] = true
+  if session[:status]
     @show_archive_view = ShowArchiveEventTemplateView.new
     @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
     @controller.display_templates_by_letter params[:letter], "archive"
