@@ -32,7 +32,7 @@ class TimeZone
       # #   timezones << timezone
       # # end
       # timezones
-      TZInfo::Timezone.all
+      ActiveSupport::TimeZone.all
     end
 
     def timezones_identifiers
