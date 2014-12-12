@@ -217,9 +217,9 @@ get '/:template_id/new_event' do
     @view.event.start_mins = "00"
 
 
-    @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
+    #@view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
 
-    #@view.event.selected_time_zone = "Europe - London"
+    @view.event.selected_time_zone = "Europe - London"
     @view.event.date = Time.now.strftime("%d/%m/%Y")
 
     if !(session["event"].nil?)
@@ -302,9 +302,9 @@ post '/:template_id/new_event' do
 
   elsif params[:action] == "Create Event"
 
-    if @new_event_view.event.selected_cohort == "Please Choose"
+    if @new_event_view.event.selected_cohort_id == "Please Choose"
       flash[:error] = "Please choose a cohort"
-      @new_event_view.event.assigned_coaches = session["event"].assigned_coaches if session["event"].assigned_coaches
+      @new_event_view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
       session["event"] = @new_event_view.event
       redirect "#{params[:template_id]}/new_event"
     end

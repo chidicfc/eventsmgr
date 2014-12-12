@@ -411,7 +411,7 @@ class DataBaseDataStore
       DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].order(:title).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
             event.assigned_coaches << assigned_coach
           end
