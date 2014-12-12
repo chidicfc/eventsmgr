@@ -4,6 +4,7 @@ require "date"
 require "sinatra"
 require "require_all"
 require 'sinatra/flash'
+require "active_support/all"
 
 
 
@@ -217,7 +218,7 @@ get '/:template_id/new_event' do
     @view.event.start_mins = "00"
 
 
-    @view.event.selected_time_zone = session["user_timezone"].gsub('/', ' - ') if @view.event.selected_time_zone.nil?
+    @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{session["user_timezone"]}") if @view.event.selected_time_zone.nil?
 
     #@view.event.selected_time_zone = "Europe - London"
     @view.event.date = Time.now.strftime("%d/%m/%Y")
