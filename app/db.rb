@@ -107,7 +107,7 @@ class DataBaseDataStore
 
   def search_coaches_by_letter letter
     coaches = []
-    DB[:coaches].where(Sequel.like(:name, "#{letter}%")).each do |coach_row|
+    DB[:coaches].order(:name).where(Sequel.like(:name, "#{letter}%")).each do |coach_row|
       coach = Coach.from_hash(coach_row)
       coaches << coach
     end
@@ -157,10 +157,10 @@ class DataBaseDataStore
 
       DB[:event_templates].order(:title).where(:status => "active").each do |event_template_row|
         event_template = EventTemplate.from_hash(event_template_row)
-        DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
+        DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
           event = Event.from_hash(event_row)
           if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-            DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+            DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
               assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
               event.coaches_emails << assigned_coach.email
               event.assigned_coaches << assigned_coach
@@ -216,10 +216,10 @@ class DataBaseDataStore
   def get template_id
     DB[:event_templates].where(:id => template_id).each do |event_template_row|
       @event_template = EventTemplate.from_hash(event_template_row)
-      DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
+      DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
             event.assigned_coaches << assigned_coach
           end
@@ -330,7 +330,7 @@ class DataBaseDataStore
   def update_event event
     #template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
     DB.transaction do
-      
+
       DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:cohort_id => event.selected_cohort_id,:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
 
       event.coach_fees.each do |coach_fee|
@@ -388,7 +388,7 @@ class DataBaseDataStore
         @event.coach_fees << {"#{coach_fee.currency}" => "#{coach_fee.amount}"}
       end
 
-      DB[:assigned_coaches].where(:event_id => event_id).each do |assigned_coach_row|
+      DB[:assigned_coaches].order(:name).where(:event_id => event_id).each do |assigned_coach_row|
         assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
         @event.assigned_coaches << assigned_coach.name
       end
@@ -406,12 +406,12 @@ class DataBaseDataStore
 
   def search_templates_by_letter letter, status
     templates = []
-    DB[:event_templates].where(Sequel.like(:title, "#{letter}%")).where(:status => status).each do |event_template_row|
+    DB[:event_templates].order(:title).where(Sequel.like(:title, "#{letter}%")).where(:status => status).each do |event_template_row|
       event_template = EventTemplate.from_hash(event_template_row)
-      DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
+      DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].order(:title).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
             event.assigned_coaches << assigned_coach
           end
@@ -436,12 +436,12 @@ class DataBaseDataStore
     capitalize_name = name.capitalize
     lowercase_name = name.downcase
 
-    DB[:event_templates].where(Sequel.|(Sequel.like(:title, "%#{capitalize_name}%"), Sequel.like(:title, "%#{lowercase_name}%") ) ).where(:status => status).each do |event_template_row|
+    DB[:event_templates].order(:title).where(Sequel.|(Sequel.like(:title, "%#{capitalize_name}%"), Sequel.like(:title, "%#{lowercase_name}%") ) ).where(:status => status).each do |event_template_row|
       event_template = EventTemplate.from_hash(event_template_row)
-      DB[:events].where(:event_template_id => event_template_row[:id]).each do |event_row|
+      DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
             event.assigned_coaches << assigned_coach
           end
