@@ -57,7 +57,7 @@ def create_tables
   DB.create_table? :coaches do
     primary_key :id
     foreign_key :event_id, :type => :uuid
-    String :name, :unique=>true
+    String :name
     String :email
     String :image
   end
