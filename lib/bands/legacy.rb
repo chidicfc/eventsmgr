@@ -58,7 +58,7 @@ class LegacyData < Antenna::Band
           unless template.events.empty?
             template.events.each do |event|
               dataset = DB[:events]
-              dataset.insert(:id => event.uuid,:income_amount => event.income_amount,:income_currency => event.income_currency,:title => event.subtitle,:duration => template.duration,:description => event.details,:event_template_id => template.uuid,:date => Date.parse(event.start_time).strftime("%d/%m/%Y"),:start_time => event.start_time.split(" ")[1],:timezone => ActiveSupport::TimeZone.new("#{event.timezone}").to_s,:cohort => event.cohort_name,:cohort_id => event.cohort_id)
+              dataset.insert(:id => event.uuid,:income_amount => event.income_amount,:income_currency => event.income_currency,:title => event.subtitle,:duration => event.duration,:description => event.details,:event_template_id => template.uuid,:date => Date.parse(event.start_time).strftime("%d/%m/%Y"),:start_time => event.start_time.split(" ")[1],:timezone => ActiveSupport::TimeZone.new("#{event.timezone}").to_s,:cohort => event.cohort_name,:cohort_id => event.cohort_id)
 
               unless event.coaches.empty?
                 event.coaches.each do |coach|
