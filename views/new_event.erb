@@ -255,7 +255,7 @@
             <label><strong>Assigned Coaches</strong></label>
             <select name="assigned_coaches[]" multiple="multiple" id="assigned_coaches_list" class="mutiSelect" size="10">
               <% for coach in @view.event.assigned_coaches %>
-                <option value="<%= coach %>"><%= coach %></option>
+                <option value="<%= coach.coach_id %>"><%= coach.name %></option>
               <%end%>
             </select>
           </div>

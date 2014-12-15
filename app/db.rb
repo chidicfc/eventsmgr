@@ -56,7 +56,6 @@ def create_tables
 
   DB.create_table? :coaches do
     primary_key :id
-    foreign_key :event_id, :type => :uuid
     String :name
     String :email
     String :image
@@ -65,9 +64,7 @@ def create_tables
   DB.create_table? :assigned_coaches do
     primary_key :id
     foreign_key :event_id, :type => :uuid
-    String :name
-    String :email
-    String :image
+    foreign_key :coach_id
   end
 
   DB.create_table? :coach_fees do
@@ -102,6 +99,14 @@ class DataBaseDataStore
       coaches << coach
     end
     coaches
+  end
+
+  def get_coach id
+    coach = nil
+    DB[:coaches].where(:id => id).each do |coach_row|
+      coach = Coach.from_hash(coach_row)
+    end
+    coach
   end
 
 
@@ -160,10 +165,13 @@ class DataBaseDataStore
         DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
           event = Event.from_hash(event_row)
           if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-            DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+            DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
               assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-              event.coaches_emails << assigned_coach.email
-              event.assigned_coaches << assigned_coach
+              DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+                coach = Coach.from_hash(coach_row)
+                event.coaches_emails << coach.email
+                event.assigned_coaches << coach
+              end
             end
           end
           event_template.events << event
@@ -219,9 +227,12 @@ class DataBaseDataStore
       DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            event.assigned_coaches << assigned_coach
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+              coach = Coach.from_hash(coach_row)
+              event.assigned_coaches << coach
+            end
           end
         end
         @event_template.events << event
@@ -275,7 +286,11 @@ class DataBaseDataStore
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
           DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            event.assigned_coaches << assigned_coach
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+              coach = Coach.from_hash(coach_row)
+              event.coaches_emails << coach.email
+              event.assigned_coaches << coach
+            end
           end
         end
         event_template.events << event
@@ -316,11 +331,11 @@ class DataBaseDataStore
       end
 
       if event.assigned_coaches != []
-        event.assigned_coaches.each do |assigned_coach_name|
+        event.assigned_coaches.each do |assigned_coach|
           #find coach by name
-          DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
-            assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            DB[:assigned_coaches].insert(:event_id => event.id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
+          DB[:coaches].where(:id => assigned_coach.coach_id).each do |assigned_coach_row|
+            assigned_coach = Coach.from_hash(assigned_coach_row)
+            DB[:assigned_coaches].insert(:event_id => event.id, :coach_id => assigned_coach.coach_id)
           end
         end
       end
@@ -340,12 +355,9 @@ class DataBaseDataStore
       end
 
       DB[:assigned_coaches].where(:event_id => event.id).delete
-      event.assigned_coaches.each do |assigned_coach_name|
-        #find coach by name
-        DB[:coaches].where(:name => assigned_coach_name).each do |assigned_coach_row|
-          assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-          DB[:assigned_coaches].insert(:event_id => event.id, :name => assigned_coach.name, :email => assigned_coach.email, :image => assigned_coach.image)
-        end
+      
+      event.assigned_coaches.each do |assigned_coach|
+        DB[:assigned_coaches].insert(:event_id => event.id, :coach_id => assigned_coach.coach_id)
       end
 
     end
@@ -388,10 +400,16 @@ class DataBaseDataStore
         @event.coach_fees << {"#{coach_fee.currency}" => "#{coach_fee.amount}"}
       end
 
-      DB[:assigned_coaches].order(:name).where(:event_id => event_id).each do |assigned_coach_row|
+
+      DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
         assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-        @event.assigned_coaches << assigned_coach.name
+        DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+          coach = Coach.from_hash(coach_row)
+          @event.coaches_emails << coach.email
+          @event.assigned_coaches << coach
+        end
       end
+
     end
     @event
   end
@@ -411,9 +429,13 @@ class DataBaseDataStore
       DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            event.assigned_coaches << assigned_coach
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+              coach = Coach.from_hash(coach_row)
+              event.coaches_emails << coach.email
+              event.assigned_coaches << coach
+            end
           end
         end
         event_template.events << event
@@ -441,9 +463,13 @@ class DataBaseDataStore
       DB[:events].order(:title).where(:event_template_id => event_template_row[:id]).each do |event_row|
         event = Event.from_hash(event_row)
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
-          DB[:assigned_coaches].order(:name).where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+          DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            event.assigned_coaches << assigned_coach
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+              coach = Coach.from_hash(coach_row)
+              event.coaches_emails << coach.email
+              event.assigned_coaches << coach
+            end
           end
         end
         event_template.events << event

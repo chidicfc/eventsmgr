@@ -53,7 +53,7 @@ class NewEventView
       initial_assigned_coaches << assigned_coaches
     end
     view.event.assigned_coaches = initial_assigned_coaches
-    view.event.assigned_coaches.uniq!
+    view.event.assigned_coaches.uniq! {|coach| coach.coach_id}
   end
 
   def has_coach_fee? name

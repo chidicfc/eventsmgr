@@ -232,7 +232,7 @@ get '/:template_id/new_event' do
     @new_event_controller.get_coaches
     @new_event_controller.get_cohorts
     @new_event_controller.get_timezones
-    
+
 
     erb :new_event
   else
@@ -254,7 +254,8 @@ post '/:template_id/new_event' do
 
   if params[:action] == ">"
     unless params[:coaches].nil?
-      params["coaches"].each do |coach|
+      params["coaches"].each do |id|
+        coach = @new_event_controller.get_coach id
         @new_event_view.event.assigned_coaches << coach
       end
 
@@ -282,7 +283,7 @@ post '/:template_id/new_event' do
 
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
       params["assigned_coaches"].each do |assigned_coach|
-        @new_event_view.event.assigned_coaches.delete("#{assigned_coach}")
+        @new_event_view.event.assigned_coaches.delete_if {|ac| ac.coach_id == assigned_coach.to_i}
       end
 
       session["event"] = @new_event_view.event
@@ -318,29 +319,10 @@ post '/:template_id/new_event' do
 
       @new_event_controller.add_event @new_event_view.event
 
-      assigned_coaches_ids = []
-      @new_event_view.event.assigned_coaches.each do |assigned_coach_name|
-        coach = @new_event_view.coaches.find { |coach| coach.name == assigned_coach_name }
-        assigned_coaches_ids << coach.coach_id
-      end
-
-      @new_event_view.event.assigned_coaches = assigned_coaches_ids
-
 
       @new_event_controller.transmit_new_event @new_event_view.event
     else
       @new_event_controller.add_event @new_event_view.event
-
-      assigned_coaches_ids = []
-      @new_event_view.event.assigned_coaches.each do |assigned_coach_name|
-        coach = @new_event_view.coaches.find { |coach| coach.name == assigned_coach_name }
-        assigned_coaches_ids << coach.coach_id
-      end
-
-      @new_event_view.event.assigned_coaches = assigned_coaches_ids
-
-      cohort = @new_event_view.cohorts.find { |cohort| cohort.name == @new_event_view.event.selected_cohort }
-      @new_event_view.event.selected_cohort = cohort.id
 
       @new_event_controller.transmit_new_event @new_event_view.event
 
@@ -417,9 +399,11 @@ post '/event/:template_id/:event_id/edit' do
 
   if params[:action] == ">"
     unless params[:coaches].nil?
-      params["coaches"].each do |coach|
+      params["coaches"].each do |id|
+        coach = @edit_event_controller.get_coach id
         @view.event.assigned_coaches << coach
       end
+
 
       if session["event"]
         EditEventViewController.set_assigned_coaches(@view, session["event"].assigned_coaches)
@@ -449,7 +433,7 @@ post '/event/:template_id/:event_id/edit' do
 
       @view.event.assigned_coaches = session["event"].assigned_coaches
       params["assigned_coaches"].each do |assigned_coach|
-        @view.event.assigned_coaches.delete("#{assigned_coach}")
+        @view.event.assigned_coaches.delete_if {|ac| ac.coach_id == assigned_coach.to_i}
       end
 
       session["event"] = @view.event
@@ -480,13 +464,6 @@ post '/event/:template_id/:event_id/edit' do
 
     @edit_event_controller.edit_event @view.event
 
-    assigned_coaches_ids = []
-    @view.event.assigned_coaches.each do |assigned_coach_name|
-      coach = @view.coaches.find { |coach| coach.name == assigned_coach_name }
-      assigned_coaches_ids << coach.coach_id
-    end
-
-    @view.event.assigned_coaches = assigned_coaches_ids
 
 
     @edit_event_controller.transmit_edited_event @view.event

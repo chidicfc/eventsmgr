@@ -75,7 +75,11 @@ class EditEventViewController
       initial_assigned_coaches << assigned_coach
     end
     view.event.assigned_coaches = initial_assigned_coaches
-    view.event.assigned_coaches.uniq!
+    view.event.assigned_coaches.uniq! {|coach| coach.coach_id}
+  end
+
+  def get_coach id
+    @coach_repo.get_coach id
   end
 
   def edit_event event
@@ -89,6 +93,11 @@ class EditEventViewController
       transmission = Radio::Transmission.new
 
       transmission.event = OpenStruct.new
+      transmission.event.assigned_coaches = []
+      event.assigned_coaches.each do |assigned_coach|
+        transmission.event.assigned_coaches << assigned_coach.coach_id
+      end
+
       transmission.event.title = event.title
       transmission.event.date = event.date
       transmission.event.description = event.description
@@ -101,7 +110,7 @@ class EditEventViewController
       transmission.event.coach_fees = event.coach_fees
       transmission.event.income_amount = event.income_amount
       transmission.event.income_currency = event.income_currency
-      transmission.event.assigned_coaches = event.assigned_coaches
+
       transmission.event.event_template_id = event.event_template_id
       transmission.event.id = event.id
       transmission.event.timestamp = Time.now.strftime("%d-%m-%Y %H:%M:%S.%2N")

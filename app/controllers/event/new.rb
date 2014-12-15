@@ -28,6 +28,10 @@ class NewEventViewController
     @view.template = @template_repo.get template_id
   end
 
+  def get_coach id
+    @coach_repo.get_coach id
+  end
+
   def get_coaches
     @view.coaches = @coach_repo.get_coaches
   end
@@ -55,6 +59,10 @@ class NewEventViewController
     transmission = EventTransmission.new
 
     transmission.event = OpenStruct.new
+    transmission.event.assigned_coaches = []
+    event.assigned_coaches.each do |assigned_coach|
+      transmission.event.assigned_coaches << assigned_coach.coach_id
+    end
     transmission.event.title = event.title
     transmission.event.date = event.date
     transmission.event.description = event.description
@@ -67,7 +75,6 @@ class NewEventViewController
     transmission.event.coach_fees = event.coach_fees
     transmission.event.income_amount = event.income_amount
     transmission.event.income_currency = event.selected_income_currency
-    transmission.event.assigned_coaches = event.assigned_coaches
     transmission.event.event_template_id = event.event_template_id
     transmission.event.id = event.id
 

@@ -27,6 +27,10 @@ class Coach
       @datastore.search_coaches_by_letter letter
     end
 
+    def get_coach id
+      @datastore.get_coach id
+    end
+
   end
 
 end
