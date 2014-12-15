@@ -94,7 +94,7 @@
                           </button>
                         </a>
                       </td>
-                      <% unless event.coaches_emails.nil? && event.coaches_emails.empty? %>
+                      <% unless event.coaches_emails.nil? || event.coaches_emails.empty? %>
                         <td>
                           &nbsp;&nbsp;<a href="mailto:<%=event.coaches_emails.join(';') %>">Email coach/coaches</a>
                         </td>
