@@ -233,11 +233,11 @@
             <select name="coaches[]" id="coaches_list" class="mutiSelect" size="10" multiple>
               <% if @view.event.searched_coaches %>
                 <% for searched_coach in @view.event.searched_coaches %>
-                  <option value="<%= searched_coach.name %>"><%= searched_coach.name %></option>
+                  <option value="<%= searched_coach.coach_id %>"><%= searched_coach.name %></option>
                 <% end %>
               <% else  %>
                 <% for coach in @view.coaches %>
-                  <option value="<%= coach.name %>"><%= coach.name %></option>
+                  <option value="<%= coach.coach_id %>"><%= coach.name %></option>
                 <% end %>
               <% end %>
 

@@ -1,3 +1,4 @@
 source /usr/local/share/chruby/chruby.sh
 chruby $(cat .ruby-version)
 export YEASU_ENV="deve"
+export STATUS=true

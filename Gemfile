@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 source "http://ciab:c14b@gems.ciabos.com"
-ruby "2.1.2"
+#ruby "2.1.2"
 
 gem 'require_all'
 gem 'sinatra'

@@ -34,6 +34,7 @@ class NewEventViewController
 
   def get_timezones
     @view.timezones = @timezone_repo.get_timezones
+    @view.timezones.map {|timezone| timezone.to_s}
   end
 
   def get_cohorts
