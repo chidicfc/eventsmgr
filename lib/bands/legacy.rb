@@ -70,7 +70,7 @@ class LegacyData < Antenna::Band
               unless event.coaches.empty?
                 event.coaches.each do |coach|
                   dataset=DB[:assigned_coaches]
-                  dataset.insert(:event_id => event.uuid, :name => coach.name, :email => coach.email, :image => coach.image)
+                  dataset.insert(:event_id => event.uuid, :coach_id => coach.id)
                 end
               end
 
