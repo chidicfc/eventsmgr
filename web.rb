@@ -219,6 +219,7 @@ get '/:template_id/new_event' do
 
 
     @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{session["user_timezone"]}").to_s if @view.event.selected_time_zone.nil?
+    binding.remote_pry
 
     #@view.event.selected_time_zone = ActiveSupport::TimeZone.new("London").to_s
 
