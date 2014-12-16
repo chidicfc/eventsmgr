@@ -59,6 +59,7 @@ def create_tables
     String :name
     String :email
     String :image
+    String :status
   end
 
   DB.create_table? :assigned_coaches do
@@ -83,6 +84,7 @@ def create_tables
   DB.create_table? :cohorts do
     primary_key :id
     String :name
+    String :status
   end
 
 end
@@ -94,7 +96,7 @@ class DataBaseDataStore
 
   def get_coaches
     coaches = []
-    DB[:coaches].order(:name).each do |coach_row|
+    DB[:coaches].order(:name).where(:status => "active").each do |coach_row|
       coach = Coach.from_hash(coach_row)
       coaches << coach
     end
@@ -103,7 +105,7 @@ class DataBaseDataStore
 
   def get_coach id
     coach = nil
-    DB[:coaches].where(:id => id).each do |coach_row|
+    DB[:coaches].where(:id => id, :status => "active").each do |coach_row|
       coach = Coach.from_hash(coach_row)
     end
     coach
@@ -112,7 +114,7 @@ class DataBaseDataStore
 
   def search_coaches_by_letter letter
     coaches = []
-    DB[:coaches].order(:name).where(Sequel.like(:name, "#{letter}%")).each do |coach_row|
+    DB[:coaches].order(:name).where(:status => "active").where(Sequel.like(:name, "#{letter}%")).each do |coach_row|
       coach = Coach.from_hash(coach_row)
       coaches << coach
     end
@@ -127,7 +129,7 @@ class DataBaseDataStore
 
   def get_cohorts
     cohorts = []
-    DB[:cohorts].order(:name).each do |cohort_row|
+    DB[:cohorts].order(:name).where(:status => "active").each do |cohort_row|
       cohort = Cohort.from_hash(cohort_row)
       cohorts << cohort
     end
@@ -167,7 +169,7 @@ class DataBaseDataStore
           if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
             DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
               assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-              DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+              DB[:coaches].order(:name).where(:id => assigned_coach.coach_id, :status => "active").each do |coach_row|
                 coach = Coach.from_hash(coach_row)
                 event.coaches_emails << coach.email
                 event.assigned_coaches << coach
@@ -201,7 +203,7 @@ class DataBaseDataStore
 
   def get_cohort_id name
     cohort_id = nil
-    DB[:cohorts].where(:name => name).each do |cohort_row|
+    DB[:cohorts].where(:name => name, :status => "active").each do |cohort_row|
       cohort = Cohort.from_hash(cohort_row)
       cohort_id = cohort.id
     end
@@ -229,7 +231,7 @@ class DataBaseDataStore
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
           DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id, :status => "active").each do |coach_row|
               coach = Coach.from_hash(coach_row)
               event.assigned_coaches << coach
             end
@@ -286,7 +288,7 @@ class DataBaseDataStore
         if DB[:assigned_coaches].where(:event_id=> event_row[:id]) != []
           DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
             assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+            DB[:coaches].order(:name).where(:id => assigned_coach.coach_id, :status => "active").each do |coach_row|
               coach = Coach.from_hash(coach_row)
               event.coaches_emails << coach.email
               event.assigned_coaches << coach
@@ -333,7 +335,7 @@ class DataBaseDataStore
       if event.assigned_coaches != []
         event.assigned_coaches.each do |assigned_coach|
           #find coach by name
-          DB[:coaches].where(:id => assigned_coach.coach_id).each do |assigned_coach_row|
+          DB[:coaches].where(:id => assigned_coach.coach_id, :status => "active").each do |assigned_coach_row|
             assigned_coach = Coach.from_hash(assigned_coach_row)
             DB[:assigned_coaches].insert(:event_id => event.id, :coach_id => assigned_coach.coach_id)
           end
@@ -355,7 +357,7 @@ class DataBaseDataStore
       end
 
       DB[:assigned_coaches].where(:event_id => event.id).delete
-      
+
       event.assigned_coaches.each do |assigned_coach|
         DB[:assigned_coaches].insert(:event_id => event.id, :coach_id => assigned_coach.coach_id)
       end
@@ -381,12 +383,11 @@ class DataBaseDataStore
 
   def get_cohort id
     cohort_name = nil
-    DB[:cohorts].where(:id => id).each do |cohort_row|
+    DB[:cohorts].where(:id => id, :status => "active").each do |cohort_row|
       cohort = Cohort.from_hash(cohort_row)
       cohort_name = cohort.name
     end
     cohort_name
-
   end
 
   #check this
@@ -403,7 +404,7 @@ class DataBaseDataStore
 
       DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
         assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
-        DB[:coaches].order(:name).where(:id => assigned_coach.coach_id).each do |coach_row|
+        DB[:coaches].order(:name).where(:id => assigned_coach.coach_id, :status => "active").each do |coach_row|
           coach = Coach.from_hash(coach_row)
           @event.coaches_emails << coach.email
           @event.assigned_coaches << coach
