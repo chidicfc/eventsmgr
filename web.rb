@@ -217,12 +217,11 @@ get '/:template_id/new_event' do
     @view.event.start_hours = "09"
     @view.event.start_mins = "00"
 
-    timezone = session["user_timezone"].split("/")
+    # timezone = session["user_timezone"].split("/")
+    # @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{timezone[1]}").to_s if @view.event.selected_time_zone.nil?
 
-    @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{timezone[1]}").to_s if @view.event.selected_time_zone.nil?
 
-
-    #@view.event.selected_time_zone = ActiveSupport::TimeZone.new("London").to_s
+    @view.event.selected_time_zone = ActiveSupport::TimeZone.new("London").to_s
 
     @view.event.date = Time.now.strftime("%d/%m/%Y")
 
@@ -309,6 +308,12 @@ post '/:template_id/new_event' do
 
     if @new_event_view.event.selected_cohort_id == "Please Choose"
       flash[:error] = "Please choose a cohort"
+      @new_event_view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
+      session["event"] = @new_event_view.event
+      redirect "#{params[:template_id]}/new_event"
+
+    elsif @new_event_view.event.selected_time_zone == "Please Choose"
+      flash[:error] = "Please choose a timezone"
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
       session["event"] = @new_event_view.event
       redirect "#{params[:template_id]}/new_event"
@@ -454,6 +459,19 @@ post '/event/:template_id/:event_id/edit' do
     redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
 
   elsif params[:action] == "Edit Event"
+
+    if @view.event.selected_cohort_id == "Please Choose"
+      flash[:error] = "Please choose a cohort"
+      @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+
+    elsif @view.event.selected_time_zone == "Please Choose"
+      flash[:error] = "Please choose a timezone"
+      @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+    end
 
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
     start_time = "#{params[:start_hours]}:#{params[:start_mins]}"

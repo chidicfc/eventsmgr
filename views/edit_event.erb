@@ -110,6 +110,7 @@
                 <label>Timezone</label>
                 <br>
                 <select name="timezone" id="timezone" class="form-control">
+                  <option value="Please Choose">Please Choose</option>
                   <% for timezone in @view.timezones %>
                     <% if @view.event.selected_time_zone.to_s == timezone.to_s %>
                       <option selected="<%= timezone.to_s %>"><%= timezone.to_s %></option>
@@ -124,6 +125,7 @@
                 <label>Cohort</label>
                 <br>
                 <select name="cohort" id="cohort" class="form-control">
+                  <option value="Please Choose">Please Choose</option>
                   <% for cohort in @view.cohorts %>
                     <% if @view.event.selected_cohort_id.to_i == cohort.id %>
                       <option selected value="<%= cohort.id %>"><%= cohort.name.to_s %></option>

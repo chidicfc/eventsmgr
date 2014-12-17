@@ -369,8 +369,8 @@ class DataBaseDataStore
     DB.transaction do
       DB.run("DROP TABLE event_templates")
       DB.run("DROP TABLE events")
-      DB.run("DROP TABLE coaches")
       DB.run("DROP TABLE assigned_coaches")
+      DB.run("DROP TABLE coaches")
       DB.run("DROP TABLE coach_fees")
       DB.run("DROP TABLE timezones")
       DB.run("DROP TABLE cohorts")
