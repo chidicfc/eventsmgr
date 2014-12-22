@@ -339,7 +339,7 @@ post '/:template_id/new_event' do
     redirect '/'
 
   elsif params[:action] == "Show All"
-    @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
+    @new_event_view.event.assigned_coaches = session["event"].assigned_coaches if session["event"]
 
     # session["event"] = @new_event_view.event
     # redirect "#{params[:template_id]}/new_event#coaches"
