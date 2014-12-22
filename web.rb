@@ -11,7 +11,9 @@ require "active_support/all"
 require_all "app"
 
 
-enable :sessions
+# enable :sessions
+
+use Rack::Session::Pool
 
 
 
