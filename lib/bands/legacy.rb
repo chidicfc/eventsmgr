@@ -2,6 +2,7 @@ require "pry"
 require "active_support/all"
 
 class LegacyData < Antenna::Band
+  COACH_FEE_CURRENCIES = ["USD", "GBP", "AUD", "SGD", "EUR"]
 
   def tunnable?
     transmission.tags.include? "legacy_data"
@@ -75,10 +76,21 @@ class LegacyData < Antenna::Band
               end
 
               unless event.coaches_fees.empty?
-                event.coaches_fees.each do |coaches_fee|
+                COACH_FEE_CURRENCIES.each do |currency|
+                  @amount = 0.0
+                  event.coaches_fees.each do |coach_fee|
+                    if @amount == 0.0
+                      @amount = coach_fee.currency == currency ? coach_fee.amount : 0.0
+                    end
+                  end
                   dataset = DB[:coach_fees]
-                  coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.uuid, :event_id => event.uuid)
+                  coach_fee = dataset.insert(:currency => currency, :amount => @amount, :event_template_id => template.uuid, :event_id => event.uuid)
+
                 end
+                # event.coaches_fees.each do |coaches_fee|
+                #   dataset = DB[:coach_fees]
+                #   coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.uuid, :event_id => event.uuid)
+                # end
               end
 
             end # end template.events.each
