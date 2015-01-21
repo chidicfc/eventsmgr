@@ -54,10 +54,22 @@ class LegacyData < Antenna::Band
           dataset.insert(:id => template.uuid, :title => template.title, :duration => template.duration, :description => template.description, :status => "active")
 
           unless template.coaches_fees.empty?
-            template.coaches_fees.each do |coaches_fee|
+            COACH_FEE_CURRENCIES.each do |currency|
+              @amount = 0.0
+              template.coaches_fees.each do |coach_fee|
+                if @amount == 0.0
+                  @amount = coach_fee.currency == currency ? coach_fee.amount : 0.0
+                end
+              end
               dataset = DB[:coach_fees]
-              coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.uuid)
+              coach_fee = dataset.insert(:currency => currency, :amount => @amount, :event_template_id => template.uuid)
+
+
             end
+            # template.coaches_fees.each do |coaches_fee|
+            #   dataset = DB[:coach_fees]
+            #   coach_fee = dataset.insert(:currency => coaches_fee.currency, :amount => coaches_fee.amount, :event_template_id => template.uuid)
+            # end
           end
 
 
