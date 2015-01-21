@@ -219,7 +219,8 @@ get '/:template_id/new_event' do
     @view.event.start_hours = "09"
     @view.event.start_mins = "00"
 
-    timezone = session["user_timezone"].split("/")
+    #timezone = session["user_timezone"].split("/")
+    timezone = ""
     @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{timezone[1]}").to_s if @view.event.selected_time_zone.nil?
 
 
@@ -307,7 +308,6 @@ post '/:template_id/new_event' do
     redirect "#{params[:template_id]}/new_event#coaches"
 
   elsif params[:action] == "Create Event"
-
     if @new_event_view.event.selected_cohort_id == "Please Choose"
       flash[:error] = "Please choose a cohort"
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?

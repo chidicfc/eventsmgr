@@ -34,10 +34,10 @@
             <h4>Event Details</h4>
             <label>Subtitle (Location or Reference) <span class="red">*</span></label>
             <input type="text" name="sub_title" value="<%= @view.event.title %>" class="form-control" required>
-            <label>Date</label>
+            <label>Date <span class="red">*</span></label>
             <div class="form-group">
               <div class="input-group date datePicker">
-                <input type="text" id="datepicker" name="date" value="<%= @view.event.date %>">
+                <input type="text" id="datepicker" name="date" value="<%= @view.event.date %>" required>
 
               </div>
             </div>
@@ -52,7 +52,7 @@
 
             <div class="row">
               <div class="col-md-3 quarter">
-                <label>Local Start time</label>
+                <label>Local Start time </label>
                 <br>
                 <select name="start_hours" id="start_hours" class="form-control selectSmall">
                   <% 24.times do |hours|%>
