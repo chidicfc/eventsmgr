@@ -7,8 +7,7 @@ end
 
 
 
-#Radio::Tunner.broadcast tags: "ciabos,ui,inbound,legacy_data,#{ENV["YEASU_ENV"]}" do |transmitter|
-Radio::Tunner.broadcast tags: "ciabos,ui,inbound,legacy_data,deve" do |transmitter|
+Radio::Tunner.broadcast tags: "ciabos,ui,inbound,legacy_data,#{ENV["YEASU_ENV"]}" do |transmitter|
   transmission = Radio::Transmission.new
 
   t = transmitter.transmit transmission
