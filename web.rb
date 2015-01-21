@@ -470,11 +470,6 @@ post '/event/:template_id/:event_id/edit' do
       @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
       session["event"] = @view.event
       redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
-    elsif @view.event.date == ""
-      flash[:error] = "Please choose a date"
-      @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
-      session["event"] = @view.event
-      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
     end
 
     duration = "#{params[:duration_hours]}:#{params[:duration_mins]}"
