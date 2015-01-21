@@ -321,7 +321,6 @@ post '/:template_id/new_event' do
       redirect "#{params[:template_id]}/new_event"
     end
 
-
     if session["event"]
 
       @new_event_view.event.assigned_coaches = session["event"].assigned_coaches
@@ -461,7 +460,6 @@ post '/event/:template_id/:event_id/edit' do
     redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit#coaches"
 
   elsif params[:action] == "Edit Event"
-
     if @view.event.selected_cohort_id == "Please Choose"
       flash[:error] = "Please choose a cohort"
       @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
@@ -470,6 +468,11 @@ post '/event/:template_id/:event_id/edit' do
 
     elsif @view.event.selected_time_zone == "Please Choose"
       flash[:error] = "Please choose a timezone"
+      @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
+      session["event"] = @view.event
+      redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
+    elsif @view.event.date == ""
+      flash[:error] = "Please choose a date"
       @view.event.assigned_coaches = session["event"].assigned_coaches unless session["event"].nil?
       session["event"] = @view.event
       redirect "event/#{params[:template_id]}/#{params[:event_id]}/edit"
