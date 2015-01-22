@@ -49,10 +49,14 @@ class NewEventViewController
     @view.event.searched_coaches = @coach_repo.search_coaches_by_letter letter
   end
 
-  def add_event event
+  def get_utc_time event
     date = event.date.split("/")
     t = Time.local(date[2], date[1], date[0], event.start_hours, event.start_mins)
-    event.utc_time = t.getgm
+    t.getgm
+  end
+
+  def add_event event
+    event.utc_time = get_utc_time event
     @event_repo.add_event event
   end
 
@@ -80,7 +84,7 @@ class NewEventViewController
     transmission.event.income_currency = event.selected_income_currency
     transmission.event.event_template_id = event.event_template_id
     transmission.event.id = event.id
-
+    transmission.event.utc_time = get_utc_time event
     transmission.transmit
 
   end
