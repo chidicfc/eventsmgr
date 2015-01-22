@@ -51,8 +51,9 @@ class NewEventViewController
 
   def get_utc_time event
     date = event.date.split("/")
-    t = Time.local(date[2], date[1], date[0], event.start_hours, event.start_mins)
-    t.getgm
+    off_set = event.selected_time_zone.split(" ")[0].split("(GMT")[1].split(")")[0]
+    t = Time.new(date[2], date[1], date[0], event.start_hours, event.start_mins, 0, off_set)
+    t.getutc
   end
 
   def add_event event
