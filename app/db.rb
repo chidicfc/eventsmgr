@@ -51,6 +51,7 @@ def create_tables
     Integer :cohort_id
     String :income_amount
     String :income_currency
+    String :utc_time
 
   end
 
@@ -323,7 +324,7 @@ class DataBaseDataStore
   def add_event event
     event.id = UUID.new.generate
     DB.transaction do
-      DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort_id => event.selected_cohort_id, :income_amount => event.income_amount, :income_currency => event.income_currency)
+      DB[:events].insert(:id => event.id, :event_template_id => event.event_template_id, :title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort_id => event.selected_cohort_id, :income_amount => event.income_amount, :income_currency => event.income_currency, :utc_time => event.utc_time)
 
 
       event.coach_fees.each do |coaches_fee|

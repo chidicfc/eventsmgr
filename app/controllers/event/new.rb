@@ -50,6 +50,9 @@ class NewEventViewController
   end
 
   def add_event event
+    date = event.date.split("/")
+    t = Time.local(date[2], date[1], date[0], event.start_hours, event.start_mins)
+    event.utc_time = t.getgm
     @event_repo.add_event event
   end
 
