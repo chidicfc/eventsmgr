@@ -349,7 +349,7 @@ class DataBaseDataStore
     #template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
     DB.transaction do
 
-      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:cohort_id => event.selected_cohort_id,:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency)
+      DB[:events].where(:event_template_id => event.event_template_id, :id => event.id).update(:cohort_id => event.selected_cohort_id,:title => event.title, :duration => event.duration, :description => event.description, :date => event.date, :start_time => event.start_time, :timezone => event.selected_time_zone, :cohort => event.selected_cohort, :income_amount => event.income_amount, :income_currency => event.income_currency, :utc_time => event.utc_time)
 
       event.coach_fees.each do |coach_fee|
         coach_fee.each do |currency, amount|
