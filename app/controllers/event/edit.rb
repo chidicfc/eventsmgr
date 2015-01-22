@@ -83,11 +83,15 @@ class EditEventViewController
     @coach_repo.get_coach id
   end
 
-  def edit_event event
+  def get_utc_time event
     date = event.date.split("/")
     local_time = event.start_time.split(":")
     t = Time.local(date[2], date[1], date[0], local_time[0], local_time[1])
-    event.utc_time = t.getgm
+    t.getgm
+  end
+
+  def edit_event event
+    event.utc_time = get_utc_time event
     @event_repo.edit_event event
     #@event_repo.edit_event template_id, event_id, sub_title, duration, description, date, start_time, timezone, cohort, coach_fees, assigned_coaches, income_amount, income_currency
   end
@@ -119,7 +123,7 @@ class EditEventViewController
       transmission.event.event_template_id = event.event_template_id
       transmission.event.id = event.id
       transmission.event.timestamp = Time.now.strftime("%d-%m-%Y %H:%M:%S.%2N")
-
+      transmission.event.utc_time = get_utc_time event
       t = transmitter.transmit transmission
       p "event edited"
       p t
