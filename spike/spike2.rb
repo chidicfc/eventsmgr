@@ -3,6 +3,7 @@ require "rubygems"
 require "pry"
 require "awesome_print"
 require "yeasu"
+require "active_support/all"
 
 include Yeasu
 
