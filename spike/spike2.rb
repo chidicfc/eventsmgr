@@ -205,7 +205,7 @@ def edit_timezone
 
   events.each do |event|
     @event = get_event event.event_template_id, event.id
-    Event.new(@event.title, @event.event_template_id).transmit_edited_event @event
+    Event.new(@event.title, @event.event_template_id).transmit_edited_event @event if Date.today < Date.parse(@event.date)
   end
 end
 
