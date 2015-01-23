@@ -86,6 +86,78 @@ class Event
   end
 end
 
+class CoachesFee
+  attr_accessor :currency, :amount, :template_id, :event_id, :id
+
+  def initialize(currency, amount, template_id)
+    @currency = currency
+    @amount = amount
+    @template_id = template_id
+  end
+
+  def self.from_hash(row)
+    coach_fee = CoachesFee.new row[:currency],row[:amount],row[:event_template_id]
+    coach_fee.event_id = row[:event_id]
+    coach_fee.id = row[:id]
+    coach_fee
+  end
+end
+
+class AssignedCoach
+  attr_accessor :id, :event_id, :coach_id
+
+  def initialize (id, event_id, coach_id)
+    @id = id
+    @event_id = event_id
+    @coach_id = coach_id
+  end
+
+  def self.from_hash(row)
+    assigned_coach = AssignedCoach.new row[:id], row[:event_id], row[:coach_id]
+    assigned_coach
+  end
+end
+
+class Coach
+  attr_accessor :name, :email, :coach_id, :image
+
+  def initialize (coach_id, name, email, image)
+    @name = name
+    @email = email
+    @coach_id = coach_id
+    @image = image
+  end
+
+  def self.from_hash(row)
+    coach = Coach.new(row[:id], row[:name], row[:email], row[:image])
+    coach
+  end
+end
+
+def get_event template_id, event_id
+  DB[:events].where(:id => event_id).each do |event_row|
+    @event = Event.from_hash(event_row)
+    @event.selected_cohort = get_cohort @event.selected_cohort_id
+
+    DB[:coach_fees].where(Sequel.&(:event_id => event_id, :event_template_id => template_id)).each do |coach_fee_row|
+      coach_fee = CoachesFee.from_hash(coach_fee_row)
+      @event.coach_fees << {"#{coach_fee.currency}" => "#{coach_fee.amount}"}
+    end
+
+
+    DB[:assigned_coaches].where(:event_id=> event_row[:id]).each do |assigned_coach_row|
+      assigned_coach = AssignedCoach.from_hash(assigned_coach_row)
+      DB[:coaches].order(:name).where(:id => assigned_coach.coach_id, :status => "active").each do |coach_row|
+        coach = Coach.from_hash(coach_row)
+        @event.coaches_emails << coach.email
+        @event.assigned_coaches << coach
+      end
+    end
+
+  end
+  @event
+end
+
 def getTimeZone
   events = []
   DB[:events].each do |event_row|
@@ -104,7 +176,11 @@ def edit_timezone
   events = getTimeZone
   events.each do |event|
     DB[:events].where(:id => event.id).update(:timezone => event.selected_time_zone )
-    Event.new(event.title, event.event_template_id).transmit_edited_event event
+  end
+
+  events.each do |event|
+    @event = get_event event.event_template_id, event.id
+    Event.new(@event.title, @event.event_template_id).transmit_edited_event @event
   end
 end
 
