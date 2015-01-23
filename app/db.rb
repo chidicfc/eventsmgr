@@ -367,21 +367,21 @@ class DataBaseDataStore
     end
   end
 
-  def reset_db
-    DB.transaction do
-      DB.run("DROP TABLE event_templates")
-      DB.run("DROP TABLE events")
-      DB.run("DROP TABLE assigned_coaches")
-      DB.run("DROP TABLE coaches")
-      DB.run("DROP TABLE coach_fees")
-      DB.run("DROP TABLE timezones")
-      DB.run("DROP TABLE cohorts")
-
-
-
-      create_tables
-    end
-  end
+  # def reset_db
+  #   DB.transaction do
+  #     DB.run("DROP TABLE event_templates")
+  #     DB.run("DROP TABLE events")
+  #     DB.run("DROP TABLE assigned_coaches")
+  #     DB.run("DROP TABLE coaches")
+  #     DB.run("DROP TABLE coach_fees")
+  #     DB.run("DROP TABLE timezones")
+  #     DB.run("DROP TABLE cohorts")
+  #
+  #
+  #
+  #     create_tables
+  #   end
+  # end
 
   def get_cohort id
     cohort_name = nil
