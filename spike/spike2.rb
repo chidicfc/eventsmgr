@@ -134,6 +134,30 @@ class Coach
   end
 end
 
+class Cohort
+
+  attr_accessor :name, :id
+
+  def initialize(name)
+    @name = name
+  end
+
+  def self.from_hash(row)
+    cohort = Cohort.new(row[:name])
+    cohort.id = row[:id]
+    cohort
+  end
+end
+
+def get_cohort id
+  cohort_name = nil
+  DB[:cohorts].where(:id => id, :status => "active").each do |cohort_row|
+    cohort = Cohort.from_hash(cohort_row)
+    cohort_name = cohort.name
+  end
+  cohort_name
+end
+
 def get_event template_id, event_id
   DB[:events].where(:id => event_id).each do |event_row|
     @event = Event.from_hash(event_row)
