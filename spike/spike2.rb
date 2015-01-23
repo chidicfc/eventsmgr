@@ -3,11 +3,33 @@ require "rubygems"
 require "pry"
 require "awesome_print"
 require "yeasu"
+require "sequel"
+require 'pry-remote'
+require 'yaml'
+require 'chronic_duration'
+require 'date'
+require 'sinatra'
+require "active_support/all"
 
 include Yeasu
 
 Yeasu::Radio.configuration do |config|
   config.producer.name = "eventsmgr_edit_event"
+end
+
+configure :production do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :production
+end
+
+configure :staging do
+  DB = Sequel.connect ENV['DATABASE_URL']
+  set :environment, :staging
+end
+
+configure :development do
+  DB = Sequel.connect('postgres://localhost:5432/eventsmgr')
+  set :environment, :development
 end
 
 
