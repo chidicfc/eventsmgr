@@ -187,7 +187,7 @@ def getTimeZone
   events = []
   DB[:events].each do |event_row|
     event = Event.from_hash(event_row)
-    t = event.selected_time_zone.split(") ")[1]
+    t = event.selected_time_zone
     timezone = ActiveSupport::TimeZone.new(t)
     zone = timezone.to_s.split(") ")[1]
     off_set = timezone.now.formatted_offset
