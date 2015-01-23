@@ -1,6 +1,6 @@
 class Event
 
-  attr_accessor :title, :date, :description, :coach_fees, :id
+  attr_accessor :title, :date, :description, :coach_fees, :id, :utc_time
   attr_accessor :start_time, :duration, :event_template_id
   attr_accessor :assigned_coaches, :selected_time_zone, :selected_cohort_id, :coaches
   attr_accessor :income_amount, :income_currency, :coaches_emails, :selected_cohort
@@ -25,6 +25,7 @@ class Event
     event.selected_cohort_id = row[:cohort_id]
     event.income_amount = row[:income_amount]
     event.income_currency = row[:income_currency]
+    event.utc_time = row[:utc_time]
     event
   end
 

@@ -4,6 +4,7 @@ require 'yaml'
 require 'chronic_duration'
 require 'date'
 require 'sinatra'
+require "active_support/all"
 
 
 # DB = Sequel.sqlite('app/eventsmanager.db')
@@ -452,8 +453,6 @@ class DataBaseDataStore
     end
     templates
   end
-
-
 
   def search_templates_by_name name, status
     templates = []

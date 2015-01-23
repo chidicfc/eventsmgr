@@ -27,8 +27,8 @@ class EditEventViewController
     @view.timezones = @timezone_repo.get_timezones
 
     @view.timezones.map do |timezone|
-      zone =  timezone.to_s.split(")")[1]
       off_set = timezone.now.formatted_offset
+      zone =  timezone.to_s.split(") ")[1]
       "(GMT#{off_set}) #{zone}"
     end
   end

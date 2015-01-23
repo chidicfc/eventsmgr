@@ -32,7 +32,7 @@ get '/' do
     erb :index
 
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -58,7 +58,7 @@ end
 get '/dashboard' do
 
   session.clear
-  redirect 'http://app.coachinabox.biz/dashboard'
+  redirect 'http://staging-eventsmgr.ciabos.com/dashboard'
 end
 
 get '/reset' do
@@ -66,7 +66,7 @@ get '/reset' do
     @controller = ResetTemplateController.new
     @controller.reset
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -78,7 +78,7 @@ get '/event_template/:id/edit' do |n|
     @edit_template_controller.get n
     erb :edit_template
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -113,7 +113,7 @@ get '/new_template' do
     @new_template_controller.get_default_coach_fees
     erb :new_template
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 
 end
@@ -160,7 +160,7 @@ delete '/event_template/:id' do
     DeleteEventTemplateController.new.transmit_deleted_template template
     redirect '/'
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -184,7 +184,7 @@ get '/show_archive' do
     @show_archive_controller.show
     erb :archive
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -200,7 +200,7 @@ get '/show_event_templates' do
   if ENV["STATUS"]
     redirect '/'
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -219,8 +219,7 @@ get '/:template_id/new_event' do
     @view.event.start_hours = "09"
     @view.event.start_mins = "00"
 
-    #timezone = session["user_timezone"].split("/")
-    timezone = ""
+    timezone = session["user_timezone"].split("/")
     @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{timezone[1]}").to_s if @view.event.selected_time_zone.nil?
 
 
@@ -235,11 +234,10 @@ get '/:template_id/new_event' do
 
     @new_event_controller.get_coaches
     @new_event_controller.get_cohorts
-    @new_event_controller.get_timezones
-
+    @view.timezones = @new_event_controller.get_timezones
     erb :new_event
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -251,7 +249,7 @@ post '/:template_id/new_event' do
   @new_event_controller = NewEventViewController.new(@new_event_view)
   @new_event_controller.get_coaches
   @new_event_controller.get_cohorts
-  @new_event_controller.get_timezones
+  @new_event_view.timezones = @new_event_controller.get_timezones
   @new_event_controller.get params[:template_id]
 
 
@@ -378,7 +376,7 @@ get '/event/:template_id/:event_id/edit' do
     @view.event = session["event"] unless session["event"].nil?
     @edit_event_controller.get_coaches
     @edit_event_controller.get_cohorts
-    @edit_event_controller.get_timezones
+    @view.timezones = @edit_event_controller.get_timezones
     @edit_event_controller.get params[:template_id]
 
     session["event"] = @view.event
@@ -386,7 +384,7 @@ get '/event/:template_id/:event_id/edit' do
 
     erb :edit_event
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -400,7 +398,7 @@ post '/event/:template_id/:event_id/edit' do
 
   @edit_event_controller.get_coaches
   @edit_event_controller.get_cohorts
-  @edit_event_controller.get_timezones
+  @view.timezones = @edit_event_controller.get_timezones
   @edit_event_controller.get params[:template_id]
 
 
@@ -542,7 +540,7 @@ get '/event/:template_id/:event_id/delete' do
 
     redirect '/'
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -553,7 +551,7 @@ get '/search_templates_by_letter/:letter' do
     @controller.display_templates_by_letter params[:letter], "active"
     erb :index
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
@@ -574,7 +572,7 @@ get '/search_archive_templates_by_letter/:letter' do
     @controller.display_templates_by_letter params[:letter], "archive"
     erb :archive
   else
-    redirect 'http://app.coachinabox.biz/users/sign_in'
+    redirect 'http://staging-eventsmgr.ciabos.com/users/sign_in'
   end
 end
 
