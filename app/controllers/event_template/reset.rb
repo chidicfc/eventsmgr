@@ -6,7 +6,7 @@ class ResetTemplateController
   end
 
   def reset
-    # @repo.reset_db
+    @repo.reset_db
   end
 
 
