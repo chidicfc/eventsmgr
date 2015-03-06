@@ -218,8 +218,7 @@ get '/:template_id/new_event' do
 
     @view.event.start_hours = "09"
     @view.event.start_mins = "00"
-
-    timezone = session["user_timezone"].split("/")
+    timezone = session["user_timezone"].nil? ? "" : session["user_timezone"].split("/")
     #timezone = ""
     @view.event.selected_time_zone = ActiveSupport::TimeZone.new("#{timezone[1]}").to_s if @view.event.selected_time_zone.nil?
 
