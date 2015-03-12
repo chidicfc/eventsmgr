@@ -110,4 +110,15 @@ task :migrate => :seed do
   puts "Migration completed"
 end
 
+
+desc 'console'
+task :console do
+  require "pry"
+  require "./web"
+  binding.pry
+end
+
+
+
+
 task :migrate => :create
