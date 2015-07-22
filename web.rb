@@ -111,6 +111,7 @@ get '/new_template' do
     @new_template_view.selected_duration_hours = "01"
     @new_template_view.selected_duration_mins = "00"
     @new_template_controller.get_default_coach_fees
+  
     erb :new_template
   else
     redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
@@ -362,7 +363,6 @@ end
 
 
 get '/event/:template_id/:event_id/edit' do
-
   if ENV["STATUS"]
     @view = EditEventView.new
     @edit_event_controller = EditEventViewController.new(@view)

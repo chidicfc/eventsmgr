@@ -1,6 +1,6 @@
 GEM
   remote: https://rubygems.org/
-  remote: http://ciab:c14b@gems.ciabos.com/
+  remote: http://gems.ciabos.com/
   specs:
     activesupport (4.1.9)
       i18n (~> 0.6, >= 0.6.9)
