@@ -26,13 +26,13 @@ before'/' do
 end
 
 get '/' do
-  if ENV["STATUS"]
+  if true
     @controller.load_default_coaches_fee
     @controller.display_templates
     erb :index
 
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -58,27 +58,27 @@ end
 get '/dashboard' do
 
   session.clear
-  redirect "http://#{ENV['REDIRECT_URL']}/dashboard"
+  redirect "http://staging.ciabos.com/dashboard"
 end
 
 get '/reset' do
-  if ENV["STATUS"]
+  if true
     @controller = ResetTemplateController.new
     @controller.reset
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
 
 get '/event_template/:id/edit' do |n|
-  if ENV["STATUS"]
+  if true
     @edit_template_view = EditEventTemplateView.new
     @edit_template_controller = EditEventTemplateViewController.new(@edit_template_view)
     @edit_template_controller.get n
     erb :edit_template
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -104,17 +104,17 @@ patch '/edit_template/:id' do
 end
 
 get '/new_template' do
-  if ENV["STATUS"]
+  if true
     @new_template_view = NewEventTemplateView.new
     @new_template_controller = NewEventTemplateViewController.new
     @new_template_controller.view = @new_template_view
     @new_template_view.selected_duration_hours = "01"
     @new_template_view.selected_duration_mins = "00"
     @new_template_controller.get_default_coach_fees
-  
+
     erb :new_template
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 
 end
@@ -146,7 +146,7 @@ post '/new_template' do
 end
 
 delete '/event_template/:id' do
-  if ENV["STATUS"]
+  if true
     # params.to_s
     template = DeleteEventTemplateController.new.get params[:id]
 
@@ -161,7 +161,7 @@ delete '/event_template/:id' do
     DeleteEventTemplateController.new.transmit_deleted_template template
     redirect '/'
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -179,13 +179,13 @@ patch '/event_template/:id' do
 end
 
 get '/show_archive' do
-  if ENV["STATUS"]
+  if true
     @show_archive_view = ShowArchiveEventTemplateView.new
     @show_archive_controller = ShowArchiveEventTemplateController.new(@show_archive_view)
     @show_archive_controller.show
     erb :archive
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -198,15 +198,15 @@ patch '/archive_event_template/:id' do
 end
 
 get '/show_event_templates' do
-  if ENV["STATUS"]
+  if true
     redirect '/'
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
 get '/:template_id/new_event' do
-  if ENV["STATUS"]
+  if true
     @view = NewEventView.new
     @new_event_controller = NewEventViewController.new(@view)
     @new_event_controller.get params[:template_id]
@@ -238,7 +238,7 @@ get '/:template_id/new_event' do
     @view.timezones = @new_event_controller.get_timezones
     erb :new_event
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -363,7 +363,7 @@ end
 
 
 get '/event/:template_id/:event_id/edit' do
-  if ENV["STATUS"]
+  if true
     @view = EditEventView.new
     @edit_event_controller = EditEventViewController.new(@view)
 
@@ -384,7 +384,7 @@ get '/event/:template_id/:event_id/edit' do
 
     erb :edit_event
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -518,7 +518,7 @@ post '/event/:template_id/:event_id/edit' do
 end
 
 get '/event/:template_id/:event_id/delete' do
-  if ENV["STATUS"]
+  if true
     @view = DeleteEventView.new
     @controller = DeleteEventController.new(@view)
 
@@ -540,18 +540,18 @@ get '/event/:template_id/:event_id/delete' do
 
     redirect '/'
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
 get '/search_templates_by_letter/:letter' do
-  if ENV["STATUS"]
+  if true
     @view = IndexView.new
     @controller = IndexViewController.new(@view)
     @controller.display_templates_by_letter params[:letter], "active"
     erb :index
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
@@ -566,13 +566,13 @@ post '/search_templates_by_name' do
 end
 
 get '/search_archive_templates_by_letter/:letter' do
-  if ENV["STATUS"]
+  if true
     @show_archive_view = ShowArchiveEventTemplateView.new
     @controller = ShowArchiveEventTemplateController.new(@show_archive_view)
     @controller.display_templates_by_letter params[:letter], "archive"
     erb :archive
   else
-    redirect "http://#{ENV['REDIRECT_URL']}/users/sign_in"
+    redirect "http://staging.ciabos.com/users/sign_in"
   end
 end
 
